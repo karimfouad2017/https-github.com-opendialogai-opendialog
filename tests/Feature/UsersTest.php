@@ -67,6 +67,24 @@ class UsersTest extends TestCase
         $this->assertEquals(count($response->data), 3);
     }
 
+    public function testHideBotUser()
+    {
+        $response = $this->actingAs($this->user, 'api')
+            ->json('GET', '/admin/api/user?perPage=100')
+            ->getData();
+
+        $this->assertEquals(53, count($response->data));
+
+        // Set the first user to be the bot user, now it should no longer be returned
+        $this->app['config']->set('sanctum.bot_user', User::first()->email);
+
+        $response = $this->actingAs($this->user, 'api')
+            ->json('GET', '/admin/api/user?perPage=100')
+            ->getData();
+
+        $this->assertEquals(52, count($response->data));
+    }
+
     public function testUsersUpdateEndpoint()
     {
         $user = User::latest()->first();
