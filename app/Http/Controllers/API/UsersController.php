@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\NewUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -40,17 +41,13 @@ class UsersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param NewUserRequest $request
      * @return UserResource
      */
-    public function store(Request $request)
+    public function store(NewUserRequest $request)
     {
         /** @var User $user */
         $user = User::make($request->all());
-
-        if ($error = $this->validateValue($user)) {
-            return response($error, 400);
-        }
 
         $user->password = Hash::make(Str::random(8));
         $user->save();
@@ -58,94 +55,47 @@ class UsersController extends Controller
         return new UserResource($user);
     }
 
-
     /**
      * Display the specified resource.
      *
      * @param int $id
      * @return UserResource
      */
-    public function show($id): UserResource
+    public function show(User $user): UserResource
     {
-        return new UserResource(User::find($id));
+        return new UserResource($user);
     }
-
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param int     $id
+     * @param UpdateUserRequest $request
+     * @param User $user
      * @return Response
      */
-    public function update(Request $request, $id): Response
+    public function update(UpdateUserRequest $request, User $user): Response
     {
-        /** @var User $user */
-        if ($user = User::find($id)) {
-            $user->fill($request->all());
+        $user->fill($request->all());
+        $user->save();
 
-            if ($error = $this->validateValue($user)) {
-                return response($error, 400);
-            }
-
-            $user->save();
-
-            return response()->noContent(200);
-        }
-
-        return response()->noContent(404);
+        return response()->noContent(200);
     }
 
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param User $user
      * @return Response
      */
-    public function destroy($id): Response
+    public function destroy(User $user): Response
     {
-        /** @var User $user */
-        if ($user = User::find($id)) {
-            try {
-                $user->delete();
-                return response()->noContent(200);
-            } catch (\Exception $e) {
-                Log::error(sprintf('Error deleting user - %s', $e->getMessage()));
-                return response('Error creating user', 500);
-            }
+        try {
+            $user->delete();
+            return response()->noContent(200);
+        } catch (\Exception $e) {
+            Log::error(sprintf('Error deleting user - %s', $e->getMessage()));
+            return response('Error deleting user', 500);
         }
-
-        return response()->noContent(404);
-    }
-
-    /**
-     * @param User $user
-     * @return array
-     */
-    private function validateValue(User $user): ?array
-    {
-        if (empty($user->name)) {
-            return [
-                'field' => 'name',
-                'message' => 'User name field is required.',
-            ];
-        }
-
-        if (empty($user->email)) {
-            return [
-                'field' => 'email',
-                'message' => 'User email field is required.',
-            ];
-        }
-
-        if (!filter_var($user->email, FILTER_VALIDATE_EMAIL)) {
-            return [
-                'field' => 'email',
-                'message' => 'Enter a valid email.',
-            ];
-        }
-
-        return null;
     }
 }
