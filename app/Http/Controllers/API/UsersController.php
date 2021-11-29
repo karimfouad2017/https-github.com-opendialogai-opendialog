@@ -28,13 +28,14 @@ class UsersController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return UserCollection
      */
-    public function index(): UserCollection
+    public function index(Request $request): UserCollection
     {
-        return new UserCollection(User::paginate(50));
+        $perPage = $request->get('perPage') ?? 50;
+        return new UserCollection(User::withoutBotUser()->paginate($perPage));
     }
-
 
     /**
      * Store a newly created resource in storage.
