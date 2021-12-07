@@ -67,6 +67,24 @@ class UsersTest extends TestCase
         $this->assertEquals(count($response->data), 3);
     }
 
+    public function testHideBotUser()
+    {
+        $response = $this->actingAs($this->user, 'api')
+            ->json('GET', '/admin/api/user?perPage=100')
+            ->getData();
+
+        $this->assertEquals(53, count($response->data));
+
+        // Set the first user to be the bot user, now it should no longer be returned
+        $this->app['config']->set('sanctum.bot_user', User::first()->email);
+
+        $response = $this->actingAs($this->user, 'api')
+            ->json('GET', '/admin/api/user?perPage=100')
+            ->getData();
+
+        $this->assertEquals(52, count($response->data));
+    }
+
     public function testUsersUpdateEndpoint()
     {
         $user = User::latest()->first();
@@ -130,17 +148,15 @@ class UsersTest extends TestCase
             ->json('POST', '/admin/api/user', [
                 'email' => 'test@test.com',
             ])
-            ->assertStatus(400);
-
-        $this->assertEquals($response->content(), '{"field":"name","message":"User name field is required."}');
+            ->assertStatus(422)
+            ->assertJsonValidationErrors(['name']);
 
         $response = $this->actingAs($this->user, 'api')
             ->json('POST', '/admin/api/user', [
                 'name' => 'test',
             ])
-            ->assertStatus(400);
-
-        $this->assertEquals($response->content(), '{"field":"email","message":"User email field is required."}');
+            ->assertStatus(422)
+            ->assertJsonValidationErrors(['email']);
     }
 
     public function testUsersInvalidUpdateEndpoint()
@@ -151,8 +167,7 @@ class UsersTest extends TestCase
             ->json('PATCH', '/admin/api/user/' . $user->id, [
                 'name' => '',
             ])
-            ->assertStatus(400);
-
-        $this->assertEquals($response->content(), '{"field":"name","message":"User name field is required."}');
+            ->assertStatus(422)
+            ->assertJsonValidationErrors(['name']);
     }
 }

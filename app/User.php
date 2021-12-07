@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -57,5 +58,10 @@ class User extends Authenticatable
     public function twoFactorAuthEnabled()
     {
         return !is_null($this->two_factor_secret);
+    }
+
+    public function scopeWithoutBotUser(Builder $query)
+    {
+        return $query->where('email', '<>', config('sanctum.bot_user'));
     }
 }
