@@ -34,6 +34,9 @@ import Actions
 from '@opendialogai/opendialog-design-system-pkg/src/components/Actions/Actions'
 import ConfigureAction
 from '@opendialogai/opendialog-design-system-pkg/src/components/Actions/ConfigureAction'
+import Template
+  from '@opendialogai/opendialog-design-system-pkg/src/components/Scenarios/Template'
+
 
 Vue.use(VueRouter);
 
@@ -63,6 +66,14 @@ const router = new VueRouter({
             title: 'Create New Scenario',
             sidebarLabel: 'Create scenario',
             sidebarIcon: 'od-icon-plus-2'
+          },
+        },
+        {
+          path: 'template/:id',
+          name: 'template',
+          component: Template,
+          meta: {
+            title: 'Templates',
           },
         },
         {

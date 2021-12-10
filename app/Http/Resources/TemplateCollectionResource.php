@@ -31,7 +31,7 @@ class TemplateCollectionResource extends JsonResource
 
         $root['platforms'] = $platforms->toArray();
 
-        $root['all'] = count(array_diff($allPlatforms, $platforms->toArray())) === 0;
+        $root['all'] = false;
 
         return $root;
     }

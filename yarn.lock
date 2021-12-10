@@ -740,6 +740,7 @@
     consola "^2.15.0"
     node-fetch "^2.6.1"
 
+
 "@octokit/auth-token@^2.4.4":
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/@octokit/auth-token/-/auth-token-2.5.0.tgz#27c37ea26c205f28443402477ffd261311f21e36"
