@@ -125,6 +125,7 @@ Route::namespace('API')
             Route::delete('turns/{turn}/turn-intents/{intent}', 'TurnsController@destroyTurnIntent');
 
             Route::get('intents/{intent}', 'IntentsController@show');
+            Route::get('scenarios/{scenarioId}/intents', 'IntentsController@getAllIntents');
             Route::patch('intents/{intent}', 'IntentsController@update');
             Route::delete('intents/{intent}', 'IntentsController@destroy');
             Route::post('intents/{intent}/duplicate', 'IntentsController@duplicate');

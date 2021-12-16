@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Facades\Serializer;
 use App\Http\Requests\ConversationObjectDuplicationRequest;
 use App\Http\Requests\IntentRequest;
+use App\Http\Resources\ScenarioIntentCollection;
 use App\Http\Resources\IntentResource;
 use Illuminate\Http\Response;
 use OpenDialogAi\Core\Conversation\Facades\ConversationDataClient;
@@ -88,5 +89,13 @@ class IntentsController extends Controller
         $duplicate = IntentDataClient::getFullIntentGraph($duplicate->getUid());
 
         return new IntentResource($duplicate);
+    }
+
+    public function getAllIntents(string $scenarioId)
+    {
+        $intents = IntentDataClient::getAllIntentsInScenario($scenarioId);
+
+        return new ScenarioIntentCollection($intents);
+
     }
 }
