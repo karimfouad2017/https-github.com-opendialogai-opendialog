@@ -645,6 +645,13 @@ class IntentsTest extends TestCase
                 return $intent;
             });
 
+        // Called in the controller, getting parent & sibling data
+        ConversationDataClient::shouldReceive('getTurnByUid')
+            ->once()
+            ->andReturnUsing(function ($uid) use ($turn) {
+                return $turn;
+            });
+
         // The OD ID should be the same because it is used for interpretation purposes and is therefore not expected to be unique
         $this->actingAs($this->user, 'api')
             ->json('POST', '/admin/api/conversation-builder/intents/' . $intent->getUid() . '/duplicate')

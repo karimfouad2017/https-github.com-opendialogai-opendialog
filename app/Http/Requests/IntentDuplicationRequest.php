@@ -30,6 +30,6 @@ class IntentDuplicationRequest extends ConversationObjectDuplicationRequest
      */
     public function rules()
     {
-        return parent::rules() + ['destination' => [new TurnExists]];
+        return parent::rules() + ['destination' => ['nullable', new TurnExists]];
     }
 }
