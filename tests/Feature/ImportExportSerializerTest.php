@@ -526,7 +526,8 @@ class ImportExportSerializerTest extends TestCase
                                             'listens_for' => [],
                                             'expected_attributes' => [],
                                             'actions' => [],
-                                            'message_templates' => []
+                                            'message_templates' => [],
+                                            "training_phrases" => []
                                         ]
                                     ],
                                     'response_intents' => []
@@ -605,7 +606,8 @@ class ImportExportSerializerTest extends TestCase
                                                 "intent_id" => "test_intent_b"
                                             ],
                                             "actions" => [],
-                                            "message_templates" => []
+                                            "message_templates" => [],
+                                            "training_phrases" => []
                                         ]
                                     ],
                                     "response_intents" => [
@@ -622,7 +624,8 @@ class ImportExportSerializerTest extends TestCase
                                             "listens_for" => [],
                                             "expected_attributes" => [],
                                             "actions" => [],
-                                            "message_templates" => []
+                                            "message_templates" => [],
+                                            "training_phrases" => []
                                         ]
                                     ]
                                 ],
@@ -648,7 +651,8 @@ class ImportExportSerializerTest extends TestCase
                                             "listens_for" => [],
                                             "expected_attributes" => [],
                                             "actions" => [],
-                                            'message_templates' => []
+                                            'message_templates' => [],
+                                            "training_phrases" => []
                                         ]
                                     ],
                                     "response_intents" => []
@@ -686,7 +690,8 @@ class ImportExportSerializerTest extends TestCase
                                             "listens_for" => [],
                                             "expected_attributes" => [],
                                             "actions" => [],
-                                            'message_templates' => []
+                                            'message_templates' => [],
+                                            "training_phrases" => []
                                         ]
                                     ]
                                 ]
