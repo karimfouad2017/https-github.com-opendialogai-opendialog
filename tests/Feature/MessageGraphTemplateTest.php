@@ -5,6 +5,7 @@ namespace Tests\Feature;
 
 use App\User;
 use Carbon\Carbon;
+use OpenDialogAi\Core\Components\Configuration\ComponentConfiguration;
 use OpenDialogAi\Core\Conversation\Conversation;
 use OpenDialogAi\Core\Conversation\Exceptions\ConversationObjectNotFoundException;
 use OpenDialogAi\Core\Conversation\Facades\ConversationDataClient;
@@ -14,6 +15,7 @@ use OpenDialogAi\Core\Conversation\MessageTemplate;
 use OpenDialogAi\Core\Conversation\Scenario;
 use OpenDialogAi\Core\Conversation\Scene;
 use OpenDialogAi\Core\Conversation\Turn;
+use OpenDialogAi\PlatformEngine\Components\WebchatPlatform;
 use Tests\TestCase;
 
 class MessageGraphTemplateTest extends TestCase
@@ -111,11 +113,27 @@ class MessageGraphTemplateTest extends TestCase
 
     public function testCreateIntent()
     {
-        $intent = $this->createIntent(new Turn(), '0x00001', 'test_id', Intent::USER);
+        $scenario = new Scenario();
+        $scenario->setUid('0x999');
+        $intent = $this->createIntent(new Turn(new Scene(new Conversation($scenario))), '0x00001', 'test_id', Intent::USER);
+
         ConversationDataClient::shouldReceive('getIntentByUid')
             ->once()
             ->with('0x00001', false)
             ->andReturn($intent);
+
+        ConversationDataClient::shouldReceive('getScenarioWithFocusedIntent')
+            ->once()
+            ->with('0x00001')
+            ->andReturn($intent);
+
+        ComponentConfiguration::create([
+            'name' => 'Test',
+            'scenario_id' => '0x999',
+            'component_id' => WebchatPlatform::getComponentId(),
+            'configuration' => [],
+            'active' => false,
+        ]);
 
         $messageTemplate = new MessageTemplate();
         $messageTemplate->setOdId('od_id');
@@ -131,7 +149,6 @@ class MessageGraphTemplateTest extends TestCase
             ->once()
             ->withAnyArgs()
             ->andReturn($createdMessageTemplate);
-
 
         $this->actingAs($this->user, 'api')
             ->json('POST', '/admin/api/conversation-builder/intents/0x00001/message-templates', [
@@ -150,11 +167,27 @@ class MessageGraphTemplateTest extends TestCase
 
     public function testMessageValidation()
     {
-        $intent = $this->createIntent(new Turn(), '0x00001', 'test_id', Intent::USER);
+        $scenario = new Scenario();
+        $scenario->setUid('0x999');
+        $intent = $this->createIntent(new Turn(new Scene(new Conversation($scenario))), '0x00001', 'test_id', Intent::USER);
+
         ConversationDataClient::shouldReceive('getIntentByUid')
             ->times(4)
             ->with('0x00001', false)
             ->andReturn($intent);
+
+        ConversationDataClient::shouldReceive('getScenarioWithFocusedIntent')
+            ->times(4)
+            ->with('0x00001')
+            ->andReturn($intent);
+
+        ComponentConfiguration::create([
+            'name' => 'Test',
+            'scenario_id' => '0x999',
+            'component_id' => WebchatPlatform::getComponentId(),
+            'configuration' => [],
+            'active' => false,
+        ]);
 
         MessageTemplateDataClient::shouldReceive('addMessageTemplateToIntent')
             ->never();
