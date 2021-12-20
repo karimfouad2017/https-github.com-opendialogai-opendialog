@@ -25,6 +25,8 @@ class ScenarioIntentResource extends JsonResource
             Intent::UID,
             Intent::OD_ID,
             Intent::NAME,
+            Intent::SPEAKER,
+            Intent::SAMPLE_UTTERANCE,
             Intent::CREATED_AT,
             Intent::UPDATED_AT,
             Intent::TURN => [

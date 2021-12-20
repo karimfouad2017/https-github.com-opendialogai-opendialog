@@ -13,6 +13,7 @@ use Illuminate\Http\Response;
 use OpenDialogAi\Core\Conversation\Facades\ConversationDataClient;
 use OpenDialogAi\Core\Conversation\Facades\IntentDataClient;
 use OpenDialogAi\Core\Conversation\Intent;
+use OpenDialogAi\Core\Conversation\Scenario;
 
 class IntentsController extends Controller
 {
@@ -91,9 +92,9 @@ class IntentsController extends Controller
         return new IntentResource($duplicate);
     }
 
-    public function getAllIntents(string $scenarioId)
+    public function getAllIntents(Scenario $scenario)
     {
-        $intents = IntentDataClient::getAllIntentsInScenario($scenarioId);
+        $intents = IntentDataClient::getAllIntentsInScenario($scenario->getUid());
 
         return new ScenarioIntentCollection($intents);
 
