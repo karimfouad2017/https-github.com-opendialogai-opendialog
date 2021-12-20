@@ -126,6 +126,7 @@ class TemplateCollectionTest extends TestCase
             ->assertSee('Next');
     }
 
+    // For now, the 'all' field will always be false
     public function testAllPlatforms()
     {
         $this->app['config']->set('templates.enabled', true);
@@ -165,7 +166,7 @@ class TemplateCollectionTest extends TestCase
             ->json('GET', '/admin/api/template-collections/' . $collection->id)
             ->assertStatus(200)
             ->assertJsonFragment([
-                'all' => true
+                'all' => false
             ]);
     }
 
