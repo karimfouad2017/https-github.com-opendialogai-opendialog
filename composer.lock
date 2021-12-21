@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "564e0db1758d8fd5b75ed7caa1c85567",
+    "content-hash": "4163b1586527c8dce50b961c204d01c2",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3335,16 +3335,16 @@
         },
         {
             "name": "opendialogai/core",
-            "version": "dev-fix/OPNDLG-1321--message-validation",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "4fcda9c1fe345bf616b012624d32d8d457c3782f"
+                "reference": "6af4389565593a23c18a7c1b110f993713c39ac4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/4fcda9c1fe345bf616b012624d32d8d457c3782f",
-                "reference": "4fcda9c1fe345bf616b012624d32d8d457c3782f",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/6af4389565593a23c18a7c1b110f993713c39ac4",
+                "reference": "6af4389565593a23c18a7c1b110f993713c39ac4",
                 "shasum": ""
             },
             "require": {
@@ -3425,9 +3425,9 @@
             "description": "The OpenDialog Core package",
             "support": {
                 "issues": "https://github.com/opendialogai/core/issues",
-                "source": "https://github.com/opendialogai/core/tree/fix/OPNDLG-1321--message-validation"
+                "source": "https://github.com/opendialogai/core/tree/1.7.0"
             },
-            "time": "2021-12-20T17:43:26+00:00"
+            "time": "2021-12-21T14:17:04+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -12055,9 +12055,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "opendialogai/core": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
@@ -12066,5 +12064,5 @@
         "ext-simplexml": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.0.0"
 }
