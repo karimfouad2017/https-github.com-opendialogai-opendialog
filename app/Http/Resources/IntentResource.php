@@ -33,6 +33,7 @@ class IntentResource extends JsonResource
             Intent::TRANSITION => Transition::FIELDS,
             Intent::LISTENS_FOR,
             Intent::EXPECTED_ATTRIBUTES,
+            Intent::TRAINING_PHRASES,
             Intent::VIRTUAL_INTENT => VirtualIntent::FIELDS,
             Intent::ACTIONS,
             Intent::BEHAVIORS => Behavior::FIELDS,

@@ -55,7 +55,8 @@
                                         "scene": null,
                                         "turn": null
                                     },
-                                    "message_templates": []
+                                    "message_templates": [],
+                                    "training_phrases": []
                                 }
                             ],
                             "response_intents": [
@@ -91,7 +92,8 @@
                                             "conditions": [],
                                             "behaviors": []
                                         }
-                                    ]
+                                    ],
+                                    "training_phrases": []
                                 }
                             ]
                         }
