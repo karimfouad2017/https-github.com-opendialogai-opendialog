@@ -40,6 +40,7 @@ class FocusedIntentResource extends JsonResource
             Intent::LISTENS_FOR,
             Intent::CONFIDENCE,
             Intent::EXPECTED_ATTRIBUTES,
+            Intent::TRAINING_PHRASES,
             Intent::TRANSITION,
             Intent::VIRTUAL_INTENT,
             Intent::ACTIONS => Action::FIELDS,
@@ -75,6 +76,7 @@ class FocusedIntentResource extends JsonResource
                     Intent::BEHAVIORS => [],
                     Intent::CONFIDENCE,
                     Intent::EXPECTED_ATTRIBUTES,
+                    Intent::TRAINING_PHRASES,
                     Intent::CONDITIONS => [
                         Condition::OPERATION,
                         Condition::OPERATION_ATTRIBUTES,
@@ -107,12 +109,12 @@ class FocusedIntentResource extends JsonResource
                     Intent::BEHAVIORS => [],
                     Intent::CONFIDENCE,
                     Intent::EXPECTED_ATTRIBUTES,
+                    Intent::TRAINING_PHRASES,
                     Intent::CONDITIONS => [
                         Condition::OPERATION,
                         Condition::OPERATION_ATTRIBUTES,
                         Condition::PARAMETERS
                     ],
-                    Intent::ACTIONS => Action::FIELDS,
                     Intent::MESSAGE_TEMPLATES => [
                         MessageTemplate::UID,
                         MessageTemplate::OD_ID,
@@ -127,6 +129,7 @@ class FocusedIntentResource extends JsonResource
                             Condition::PARAMETERS
                         ],
                     ],
+                    Intent::ACTIONS => Action::FIELDS
                 ],
                 Turn::SCENE => [
                     Scene::UID,
