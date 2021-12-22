@@ -6,6 +6,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Facades\Serializer;
 use App\Http\Requests\ConversationObjectDuplicationRequest;
+use App\Http\Requests\IntentDuplicationRequest;
 use App\Http\Requests\IntentRequest;
 use App\Http\Resources\ScenarioIntentCollection;
 use App\Http\Resources\IntentResource;
@@ -72,14 +73,19 @@ class IntentsController extends Controller
      * @param Intent $intent
      * @return IntentResource
      */
-    public function duplicate(ConversationObjectDuplicationRequest $request, Intent $intent): IntentResource
+    public function duplicate(IntentDuplicationRequest $request, Intent $intent): IntentResource
     {
         $isRequest = $intent->isRequestIntent();
         $intent = IntentDataClient::getFullIntentGraph($intent->getUid());
 
-        if ($intent->getSpeaker() === Intent::APP) {
+        if ($turnUid = $request->get('destination')) {
+            $turn = ConversationDataClient::getTurnByUid($turnUid);
+            $intent->setTurn($turn);
+        } else {
             $turn = ConversationDataClient::getTurnByUid($intent->getTurn()->getUid());
+        }
 
+        if ($intent->getSpeaker() === Intent::APP) {
             /** @var Intent $intent */
             $intent = $request->setUniqueOdId($intent, $request, $turn, true);
         }

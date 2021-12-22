@@ -135,8 +135,8 @@ class IntentsTest extends TestCase
                     "transition" => [],
                     "virtual_intent" => [],
                     "sample_utterance" => "Welcome user!"
-    ],
-]]);
+                ],
+            ]]);
     }
 
     public function testAddRequestIntentToTurn()
@@ -351,7 +351,7 @@ class IntentsTest extends TestCase
 
         $this->actingAs($this->user, 'api')
             ->json('GET', '/admin/api/conversation-builder/turns/' . $fakeTurn->getUid() . '/turn-intents/' .
-$fakeRequestIntent->getUid())
+                $fakeRequestIntent->getUid())
             //            ->assertStatus(200)
             ->assertJson([
                 'order' => 'REQUEST',
@@ -419,17 +419,17 @@ $fakeRequestIntent->getUid())
         $this->actingAs($this->user, 'api')
             ->json('PATCH', '/admin/api/conversation-builder/turns/' . $fakeTurn->getUid() . '/turn-intents/' .
                 $fakeRequestIntent->getUid(), [
-                    'order' => 'RESPONSE',
-                    'intent' => [
-                        'name' => $fakeUpdatedResponseIntent->getName(),
-                        'id' => $fakeUpdatedResponseIntent->getUid(),
-                        'od_id' => $fakeUpdatedResponseIntent->getOdId(),
-                        'description' =>  $fakeUpdatedResponseIntent->getDescription(),
-                        'confidence' =>  $fakeUpdatedResponseIntent->getConfidence(),
-                        'speaker' =>  $fakeUpdatedResponseIntent->getSpeaker(),
-                        'listens_for' => $fakeUpdatedResponseIntent->getListensFor(),
-                        'sample_utterance' => $fakeUpdatedResponseIntent->getSampleUtterance()
-                    ]
+                'order' => 'RESPONSE',
+                'intent' => [
+                    'name' => $fakeUpdatedResponseIntent->getName(),
+                    'id' => $fakeUpdatedResponseIntent->getUid(),
+                    'od_id' => $fakeUpdatedResponseIntent->getOdId(),
+                    'description' => $fakeUpdatedResponseIntent->getDescription(),
+                    'confidence' => $fakeUpdatedResponseIntent->getConfidence(),
+                    'speaker' => $fakeUpdatedResponseIntent->getSpeaker(),
+                    'listens_for' => $fakeUpdatedResponseIntent->getListensFor(),
+                    'sample_utterance' => $fakeUpdatedResponseIntent->getSampleUtterance()
+                ]
             ])
             ->assertJson([
                 'order' => 'RESPONSE',
@@ -549,9 +549,9 @@ $fakeRequestIntent->getUid())
                 'name' => $fakeIntentUpdated->getName(),
                 'id' => $fakeIntentUpdated->getUid(),
                 'od_id' => $fakeIntentUpdated->getOdId(),
-                'description' =>  $fakeIntentUpdated->getDescription(),
-                'confidence' =>  $fakeIntentUpdated->getConfidence(),
-                'speaker' =>  $fakeIntentUpdated->getSpeaker(),
+                'description' => $fakeIntentUpdated->getDescription(),
+                'confidence' => $fakeIntentUpdated->getConfidence(),
+                'speaker' => $fakeIntentUpdated->getSpeaker(),
                 'listens_for' => $fakeIntentUpdated->getListensFor(),
                 'sample_utterance' => $fakeIntentUpdated->getSampleUtterance()
             ])
@@ -645,6 +645,13 @@ $fakeRequestIntent->getUid())
                 return $intent;
             });
 
+        // Called in the controller, getting parent & sibling data
+        ConversationDataClient::shouldReceive('getTurnByUid')
+            ->once()
+            ->andReturnUsing(function ($uid) use ($turn) {
+                return $turn;
+            });
+
         // The OD ID should be the same because it is used for interpretation purposes and is therefore not expected to be unique
         $this->actingAs($this->user, 'api')
             ->json('POST', '/admin/api/conversation-builder/intents/' . $intent->getUid() . '/duplicate')
@@ -652,7 +659,7 @@ $fakeRequestIntent->getUid())
             ->assertJson([
                 'name' => 'Example Request Intent',
                 'od_id' => 'intent.app.exampleRequestIntent',
-                'id'=> '0x9999',
+                'id' => '0x9999',
             ]);
     }
 
@@ -680,7 +687,9 @@ $fakeRequestIntent->getUid())
         // Called in the controller, getting parent & sibling data
         ConversationDataClient::shouldReceive('getTurnByUid')
             ->once()
-            ->andReturnUsing(function ($uid) use ($turn) { return $turn; });
+            ->andReturnUsing(function ($uid) use ($turn) {
+                return $turn;
+            });
 
         // Called in controller, once before persisting and again after
         IntentDataClient::shouldReceive('getFullIntentGraph')
@@ -704,7 +713,97 @@ $fakeRequestIntent->getUid())
             ->assertJson([
                 'name' => 'Example Response IntentCopy',
                 'od_id' => 'intent.app.exampleResponseIntentCopy',
-                'id'=> '0x9999',
+                'id' => '0x9999',
             ]);
+    }
+
+    public function testDuplicationDestinationDoesNotExist()
+    {
+        $scenario = ScenariosTest::getFakeScenarioForDuplication();
+
+        /** @var Conversation $conversation */
+        $conversation = $scenario->getConversations()->getObjectsWithId('example_conversation')->first();
+
+        /** @var Scene $scene */
+        $scene = $conversation->getScenes()->getObjectsWithId('example_scene')->first();
+
+        /** @var Turn $turn */
+        $turn = $scene->getTurns()->getObjectsWithId('example_turn')->first();
+
+        /** @var Intent $intent */
+        $intent = $turn->getResponseIntents()->getObjectsWithId('intent.app.exampleResponseIntent')->first();
+
+        // Called during route binding
+        ConversationDataClient::shouldReceive('getIntentByUid')
+            ->once()
+            ->andReturn($intent);
+
+        // Called in the request object to validate the turn exists
+        ConversationDataClient::shouldReceive('getTurnByUid')
+            ->once()
+            ->withAnyArgs()
+            ->andThrow(new ConversationObjectNotFoundException());
+
+        $this->actingAs($this->user, 'api')
+            ->json('POST', '/admin/api/conversation-builder/intents/' . $intent->getUid() . '/duplicate?destination=' . $turn->getUid())
+            ->assertStatus(422);
+    }
+
+    public function testDuplicationDestinationValid()
+    {
+        $scenario = ScenariosTest::getFakeScenarioForDuplication();
+
+        /** @var Conversation $conversation */
+        $conversation = $scenario->getConversations()->getObjectsWithId('example_conversation')->first();
+
+        /** @var Scene $scene */
+        $scene = $conversation->getScenes()->getObjectsWithId('example_scene')->first();
+
+        /** @var Turn $turn */
+        $turn = $scene->getTurns()->getObjectsWithId('example_turn')->first();
+
+        $destinationTurn = $scene->getTurns()->getObjectsWithId('example_turn_copy')->first();
+
+        /** @var Intent $intent */
+        $intent = $turn->getResponseIntents()->getObjectsWithId('intent.app.exampleResponseIntent')->first();
+
+        // Called during route binding
+        ConversationDataClient::shouldReceive('getIntentByUid')
+            ->once()
+            ->andReturn($intent);
+
+        // Called in the controller and in the request class
+        ConversationDataClient::shouldReceive('getTurnByUid')
+            ->twice()
+            ->withArgs([$destinationTurn->getUid()])
+            ->andReturnUsing(function ($uid) use ($turn) {
+                return $turn;
+            });
+
+        // Called in controller, once before persisting and again after
+        IntentDataClient::shouldReceive('getFullIntentGraph')
+            ->twice()
+            ->andReturnUsing(function ($uid) use ($intent) {
+                $intent->setUid($uid);
+                return $intent;
+            });
+
+        IntentDataClient::shouldReceive('addFullIntentGraph')
+            ->once()
+            ->andReturnUsing(function ($intent) {
+                $intent->setUid('0x9999');
+                return $intent;
+            });
+
+        // The OD ID should be the same because it is used for interpretation purposes and is therefore not expected to be unique
+        $this->actingAs($this->user, 'api')
+            ->json('POST', '/admin/api/conversation-builder/intents/' . $intent->getUid() . '/duplicate?destination=' . $destinationTurn->getUid())
+            ->assertStatus(200)
+            ->assertJson([
+                'name' => 'Example Response IntentCopy',
+                'od_id' => 'intent.app.exampleResponseIntentCopy',
+                'id' => '0x9999',
+            ]);
+
     }
 }
