@@ -164,4 +164,6 @@ Route::namespace('API')
 
         Route::get('/template-collections/{template_collection_id}', 'TemplateCollectionController@handle');
         Route::get('/template-collections', 'TemplateCollectionController@all');
+
+        Route::post('upload', 'FileUploadController@upload');
     });
