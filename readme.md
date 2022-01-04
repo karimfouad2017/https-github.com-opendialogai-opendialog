@@ -4,9 +4,9 @@
 
 OpenDialog enables you to quickly design, develop and deploy conversational applications. 
 
-You write conversational applications using OpenDialog's flexible no-code conversation designer and define the messages that your bot will send the user through OpenDialog's message editor.  
+https://user-images.githubusercontent.com/78927881/148096488-4fdf4b6f-19e8-4a3a-a365-4e9b6bc37ce0.mp4
 
-<img src="https://www.opendialog.ai/wp-content/uploads/2021/04/od_intro2-1.gif" width="585px" alt="OpenDialog Designer Intro">
+You write conversational applications using OpenDialog's flexible no-code conversation designer and define the messages that your bot will send the user through OpenDialog's message editor.  
 
 The OpenDialog webchat widget allows you to interact with the application - it supports both an in-page popup experience as well as a full-page experience and mobile. 
 
