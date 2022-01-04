@@ -11,7 +11,7 @@ The following are licensed under the Apache 2.0 Licence:-
 
 The following are licensed under the OpenDialog Enterprise Licence:-
 
-* All content that resides within the "core/src/ConversationEngine" directory of the "core" package is licensed under the licence defined in "/core/src/ConversationEngine/LICENCE".
+* All content that resides within the "core/src/ConversationEngine" directory of the "core" repository is licensed under the licence defined in "/core/src/ConversationEngine/LICENCE".
 * All content that resides under the "opendialog-design-system" repository is licensed under the licence defined in "opendialog-design-system/LICENCE".
 
 All third party components incorporated into the OpenDialog Software are licensed under the original licence provided by the owner or licensee of the applicable component.
