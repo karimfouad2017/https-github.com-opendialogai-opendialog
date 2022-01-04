@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ImageUploadRequest;
+use App\Http\Requests\FileUploadRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -15,12 +15,12 @@ class FileUploadController extends Controller
         $this->middleware("throttle:$throttleRate,1");
     }
 
-    public function upload(ImageUploadRequest $request)
+    public function upload(FileUploadRequest $request)
     {
         $fileUploadService = resolve(FileUploadInterface::class);
 
         $storagePath = '/uploads';
-        $fileToUpload = $request->file('image');
+        $fileToUpload = $request->file('file');
 
         $path = $fileUploadService->uploadFile($fileToUpload, $storagePath);
 

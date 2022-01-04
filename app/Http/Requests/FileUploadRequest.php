@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ImageUploadRequest extends FormRequest
+class FileUploadRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class ImageUploadRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => [
+            'file' => [
                 'file',
                 'mimes:jpg,jpeg,gif,png',
                 'max:' . config('opendialog.file_upload.max_file_upload_size'),

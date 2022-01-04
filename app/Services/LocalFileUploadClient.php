@@ -4,7 +4,7 @@ namespace App\Services;
 
 use Illuminate\Http\UploadedFile;
 
-class FileUploadClient implements FileUploadInterface
+class LocalFileUploadClient implements FileUploadInterface
 {
     /**
      * @inheritDoc
