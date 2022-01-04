@@ -24,7 +24,7 @@ class FileUploadController extends Controller
 
         $path = $fileUploadService->uploadFile($fileToUpload, $storagePath);
 
-        return return new JsonResponse([
+        return new JsonResponse([
             'path' => $path,
         ]);
     }
