@@ -51,7 +51,22 @@ We strongly encourage everyone who wants to help the OpenDialog development take
 - Take a look at our issues
 
 # License
-Licensed under the [Apache License, Version 2.0](https://github.com/opendialogai/opendialog/blob/1.x/LICENSE.txt). Copyright 2021 OpenDialog.
 
-A list of the Licenses of the dependencies of the project can be found at the bottom of the Libraries Summary.
+All or parts of this software are licensed as described below.  
+
+The following are licensed under the Apache 2.0 Licence:-
+
+* All content related to the “OpenDialog Conversation Description Language” are publicly available here: https://docs.opendialog.ai/reference/conversation-description-language.
+* All content that resides within the "core" repository, asides from "core/src/ConversationEngine", is licensed under the licence defined in "/core/LICENCE".
+* All content that resides within the "opendialog" repository is licensed under the licence defined in "opendialog/blob/1.x/LICENSE".
+* All content that resides within the "webchat" repository is licensed under the licence defined in "webchat/LICENCE".
+
+The following are licensed under the OpenDialog Enterprise Licence:-
+
+* All content that resides within the "core/src/ConversationEngine" directory of the "core" repository is licensed under the licence defined in "/core/src/ConversationEngine/LICENCE".
+* All content that resides under the "opendialog-design-system" repository is licensed under the licence defined in "opendialog-design-system/LICENCE".
+
+All third party components incorporated into the OpenDialog Software are licensed under the original licence provided by the owner or licensee of the applicable component.
+
+Copyright (c) 2021 GreenShoot Labs Ltd. All rights reserved.
 
