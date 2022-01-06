@@ -4,8 +4,6 @@ namespace App\Providers;
 
 use App\User;
 use App\Observers\UserObserver;
-use App\Services\FileUploadInterface;
-use App\Services\LocalFileUploadClient;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
@@ -18,9 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(FileUploadInterface::class, function () {
-            return new LocalFileUploadClient();
-        });
+        //
     }
 
     /**
