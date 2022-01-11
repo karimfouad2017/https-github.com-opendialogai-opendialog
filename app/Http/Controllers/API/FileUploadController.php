@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use App\Http\Requests\FileUploadRequest;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use OpenDialogAi\Core\Http\Requests\FileUploadRequest;
+use OpenDialogAi\Core\Services\FileUploadInterface;
 
 class FileUploadController extends Controller
 {
