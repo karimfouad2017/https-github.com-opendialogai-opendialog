@@ -13,7 +13,7 @@ import UserView from '@opendialogai/opendialog-design-system-pkg/src/components/
 import RequestView from '@opendialogai/opendialog-design-system-pkg/src/components/Views/RequestView'
 import GlobalContextView from '@opendialogai/opendialog-design-system-pkg/src/components/Views/GlobalContextView'
 import WarningView from '@opendialogai/opendialog-design-system-pkg/src/components/Views/WarningView'
-import WebchatDemo from '@opendialogai/opendialog-design-system-pkg/src/components/Views/WebchatDemo'
+import Preview from '@opendialogai/opendialog-design-system-pkg/src/components/Views/Preview'
 import ConversationLog from '@opendialogai/opendialog-design-system-pkg/src/components/Views/ConversationLog'
 import DynamicAttribute from '@/views/DynamicAttribute'
 import Scenarios
@@ -322,8 +322,8 @@ const router = new VueRouter({
         },
         {
           path: 'demo',
-          name: 'webchat-demo',
-          component: WebchatDemo,
+          name: 'preview',
+          component: Preview,
           meta: {
             title: 'Preview',
             requiresScenario: true
