@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4163b1586527c8dce50b961c204d01c2",
+    "content-hash": "0bd8bcb4d85c5341ff40d5ffeb6c88d1",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3340,16 +3340,16 @@
         },
         {
             "name": "opendialogai/core",
-            "version": "1.7.0",
+            "version": "dev-OPNDLG-1322--enabling-file-upload",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "6af4389565593a23c18a7c1b110f993713c39ac4"
+                "reference": "809040f011cf258e93281a68cf2c804d34749d03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/6af4389565593a23c18a7c1b110f993713c39ac4",
-                "reference": "6af4389565593a23c18a7c1b110f993713c39ac4",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/809040f011cf258e93281a68cf2c804d34749d03",
+                "reference": "809040f011cf258e93281a68cf2c804d34749d03",
                 "shasum": ""
             },
             "require": {
@@ -3396,7 +3396,8 @@
                         "OpenDialogAi\\ContextEngine\\ContextEngineServiceProvider",
                         "OpenDialogAi\\ActionEngine\\ActionEngineServiceProvider",
                         "OpenDialogAi\\SensorEngine\\SensorEngineServiceProvider",
-                        "OpenDialogAi\\NlpEngine\\NlpEngineServiceProvider"
+                        "OpenDialogAi\\NlpEngine\\NlpEngineServiceProvider",
+                        "OpenDialogAi\\Core\\FileUploadServiceProvider"
                     ],
                     "aliases": {
                         "AttributeResolver": "OpenDialogAi\\AttributeEngine\\Facades\\AttributeResolver"
@@ -3430,9 +3431,9 @@
             "description": "The OpenDialog Core package",
             "support": {
                 "issues": "https://github.com/opendialogai/core/issues",
-                "source": "https://github.com/opendialogai/core/tree/1.7.0"
+                "source": "https://github.com/opendialogai/core/tree/OPNDLG-1322--enabling-file-upload"
             },
-            "time": "2021-12-21T14:17:04+00:00"
+            "time": "2022-01-12T12:03:47+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -12115,7 +12116,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "opendialogai/core": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
