@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ba09b6d2f99ac9bd463f233471c72496",
+    "content-hash": "614595b776aecf25a49fbf5c004d2461",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3471,16 +3471,16 @@
         },
         {
             "name": "opendialogai/webchat",
-            "version": "dev-feature/OPNDLG-1333_long_text_message",
+            "version": "dev-feature/20220114-demo",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/webchat.git",
-                "reference": "3afece11b7eea0605f910fa318dab4d50e83b587"
+                "reference": "fb3e0e0a1a80e79dafbf93c7881d182580bac870"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/3afece11b7eea0605f910fa318dab4d50e83b587",
-                "reference": "3afece11b7eea0605f910fa318dab4d50e83b587",
+                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/fb3e0e0a1a80e79dafbf93c7881d182580bac870",
+                "reference": "fb3e0e0a1a80e79dafbf93c7881d182580bac870",
                 "shasum": ""
             },
             "require": {
@@ -3522,9 +3522,9 @@
             "description": "Webchat front end component for the Open Dialog project",
             "support": {
                 "issues": "https://github.com/opendialogai/webchat/issues",
-                "source": "https://github.com/opendialogai/webchat/tree/feature/OPNDLG-1333_long_text_message"
+                "source": "https://github.com/opendialogai/webchat/tree/feature/20220114-demo"
             },
-            "time": "2022-01-13T09:58:23+00:00"
+            "time": "2022-01-14T13:35:28+00:00"
         },
         {
             "name": "opis/closure",
