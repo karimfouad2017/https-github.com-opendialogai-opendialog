@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Collection;
 
-class WebchatSettingsResourceCollection extends ResourceCollection
+class ComponentSettingsResourceCollection extends ResourceCollection
 {
     public static $wrap = null;
 

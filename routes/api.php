@@ -23,7 +23,7 @@ Route::namespace('API')
     ->prefix('admin/api')
     ->group(function () {
         Route::apiResource('conversation', 'ConversationsController');
-        Route::get('webchat-setting', 'WebchatSettingsController@index');
+        Route::get('component-setting/{component_id}', 'ComponentSettingsController@index');
         Route::apiResource(
             'chatbot-user',
             'ChatbotUsersController',
