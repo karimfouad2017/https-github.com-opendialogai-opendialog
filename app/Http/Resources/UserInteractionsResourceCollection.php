@@ -26,7 +26,7 @@ class UserInteractionsResourceCollection extends ResourceCollection
     /**
      * Transform the resource collection into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function toArray($request)
@@ -48,16 +48,14 @@ class UserInteractionsResourceCollection extends ResourceCollection
      */
     protected function formatData(string $key, Collection $interactions): array
     {
-        $result = [
+        return [
             $key => [
                 'chatbot_user_data' => $interactions[0]->user,
                 'from' => $this->from,
                 'to' => $this->to,
-                'interactions' => []
+                'interactions' => $this->formatInteractions($interactions)
             ]
         ];
-        $result[$key]['interactions'][] = $this->formatInteractions($interactions);
-        return $result;
     }
 
     /**
@@ -70,21 +68,28 @@ class UserInteractionsResourceCollection extends ResourceCollection
     {
         $result = [];
         foreach ($interactions as $interaction) {
-            $interactionData =  [
+            $result[] = [
                 'type' => $interaction->type,
                 'date' => $interaction->created_at,
                 'text' => $interaction->message,
-                'data' => []
+                'data' => $this->getDataAttributes($interaction->data)
             ];
-
-            $attributes = $interaction->data;
-            $data = [];
-            foreach ($attributes as $name => $attribute) {
-                $data[$name] = $attribute;
-            }
-            $interactionData['data'][] = $data;
-            $result[] = $interactionData;
         }
         return $result;
+    }
+
+    /**
+     * Gets all the attributes present in the data array.
+     *
+     * @param $attributes
+     * @return array
+     */
+    protected function getDataAttributes($attributes): array
+    {
+        $data = [];
+        foreach ($attributes as $name => $attribute) {
+            $data[$name] = $attribute;
+        }
+        return $data;
     }
 }
