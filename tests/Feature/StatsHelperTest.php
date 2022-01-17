@@ -18,6 +18,7 @@ class StatsHelperTest extends TestCase
     private $start;
     private $end;
     private $request;
+    private $userId;
 
     public function setup(): void
     {
@@ -31,16 +32,14 @@ class StatsHelperTest extends TestCase
             'enddate' => $this->end->format('Y-m-d'),
         ]);
 
+        $this->userId = Str::random(20);
         $message = new Message([
-            'user_id' => Str::random(20),
+            'user_id' => $this->userId,
             'author' => 'them',
             'message' => Str::random(20),
             'message_id' => Str::random(20),
             'type' => 'button',
-            'microtime' => date('Y-m-d') . ' 10:35:06.340100',
-            'intents' => ['country_response'],
-            'conversation' => 'welcome',
-            'scene' => 'opening_scene',
+            'microtime' => date('Y-m-d') . ' 10:35:06.340100'
         ]);
         $message->save();
     }
@@ -58,7 +57,7 @@ class StatsHelperTest extends TestCase
 
     public function testStatsHelperGetCounts()
     {
-        $query = Message::containingIntent('country_response')
+        $query = Message::where('user_id', $this->userId)
             ->select('user_id')
             ->distinct();
 
@@ -67,21 +66,12 @@ class StatsHelperTest extends TestCase
         $this->assertEquals($counts['value'], 1);
     }
 
-    public function testStatsHelperGetIntentCounts()
-    {
-        $intents = ['country_response'];
-
-        $intentCounts = Helper::getIntentCounts($this->request, $intents);
-
-        $this->assertEquals($intentCounts['value'], 1);
-    }
-
     public function testStatsHelperGetGraphCount()
     {
         $end = clone($this->end);
         $end->modify('+1 day');
 
-        $query = Message::containingIntent('country_response')
+        $query = Message::where('user_id', $this->userId)
             ->select('user_id')
             ->distinct();
 

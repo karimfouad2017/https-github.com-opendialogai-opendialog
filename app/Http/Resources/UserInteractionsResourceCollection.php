@@ -33,7 +33,7 @@ class UserInteractionsResourceCollection extends ResourceCollection
     {
         $formatted = [];
         $messages = $this->collection->groupBy('user_id');
-        foreach($messages as $key => $interactions) {
+        foreach ($messages as $key => $interactions) {
             $formatted[] = $this->formatData($key, $interactions);
         }
         return $formatted;
@@ -69,7 +69,7 @@ class UserInteractionsResourceCollection extends ResourceCollection
     protected function formatInteractions(Collection $interactions): array
     {
         $result = [];
-        foreach($interactions as $interaction) {
+        foreach ($interactions as $interaction) {
             $interactionData =  [
                 'type' => $interaction->type,
                 'date' => $interaction->created_at,
@@ -79,7 +79,7 @@ class UserInteractionsResourceCollection extends ResourceCollection
 
             $attributes = $interaction->data;
             $data = [];
-            foreach($attributes as $name => $attribute) {
+            foreach ($attributes as $name => $attribute) {
                 $data[$name] = $attribute;
             }
             $interactionData['data'][] = $data;
