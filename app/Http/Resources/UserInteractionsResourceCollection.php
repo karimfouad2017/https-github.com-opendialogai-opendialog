@@ -72,24 +72,9 @@ class UserInteractionsResourceCollection extends ResourceCollection
                 'type' => $interaction->type,
                 'date' => $interaction->created_at,
                 'text' => $interaction->message,
-                'data' => $this->getDataAttributes($interaction->data)
+                'data' => $interaction->data
             ];
         }
         return $result;
-    }
-
-    /**
-     * Gets all the attributes present in the data array.
-     *
-     * @param $attributes
-     * @return array
-     */
-    protected function getDataAttributes($attributes): array
-    {
-        $data = [];
-        foreach ($attributes as $name => $attribute) {
-            $data[$name] = $attribute;
-        }
-        return $data;
     }
 }
