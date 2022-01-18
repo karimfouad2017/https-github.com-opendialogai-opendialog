@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use OpenDialogAi\ConversationLog\ChatbotUser;
@@ -11,6 +12,7 @@ use Tests\TestCase;
 class UserInteractionsTest extends TestCase
 {
     private $message;
+    protected $user;
 
     public function setUp(): void
     {
@@ -38,6 +40,8 @@ class UserInteractionsTest extends TestCase
             ]
         ];
         $this->message = $this->createMessageFromData($data);
+
+        $this->user = factory(User::class)->create();
     }
 
     public function testGetUserInteractionsSuccess()
@@ -45,7 +49,7 @@ class UserInteractionsTest extends TestCase
         $from = date('Y-m-d') . ' 00:00:00';
         $to = date('Y-m-d') . ' 23:59:59';
         $url = '/api/user-interactions/' . $from . '/' . $to;
-        $this->get($url)
+        $this->actingAs($this->user, 'api')->get($url)
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [array(
@@ -68,7 +72,7 @@ class UserInteractionsTest extends TestCase
     public function testGetUserInteractionsInvalidParams()
     {
         $url = '/api/user-interactions/from/to';
-        $this->get($url)->assertStatus(302);
+        $this->actingAs($this->user, 'api')->get($url)->assertStatus(302);
     }
 
     public function testGetUserInteractionsOutOfRange()
@@ -76,9 +80,17 @@ class UserInteractionsTest extends TestCase
         $from = Carbon::now()->addDays(-1)->format('Y-m-d H:i:s');
         $to =  Carbon::now()->addDays(-1)->format('Y-m-d H:i:s');
         $url = '/api/user-interactions/' . $from . '/' . $to;
-        $this->get($url)
+        $this->actingAs($this->user, 'api')->get($url)
             ->assertStatus(200)
             ->assertJsonCount(0, 'data');
+    }
+
+    public function testGetUserInteractionsAuthFailure()
+    {
+        $from = Carbon::now()->addDays(-1)->format('Y-m-d H:i:s');
+        $to =  Carbon::now()->addDays(-1)->format('Y-m-d H:i:s');
+        $url = '/api/user-interactions/' . $from . '/' . $to;
+        $this->followingRedirects()->get($url)->assertViewIs('auth.login');
     }
 
     private function createMessageFromData($data): Message
