@@ -10,6 +10,7 @@ use OpenDialogAi\Core\Conversation\Facades\ConversationDataClient;
 use OpenDialogAi\Core\Conversation\Scenario;
 use OpenDialogAi\PlatformEngine\Components\WebchatPlatform;
 use OpenDialogAi\Webchat\WebchatSetting;
+use OpenDialogAi\Core\ComponentSetting;
 
 class CreateWebchatPlatforms extends BaseConfigurationUpdate
 {
@@ -111,7 +112,8 @@ class CreateWebchatPlatforms extends BaseConfigurationUpdate
 
         // First, get all child settings.
         $parentIds = [];
-        $childSettings = WebchatSetting::whereNotNull('parent_id')->get();
+        $childSettings = ComponentSetting::whereNotNull('parent_id')
+            ->where('component_id', WebchatPlatform::getComponentId())->get();
         foreach ($childSettings as $childSetting) {
             if (!in_array($childSetting->parent_id, $parentIds)) {
                 $parentIds[] = $childSetting->parent_id;
@@ -119,7 +121,8 @@ class CreateWebchatPlatforms extends BaseConfigurationUpdate
         }
 
         // Next, get all top level settings.
-        $settings = WebchatSetting::whereNull('parent_id')->get();
+        $settings = ComponentSetting::whereNull('parent_id')
+            ->where('component_id', WebchatPlatform::getComponentId())->get();
 
         // Build the config array.
         foreach ($settings as $setting) {
@@ -169,7 +172,7 @@ class CreateWebchatPlatforms extends BaseConfigurationUpdate
 
     private function getSettings(): array
     {
-        $table = DB::table('webchat_settings');
+        $table = DB::table('component_settings');
 
         if ($table->exists() && $table->count() > 0 && $table->where('value', '<>', '')->count() > 0) {
             return $this->convertSettingsToArray();

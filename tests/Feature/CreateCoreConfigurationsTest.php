@@ -374,6 +374,7 @@ class CreateCoreConfigurationsTest extends TestCase
         $generalSetting->name = 'general';
         $generalSetting->value = 'general';
         $generalSetting->type = 'object';
+        $generalSetting->component_id = 'platform.core.webchat';
         $generalSetting->save();
 
         $setting = new ComponentSetting();
@@ -381,6 +382,7 @@ class CreateCoreConfigurationsTest extends TestCase
         $setting->value = 'OpenDialog Webchat';
         $setting->type = 'string';
         $setting->parent_id = $generalSetting->id;
+        $setting->component_id = 'platform.core.webchat';
         $setting->save();
 
         $setting2 = new ComponentSetting();
@@ -388,6 +390,7 @@ class CreateCoreConfigurationsTest extends TestCase
         $setting2->value = true;
         $setting2->type = 'boolean';
         $setting2->parent_id = $generalSetting->id;
+        $setting2->component_id = 'platform.core.webchat';
         $setting2->save();
 
         $expectedSettings = [
