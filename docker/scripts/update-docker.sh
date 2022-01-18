@@ -15,7 +15,7 @@ echo "Creating default component configurations"
 php artisan configurations:create
 
 echo "Creating webchat interface setting content"
-php artisan webchat:settings
+php artisan component:settings
 
 echo "Ensuring log directory is writable..."
 chmod -R 777 /var/www/storage/logs

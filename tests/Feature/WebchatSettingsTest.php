@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\User;
 use OpenDialogAi\Webchat\WebchatSetting;
+use OpenDialogAi\Core\ComponentSetting;
 use Tests\TestCase;
 
 class WebchatSettingsTest extends TestCase
@@ -17,13 +18,13 @@ class WebchatSettingsTest extends TestCase
         $this->user = factory(User::class)->create();
 
         // Ensure we start with am empty webchat settings table
-        WebchatSetting::truncate();
+        ComponentSetting::truncate();
     }
 
     public function testWebchatSettingsViewAllEndpoint()
     {
         $this->app['config']->set(
-            'opendialog.webchat_setting',
+            'opendialog.component_settings',
             [
                 WebchatSetting::GENERAL => [
                     WebchatSetting::URL => [
@@ -52,10 +53,10 @@ class WebchatSettingsTest extends TestCase
             ]
         );
 
-        $this->artisan('webchat:settings');
+        $this->artisan('component:settings');
 
         $response = $this->actingAs($this->user, 'api')
-            ->json('GET', '/admin/api/webchat-setting')
+            ->json('GET', '/admin/api/component-setting/platform.core.webchat')
             ->assertStatus(200)
             ->assertJsonFragment(
                 [
