@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cd42d84dc3f71a866deb792a7084602f",
+    "content-hash": "ba09b6d2f99ac9bd463f233471c72496",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3335,16 +3335,16 @@
         },
         {
             "name": "opendialogai/core",
-            "version": "1.8.0",
+            "version": "dev-feature/OPNDLG-1333_long_text_message",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "42737c6c7a75e0906b01e7f0908fb6de61e0679b"
+                "reference": "36a66e470ffd0b4092ef12904a9273c56076ad61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/42737c6c7a75e0906b01e7f0908fb6de61e0679b",
-                "reference": "42737c6c7a75e0906b01e7f0908fb6de61e0679b",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/36a66e470ffd0b4092ef12904a9273c56076ad61",
+                "reference": "36a66e470ffd0b4092ef12904a9273c56076ad61",
                 "shasum": ""
             },
             "require": {
@@ -3391,8 +3391,7 @@
                         "OpenDialogAi\\ContextEngine\\ContextEngineServiceProvider",
                         "OpenDialogAi\\ActionEngine\\ActionEngineServiceProvider",
                         "OpenDialogAi\\SensorEngine\\SensorEngineServiceProvider",
-                        "OpenDialogAi\\NlpEngine\\NlpEngineServiceProvider",
-                        "OpenDialogAi\\Core\\FileUploadServiceProvider"
+                        "OpenDialogAi\\NlpEngine\\NlpEngineServiceProvider"
                     ],
                     "aliases": {
                         "AttributeResolver": "OpenDialogAi\\AttributeEngine\\Facades\\AttributeResolver"
@@ -3426,9 +3425,9 @@
             "description": "The OpenDialog Core package",
             "support": {
                 "issues": "https://github.com/opendialogai/core/issues",
-                "source": "https://github.com/opendialogai/core/tree/1.8.0"
+                "source": "https://github.com/opendialogai/core/tree/feature/OPNDLG-1333_long_text_message"
             },
-            "time": "2022-01-19T16:39:42+00:00"
+            "time": "2022-01-13T12:44:59+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -3472,16 +3471,16 @@
         },
         {
             "name": "opendialogai/webchat",
-            "version": "1.6.0",
+            "version": "dev-feature/OPNDLG-1333_long_text_message",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/webchat.git",
-                "reference": "135e79a6c3fdcb17cd73d1e83ae21c89eb742796"
+                "reference": "10ab4f2389c5703e0153d463a63392a37bea8cae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/135e79a6c3fdcb17cd73d1e83ae21c89eb742796",
-                "reference": "135e79a6c3fdcb17cd73d1e83ae21c89eb742796",
+                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/10ab4f2389c5703e0153d463a63392a37bea8cae",
+                "reference": "10ab4f2389c5703e0153d463a63392a37bea8cae",
                 "shasum": ""
             },
             "require": {
@@ -3523,9 +3522,9 @@
             "description": "Webchat front end component for the Open Dialog project",
             "support": {
                 "issues": "https://github.com/opendialogai/webchat/issues",
-                "source": "https://github.com/opendialogai/webchat/tree/1.6.0"
+                "source": "https://github.com/opendialogai/webchat/tree/feature/OPNDLG-1333_long_text_message"
             },
-            "time": "2022-01-19T15:38:08+00:00"
+            "time": "2022-01-19T11:32:03+00:00"
         },
         {
             "name": "opis/closure",
@@ -12056,7 +12055,10 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "opendialogai/core": 20,
+        "opendialogai/webchat": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
