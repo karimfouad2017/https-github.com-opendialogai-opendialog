@@ -18,13 +18,4 @@ class UserInteractionsRequest extends FormRequest
             'to' => 'required|date'
         ];
     }
-
-    public function all($keys = null)
-    {
-        $data = parent::all($keys);
-        $data['from'] = $this->route('from');
-        $data['to'] = $this->route('to');
-
-        return $data;
-    }
 }

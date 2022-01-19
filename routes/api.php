@@ -169,6 +169,6 @@ Route::namespace('API')
 Route::namespace('API')
     ->prefix('api')
     ->group(function () {
-        Route::get('user-interactions/{from}/{to}', 'UserInteractionsController@index');
+        Route::get('user-interactions', 'UserInteractionsController@index');
     });
 

@@ -44,7 +44,7 @@ class UserInteractionsTest extends TestCase
     {
         $from = date('Y-m-d') . ' 00:00:00';
         $to = date('Y-m-d') . ' 23:59:59';
-        $url = '/api/user-interactions/' . $from . '/' . $to;
+        $url = '/api/user-interactions?from=' . $from . '&to=' . $to;
         $this->get($url)
             ->assertStatus(200)
             ->assertJsonStructure([
@@ -67,7 +67,7 @@ class UserInteractionsTest extends TestCase
 
     public function testGetUserInteractionsInvalidParams()
     {
-        $url = '/api/user-interactions/from/to';
+        $url = '/api/user-interactions';
         $this->get($url)->assertStatus(302);
     }
 
@@ -75,7 +75,7 @@ class UserInteractionsTest extends TestCase
     {
         $from = Carbon::now()->addDays(-1)->format('Y-m-d H:i:s');
         $to =  Carbon::now()->addDays(-1)->format('Y-m-d H:i:s');
-        $url = '/api/user-interactions/' . $from . '/' . $to;
+        $url = '/api/user-interactions?from=' . $from . '&to=' . $to;
         $this->get($url)
             ->assertStatus(200)
             ->assertJsonCount(0, 'data');
