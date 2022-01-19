@@ -36,6 +36,8 @@ import ConfigureAction
 from '@opendialogai/opendialog-design-system-pkg/src/components/Actions/ConfigureAction'
 import Template
   from '@opendialogai/opendialog-design-system-pkg/src/components/Scenarios/Template'
+import AlexaPublish
+  from '@opendialogai/opendialog-design-system-pkg/src/components/Publish/AlexaPublish'
 
 
 Vue.use(VueRouter);
@@ -328,7 +330,16 @@ const router = new VueRouter({
             title: 'Preview',
             requiresScenario: true
           }
-        }
+        },
+        {
+          path: 'publish',
+          name: 'publish',
+          component: AlexaPublish,
+          meta: {
+              title: 'Publish',
+              requiresScenario: true
+          }
+      }
       ],
     },
   ],
