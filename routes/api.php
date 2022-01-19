@@ -167,3 +167,10 @@ Route::namespace('API')
 
         Route::post('/upload', 'FileUploadController@upload');
     });
+
+Route::namespace('API')
+    ->prefix('api')
+    ->group(function () {
+        Route::get('user-interactions', 'UserInteractionsController@index');
+    });
+

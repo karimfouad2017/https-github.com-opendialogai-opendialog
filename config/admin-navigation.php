@@ -42,6 +42,12 @@ return [
                     'icon' => 'speech',
                     'section' => 'demo'
                 ],
+                [
+                    'title' => 'Publish',
+                    'url' => '/admin/publish',
+                    'icon' => 'forward',
+                    'section' => 'publish'
+                ]
             ]
         ],
     'help' => [

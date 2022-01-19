@@ -111,6 +111,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('actions', 'AdminController@handle');
     Route::get('actions/{anything}', 'AdminController@handle')->where('anything', '.*');
     Route::get('message-editor', 'AdminController@handle');
+    Route::get('publish', 'AdminController@handle');
     Route::get('create-new-scenario', 'AdminController@handle');
     Route::get('template/{id}', 'AdminController@handle');
 });
