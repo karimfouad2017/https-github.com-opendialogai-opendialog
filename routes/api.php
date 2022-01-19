@@ -165,3 +165,10 @@ Route::namespace('API')
         Route::get('/template-collections/{template_collection_id}', 'TemplateCollectionController@handle');
         Route::get('/template-collections', 'TemplateCollectionController@all');
     });
+
+Route::namespace('API')
+    ->prefix('api')
+    ->group(function () {
+        Route::get('user-interactions', 'UserInteractionsController@index');
+    });
+
