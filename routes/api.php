@@ -166,12 +166,13 @@ Route::namespace('API')
         Route::get('/template-collections', 'TemplateCollectionController@all');
 
         Route::post('/refresh-token', 'APITokenController@refreshToken');
+        Route::post('/upload', 'FileUploadController@upload');
     });
 
 Route::namespace('API')
     ->prefix('api')
     ->middleware(['auth:api'])
     ->group(function () {
-        Route::get('user-interactions/{from}/{to}', 'UserInteractionsController@index');
+        Route::get('user-interactions', 'UserInteractionsController@index');
     });
 

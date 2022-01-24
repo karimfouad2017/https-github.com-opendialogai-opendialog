@@ -14,6 +14,11 @@ class UserInteractionsTest extends TestCase
     private $message;
     protected $user;
 
+    /**
+     * @var User
+     */
+    private $user;
+
     public function setUp(): void
     {
         parent::setUp();
@@ -40,16 +45,21 @@ class UserInteractionsTest extends TestCase
             ]
         ];
         $this->message = $this->createMessageFromData($data);
-
         $this->user = factory(User::class)->create();
+    }
+
+    public function testApiAuth()
+    {
+        $url = '/api/user-interactions';
+        $this->json('GET', $url)->assertStatus(401);
     }
 
     public function testGetUserInteractionsSuccess()
     {
         $from = date('Y-m-d') . ' 00:00:00';
         $to = date('Y-m-d') . ' 23:59:59';
-        $url = '/api/user-interactions/' . $from . '/' . $to;
-        $this->actingAs($this->user, 'api')->get($url)
+        $url = '/api/user-interactions?from=' . $from . '&to=' . $to;
+        $this->actingAs($this->user, 'api')->json('GET', $url)
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [array(
@@ -71,16 +81,16 @@ class UserInteractionsTest extends TestCase
 
     public function testGetUserInteractionsInvalidParams()
     {
-        $url = '/api/user-interactions/from/to';
-        $this->actingAs($this->user, 'api')->get($url)->assertStatus(302);
+        $url = '/api/user-interactions';
+        $this->actingAs($this->user, 'api')->json('GET', $url)->assertStatus(422);
     }
 
     public function testGetUserInteractionsOutOfRange()
     {
         $from = Carbon::now()->addDays(-1)->format('Y-m-d H:i:s');
         $to =  Carbon::now()->addDays(-1)->format('Y-m-d H:i:s');
-        $url = '/api/user-interactions/' . $from . '/' . $to;
-        $this->actingAs($this->user, 'api')->get($url)
+        $url = '/api/user-interactions?from=' . $from . '&to=' . $to;
+        $this->actingAs($this->user, 'api')->json('GET', $url)
             ->assertStatus(200)
             ->assertJsonCount(0, 'data');
     }
