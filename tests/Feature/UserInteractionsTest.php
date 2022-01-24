@@ -12,7 +12,6 @@ use Tests\TestCase;
 class UserInteractionsTest extends TestCase
 {
     private $message;
-    protected $user;
 
     /**
      * @var User
@@ -99,7 +98,7 @@ class UserInteractionsTest extends TestCase
     {
         $from = Carbon::now()->addDays(-1)->format('Y-m-d H:i:s');
         $to =  Carbon::now()->addDays(-1)->format('Y-m-d H:i:s');
-        $url = '/api/user-interactions/' . $from . '/' . $to;
+        $url = '/api/user-interactions?from=' . $from . '&to=' . $to;
         $this->followingRedirects()->get($url)->assertViewIs('auth.login');
     }
 
