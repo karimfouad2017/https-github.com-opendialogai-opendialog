@@ -6,7 +6,7 @@ use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use OpenDialogAi\Core\ComponentSetting;
 
-class WebchatSettingsPolicy
+class ComponentSettingsPolicy
 {
     use HandlesAuthorization;
 
