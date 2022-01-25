@@ -3374,7 +3374,6 @@
                 "phpunit/phpunit": "^9.0",
                 "squizlabs/php_codesniffer": "^3.4"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -3392,8 +3391,7 @@
                         "OpenDialogAi\\ContextEngine\\ContextEngineServiceProvider",
                         "OpenDialogAi\\ActionEngine\\ActionEngineServiceProvider",
                         "OpenDialogAi\\SensorEngine\\SensorEngineServiceProvider",
-                        "OpenDialogAi\\NlpEngine\\NlpEngineServiceProvider",
-                        "OpenDialogAi\\Core\\FileUploadServiceProvider"
+                        "OpenDialogAi\\NlpEngine\\NlpEngineServiceProvider"
                     ],
                     "aliases": {
                         "AttributeResolver": "OpenDialogAi\\AttributeEngine\\Facades\\AttributeResolver"
@@ -3477,12 +3475,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/webchat.git",
-                "reference": "02869f337af9dae9b1ee3b206075561de833cf27"
+                "reference": "b39df15787db96638e068129811091b12ba604e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/02869f337af9dae9b1ee3b206075561de833cf27",
-                "reference": "02869f337af9dae9b1ee3b206075561de833cf27",
+                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/b39df15787db96638e068129811091b12ba604e3",
+                "reference": "b39df15787db96638e068129811091b12ba604e3",
                 "shasum": ""
             },
             "require": {
@@ -3526,7 +3524,7 @@
                 "issues": "https://github.com/opendialogai/webchat/issues",
                 "source": "https://github.com/opendialogai/webchat/tree/OPNDLG-1341--generalise-setting--rebase"
             },
-            "time": "2022-01-24T14:23:37+00:00"
+            "time": "2022-01-25T14:36:09+00:00"
         },
         {
             "name": "opis/closure",
