@@ -24,7 +24,7 @@ class WebchatSettingsTest extends TestCase
     public function testWebchatSettingsViewAllEndpoint()
     {
         $this->app['config']->set(
-            'opendialog.component_settings',
+            'opendialog.component_settings.' . WebchatSetting::WEBCHAT_CONFIG,
             [
                 WebchatSetting::GENERAL => [
                     WebchatSetting::URL => [

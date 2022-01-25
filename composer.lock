@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a88dce07a0f59ade7ba9dc9796c8e855",
+    "content-hash": "6e37b599a97d63157b3638fb0f196a21",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3339,12 +3339,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "72588946147440bfc3c5c4a8df5d1538bb1bb234"
+                "reference": "90a6c746358ca9bcdf3b962a19a3272af45c4a86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/72588946147440bfc3c5c4a8df5d1538bb1bb234",
-                "reference": "72588946147440bfc3c5c4a8df5d1538bb1bb234",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/90a6c746358ca9bcdf3b962a19a3272af45c4a86",
+                "reference": "90a6c746358ca9bcdf3b962a19a3272af45c4a86",
                 "shasum": ""
             },
             "require": {
@@ -3427,7 +3427,7 @@
                 "issues": "https://github.com/opendialogai/core/issues",
                 "source": "https://github.com/opendialogai/core/tree/OPNDLG-1335--generalise-setting"
             },
-            "time": "2022-01-14T11:04:44+00:00"
+            "time": "2022-01-24T14:16:15+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -3471,16 +3471,16 @@
         },
         {
             "name": "opendialogai/webchat",
-            "version": "dev-OPNDLG-1341--generalise-setting",
+            "version": "dev-OPNDLG-1341--generalise-setting--rebase",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/webchat.git",
-                "reference": "b12f5ebd442d5f26f7d88c1bbb95e4da4b2e85c8"
+                "reference": "02869f337af9dae9b1ee3b206075561de833cf27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/b12f5ebd442d5f26f7d88c1bbb95e4da4b2e85c8",
-                "reference": "b12f5ebd442d5f26f7d88c1bbb95e4da4b2e85c8",
+                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/02869f337af9dae9b1ee3b206075561de833cf27",
+                "reference": "02869f337af9dae9b1ee3b206075561de833cf27",
                 "shasum": ""
             },
             "require": {
@@ -3522,9 +3522,9 @@
             "description": "Webchat front end component for the Open Dialog project",
             "support": {
                 "issues": "https://github.com/opendialogai/webchat/issues",
-                "source": "https://github.com/opendialogai/webchat/tree/OPNDLG-1341--generalise-setting"
+                "source": "https://github.com/opendialogai/webchat/tree/OPNDLG-1341--generalise-setting--rebase"
             },
-            "time": "2022-01-14T10:50:03+00:00"
+            "time": "2022-01-24T14:23:37+00:00"
         },
         {
             "name": "opis/closure",
@@ -12067,5 +12067,5 @@
         "ext-simplexml": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
