@@ -94,6 +94,14 @@ class UserInteractionsTest extends TestCase
             ->assertJsonCount(0, 'data');
     }
 
+    public function testGetUserInteractionsAuthFailure()
+    {
+        $from = Carbon::now()->addDays(-1)->format('Y-m-d H:i:s');
+        $to =  Carbon::now()->addDays(-1)->format('Y-m-d H:i:s');
+        $url = '/api/user-interactions?from=' . $from . '&to=' . $to;
+        $this->followingRedirects()->get($url)->assertViewIs('auth.login');
+    }
+
     private function createMessageFromData($data): Message
     {
         (new ChatbotUser(['user_id' => $data['user_id']]))->save();
