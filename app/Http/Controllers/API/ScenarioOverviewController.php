@@ -13,10 +13,11 @@ class ScenarioOverviewController extends Controller
     {
         $scenarioId = $request->get('scenario');
         $level = $request->get('level');
+        $include = explode(",", $request->get('include'));
+        $exclude = explode(",", $request->get('exclude'));
 
         $scenario = ScenarioDataClient::getFullScenarioGraph($scenarioId);
-        $response = new ScenarioOverviewResponse();
-        $response->addScenarioNode($scenario, $level);
+        $response = new ScenarioOverviewResponse($scenario, $level, collect($include), collect($exclude));
 
         return response()->json($response->formatResponse());
     }
