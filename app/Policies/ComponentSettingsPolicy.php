@@ -4,13 +4,13 @@ namespace App\Policies;
 
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use OpenDialogAi\Webchat\WebchatSetting;
+use OpenDialogAi\Core\ComponentSetting;
 
-class WebchatSettingsPolicy
+class ComponentSettingsPolicy
 {
     use HandlesAuthorization;
 
-    public function update(User $user, WebchatSetting $webchatSetting)
+    public function update(User $user, ComponentSetting $webchatSetting)
     {
         return $webchatSetting->children()->count() == 0;
     }
@@ -25,7 +25,7 @@ class WebchatSettingsPolicy
         return false;
     }
 
-    public function view(User $user, WebchatSetting $webchatSetting)
+    public function view(User $user, ComponentSetting $webchatSetting)
     {
         return $webchatSetting->children()->count() > 0;
     }

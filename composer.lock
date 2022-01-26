@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "590f8535b75574b11a5983295fbab485",
+    "content-hash": "e1213c1d6a8fec7869b749fa8a91a364",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3339,12 +3339,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "2ad103797a2d952c5a25c312d499209b30b95b37"
+                "reference": "bc5e49f5277b0293066eee3dbcba4d2fbe19f147"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/2ad103797a2d952c5a25c312d499209b30b95b37",
-                "reference": "2ad103797a2d952c5a25c312d499209b30b95b37",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/bc5e49f5277b0293066eee3dbcba4d2fbe19f147",
+                "reference": "bc5e49f5277b0293066eee3dbcba4d2fbe19f147",
                 "shasum": ""
             },
             "require": {
@@ -3429,7 +3429,7 @@
                 "issues": "https://github.com/opendialogai/core/issues",
                 "source": "https://github.com/opendialogai/core/tree/1.x"
             },
-            "time": "2022-01-25T09:16:23+00:00"
+            "time": "2022-01-26T13:58:11+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -3473,16 +3473,16 @@
         },
         {
             "name": "opendialogai/webchat",
-            "version": "1.6.0",
+            "version": "1.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/webchat.git",
-                "reference": "135e79a6c3fdcb17cd73d1e83ae21c89eb742796"
+                "reference": "b40be18257434d14833a1cd2394d0c647e4ccb97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/135e79a6c3fdcb17cd73d1e83ae21c89eb742796",
-                "reference": "135e79a6c3fdcb17cd73d1e83ae21c89eb742796",
+                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/b40be18257434d14833a1cd2394d0c647e4ccb97",
+                "reference": "b40be18257434d14833a1cd2394d0c647e4ccb97",
                 "shasum": ""
             },
             "require": {
@@ -3490,11 +3490,12 @@
                 "php": "^7.4 || ^8.0"
             },
             "require-dev": {
-                "opendialogai/core": "1.6.2",
+                "opendialogai/core": "1.x-dev",
                 "orchestra/testbench": "^6.0",
                 "phpunit/phpunit": "^9.0",
                 "squizlabs/php_codesniffer": "^3.4"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -3524,9 +3525,9 @@
             "description": "Webchat front end component for the Open Dialog project",
             "support": {
                 "issues": "https://github.com/opendialogai/webchat/issues",
-                "source": "https://github.com/opendialogai/webchat/tree/1.6.0"
+                "source": "https://github.com/opendialogai/webchat/tree/1.x"
             },
-            "time": "2022-01-19T15:38:08+00:00"
+            "time": "2022-01-26T14:13:08+00:00"
         },
         {
             "name": "opis/closure",
@@ -12058,7 +12059,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "opendialogai/core": 20
+        "opendialogai/core": 20,
+        "opendialogai/webchat": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
@@ -12068,5 +12070,5 @@
         "ext-simplexml": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

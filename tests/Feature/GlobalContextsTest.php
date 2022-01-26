@@ -14,7 +14,7 @@ class GlobalContextsTest extends TestCase
     {
         parent::setUp();
 
-        Artisan::call('webchat:settings');
+        Artisan::call('component:settings');
 
         $this->user = factory(User::class)->create();
     }

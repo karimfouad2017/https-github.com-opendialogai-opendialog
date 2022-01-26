@@ -10,7 +10,7 @@ use OpenDialogAi\Core\InterpreterEngine\Service\InterpreterServiceInterface;
 use OpenDialogAi\InterpreterEngine\Service\InterpreterComponentServiceInterface;
 use OpenDialogAi\ResponseEngine\Service\FormatterServiceInterface;
 use OpenDialogAi\SensorEngine\Service\SensorServiceInterface;
-use OpenDialogAi\Webchat\Console\Commands\WebchatSettings;
+use OpenDialogAi\Core\Console\Commands\ComponentSettings;
 use OpenDialogAi\Webchat\WebchatSetting;
 use Tests\TestCase;
 
@@ -88,7 +88,7 @@ class OdTest extends TestCase
      */
     public function testOdWebchatServiceProvider()
     {
-        $webChatSettings = app('OpenDialogAi\Webchat\Console\Commands\WebchatSettings');
-        $this->assertInstanceOf(WebchatSettings::class, $webChatSettings);
+        $webChatSettings = app('OpenDialogAi\Core\Console\Commands\ComponentSettings');
+        $this->assertInstanceOf(ComponentSettings::class, $webChatSettings);
     }
 }
