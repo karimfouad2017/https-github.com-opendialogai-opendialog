@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "23b8ed24a2b414d8eb623104945f4168",
+    "content-hash": "9abcb1eb362e706d421eb7813dd0cc72",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3472,16 +3472,16 @@
         },
         {
             "name": "opendialogai/webchat",
-            "version": "1.x-dev",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/webchat.git",
-                "reference": "b40be18257434d14833a1cd2394d0c647e4ccb97"
+                "reference": "85a56014b2481b8a7feb448d97dd8f5a4b7b0880"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/b40be18257434d14833a1cd2394d0c647e4ccb97",
-                "reference": "b40be18257434d14833a1cd2394d0c647e4ccb97",
+                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/85a56014b2481b8a7feb448d97dd8f5a4b7b0880",
+                "reference": "85a56014b2481b8a7feb448d97dd8f5a4b7b0880",
                 "shasum": ""
             },
             "require": {
@@ -3494,7 +3494,6 @@
                 "phpunit/phpunit": "^9.0",
                 "squizlabs/php_codesniffer": "^3.4"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -3524,9 +3523,9 @@
             "description": "Webchat front end component for the Open Dialog project",
             "support": {
                 "issues": "https://github.com/opendialogai/webchat/issues",
-                "source": "https://github.com/opendialogai/webchat/tree/1.x"
+                "source": "https://github.com/opendialogai/webchat/tree/1.7.0"
             },
-            "time": "2022-01-26T14:13:08+00:00"
+            "time": "2022-01-26T15:56:01+00:00"
         },
         {
             "name": "opis/closure",
@@ -12057,9 +12056,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "opendialogai/webchat": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
