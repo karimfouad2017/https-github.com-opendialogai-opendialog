@@ -43,11 +43,17 @@ return [
                     'section' => 'demo'
                 ],
                 [
-                    'title' => 'Publish',
-                    'url' => '/admin/publish',
-                    'icon' => 'forward',
-                    'section' => 'publish'
-                ]
+                    'title' => 'Overview',
+                    'url' => '/admin/overview',
+                    'icon' => '',
+                    'section' => 'demo'
+                ],
+                [
+                    'title' => 'Overview',
+                    'url' => '/admin/overview',
+                    'icon' => 'atoms',
+                    'section' => 'demo'
+                ],
             ]
         ],
     'help' => [

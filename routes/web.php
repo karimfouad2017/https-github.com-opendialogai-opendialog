@@ -114,6 +114,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('publish', 'AdminController@handle');
     Route::get('create-new-scenario', 'AdminController@handle');
     Route::get('template/{id}', 'AdminController@handle');
+    Route::get('overview', 'AdminController@handle');
 });
 
 /**
