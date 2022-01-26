@@ -7,16 +7,20 @@ use OpenDialogAi\Core\Conversation\Turn;
 
 class IntentCollectionNode extends BaseNode
 {
-    public static function fromTurn(Turn $turn, IntentCollection $intents, $type)
+    public static function fromTurn(Turn $turn, IntentCollection $intents, $type, $groupId = null)
     {
-        $requestIntents = new static(
+        $intentCollection = new static(
             sprintf('%s Intents', ucfirst($type)),
             sprintf('%s_%s', $turn->getUid(), $type),
             $turn->getUid()
         );
-        $requestIntents->speaker = $intents->first() ? $intents->first()->getSpeaker() : "empty";
-        $requestIntents->type = sprintf('%s_intents', $type);
+        $intentCollection->speaker = $intents->first() ? $intents->first()->getSpeaker() : "empty";
+        $intentCollection->type = sprintf('%s_intents', $type);
 
-        return $requestIntents;
+        if ($groupId) {
+            $intentCollection->groupId = $groupId;
+        }
+
+        return $intentCollection;
     }
 }
