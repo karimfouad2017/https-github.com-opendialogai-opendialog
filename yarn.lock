@@ -841,10 +841,10 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
-"@opendialogai/opendialog-design-system-pkg@1.7.2-1":
-  version "1.7.2-1"
-  resolved "https://registry.yarnpkg.com/@opendialogai/opendialog-design-system-pkg/-/opendialog-design-system-pkg-1.7.2-1.tgz#6d48f825b8c9da98e552dbed9af5fe5d0ac44e82"
-  integrity sha512-vSpU7jXD9ydZj35TbC3E0845RpPPIEcSPZYfFyMpf453VGVn+eDqJIbcg9DBSmh4wowrDBJHZvf3exE6aLew4g==
+"@opendialogai/opendialog-design-system-pkg@1.7.2-2":
+  version "1.7.2-2"
+  resolved "https://registry.yarnpkg.com/@opendialogai/opendialog-design-system-pkg/-/opendialog-design-system-pkg-1.7.2-2.tgz#18314e9e805a367d414ba95732e0a9315e6bfc08"
+  integrity sha512-F7q8MbcG6mwkmtkwwC0LZxvghYXAbFQw6qbngPTIpWcSrsZXEMtUOuhUCoJEVmolKqqfS1tp2vBh8VvlDvrong==
   dependencies:
     "@coreui/coreui" "^2.1.12"
     "@coreui/coreui-plugin-chartjs-custom-tooltips" "^1.3.1"
