@@ -281,23 +281,13 @@ class ScenarioOverviewResponse
         }
         return $source;
     }
-    
+
     private function getTransitionTarget(Transition $transition): string
     {
-        if ($transition->getTurn()) {
-            if ($this->nodes->filter(fn (BaseNode $node) => $node->id === $transition->getTurn())->count()) {
-                return $transition->getTurn();
-            } else if ($this->nodes->filter(fn (BaseNode $node) => $node->id === $transition->getScene())->count()) {
-                return $transition->getScene();
-            } else {
-                return $transition->getConversation();
-            }
-        } else if ($transition->getScene()) {
-            if ($this->nodes->filter(fn (BaseNode $node) => $node->id === $transition->getScene())->count()) {
-                return $transition->getScene();
-            } else {
-                return $transition->getConversation();
-            }
+        if ($this->nodes->filter(fn (BaseNode $node) => $node->id === $transition->getTurn())->count()) {
+            return $transition->getTurn();
+        } else if ($this->nodes->filter(fn (BaseNode $node) => $node->id === $transition->getScene())->count()) {
+            return $transition->getScene();
         } else {
             return $transition->getConversation();
         }
