@@ -48,19 +48,23 @@ class ScenarioOverviewResponse
     {
         $this->nodes = new Collection();
         $this->connections = new Collection();
+
         $this->include = $include;
         $this->exclude = $exclude;
-
         $this->level = $level;
 
         $this->nodes->add(new ScenarioNode($scenario->getName(), $scenario->getUid()));
-
         $this->addConversationNodes($scenario->getConversations());
-
         $this->addEdges($scenario);
     }
 
-    private function addConversationNodes(ConversationCollection $conversations)
+    /**
+     * Adds each conversation based on the current $level and $include and $exclude values. Draws a connection to the scenario for
+     * starting conversations
+     *
+     * @param ConversationCollection $conversations
+     */
+    private function addConversationNodes(ConversationCollection $conversations): void
     {
         $conversations->each(function (Conversation $conversation) {
 
@@ -81,6 +85,13 @@ class ScenarioOverviewResponse
         });
     }
 
+    /**
+     * Adds each scene based on the current $level and $include and $exclude values. Draws a connection to the conversation for
+     * starting scenes
+     *
+     * @param SceneCollection $scenes
+     * @param string $groupId The conversation group node to add the scene nodes to
+     */
     private function addSceneNodes(SceneCollection $scenes, string $groupId)
     {
         $scenes->each(function (Scene $scene) use ($groupId) {
@@ -103,6 +114,13 @@ class ScenarioOverviewResponse
         });
     }
 
+    /**
+     * Adds each scene based on the current $level and $include and $exclude values. Draws a connection to the conversation for
+     * starting scenes
+     *
+     * @param TurnCollection $turns
+     * @param string $groupId The scene group node to add the turns nodes to
+     */
     private function addTurnNodes(TurnCollection $turns, string $groupId)
     {
         $turns->each(function (Turn $turn) use ($groupId) {
@@ -120,6 +138,12 @@ class ScenarioOverviewResponse
 
             if ($turn->getBehaviors()->contains(new Behavior(Behavior::STARTING_BEHAVIOR))) {
                 $this->connections[] = Edge::startingEdge(
+                    $turn->getUid(), $turn->getScene()->getUid()
+                );
+            }
+
+            if ($turn->getBehaviors()->contains(new Behavior(Behavior::OPEN_BEHAVIOR))) {
+                $this->connections[] = Edge::openingEdge(
                     $turn->getUid(), $turn->getScene()->getUid()
                 );
             }
@@ -270,11 +294,11 @@ class ScenarioOverviewResponse
      */
     protected function getTransitionSource(Intent $intent): string
     {
-        if ($this->isTurnOpen($intent->getTurn()->getUid())) {
+        if ($this->isNodePresent($intent->getUid())) {
             $source = $intent->getUid();
-        } else if ($this->isSceneOpen($intent->getScene())) {
+        } else if ($this->isNodePresent($intent->getTurn()->getUid())) {
             $source = $intent->getTurn()->getUid();
-        } else if ($this->isConversationOpen($intent->getConversation())) {
+        } else if ($this->isNodePresent($intent->getScene()->getUid())) {
             $source = $intent->getScene()->getUid();
         } else {
             $source = $intent->getConversation()->getUid();
@@ -284,12 +308,17 @@ class ScenarioOverviewResponse
 
     private function getTransitionTarget(Transition $transition): string
     {
-        if ($this->nodes->filter(fn (BaseNode $node) => $node->id === $transition->getTurn())->count()) {
+        if ($this->isNodePresent($transition->getTurn())) {
             return $transition->getTurn();
-        } else if ($this->nodes->filter(fn (BaseNode $node) => $node->id === $transition->getScene())->count()) {
+        } else if ($this->isNodePresent($transition->getScene())) {
             return $transition->getScene();
         } else {
             return $transition->getConversation();
         }
+    }
+
+    private function isNodePresent($id): bool
+    {
+        return $this->nodes->filter(fn (BaseNode $node) => $node->id === $id)->count() > 0;
     }
 }

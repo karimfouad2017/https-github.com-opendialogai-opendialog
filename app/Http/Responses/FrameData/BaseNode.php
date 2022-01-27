@@ -25,7 +25,7 @@ abstract class BaseNode
 
     public string $id;
 
-    public string $status = self::NOT_CONSIDERED;
+    public ?string $status = null;
 
     public string $type;
 
@@ -44,7 +44,14 @@ abstract class BaseNode
         $this->parentId = $parentId;
     }
 
-    public static function groupedNode(string $label, string $id, string $groupId)
+    public static function notConsideredNode(string $label, string $id, ?string $parentId = null): BaseNode
+    {
+        $node = new static($label, $id, $parentId);
+        $node->status = self::NOT_CONSIDERED;
+        return $node;
+    }
+
+    public static function groupedNode(string $label, string $id, string $groupId): BaseNode
     {
         $node = new static($label, $id, null);
         $node->groupId = $groupId;
@@ -54,7 +61,7 @@ abstract class BaseNode
 
     public static function fromConversationObject(ConversationObject $object, string $parentId = null): BaseNode
     {
-        return new static($object->getName(), $object->getUid(), $parentId);
+        return self::notConsideredNode($object->getName(), $object->getUid(), $parentId);
     }
 
     public static function generateConversationNodesFromScenario(Scenario $scenario): Collection

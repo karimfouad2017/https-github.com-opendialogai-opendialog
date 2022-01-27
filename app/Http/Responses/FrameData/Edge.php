@@ -30,7 +30,12 @@ class Edge
 
     public static function startingEdge($targetId, $sourceId): Edge
     {
-        return new self($targetId, $sourceId, "considered");
+        return new self($targetId, $sourceId, "starting");
+    }
+
+    public static function openingEdge($targetId, $sourceId): Edge
+    {
+        return new self($targetId, $sourceId, "opening");
     }
 
     public static function transitionEdge($targetId, $sourceId): Edge
