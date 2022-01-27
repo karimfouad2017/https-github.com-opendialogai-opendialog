@@ -45,12 +45,6 @@ return [
                 [
                     'title' => 'Overview',
                     'url' => '/admin/overview',
-                    'icon' => '',
-                    'section' => 'demo'
-                ],
-                [
-                    'title' => 'Overview',
-                    'url' => '/admin/overview',
                     'icon' => 'atoms',
                     'section' => 'demo'
                 ],
