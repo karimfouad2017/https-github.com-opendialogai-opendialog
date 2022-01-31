@@ -5,13 +5,15 @@ All or parts of this software are licensed as described below.
 The following are licensed under the Apache 2.0 Licence:-
 
 * All content related to the “OpenDialog Conversation Description Language” are publicly available here: https://docs.opendialog.ai/reference/conversation-description-language.
-* All content that resides within the "core" repository, asides from "core/src/ConversationEngine", is licensed under the licence defined in "/core/LICENCE".
-* All content that resides within the "opendialog" repository is licensed under the licence defined in "opendialog/blob/1.x/LICENSE".
+* All content that resides within the "opendialog" repository is licensed under the licence defined in "opendialog/LICENSE".
+
+Please note that this application makes use of the following components also developed and managed by GreenShoot Labs Ltd: webchat, core, opendialog-design-system. The licenses for these components are as follows:
+
+The following are licensed under the Apache 2.0 Licence:-
 * All content that resides within the "webchat" repository is licensed under the licence defined in "webchat/LICENCE".
 
 The following are licensed under the OpenDialog Enterprise Licence:-
-
-* All content that resides within the "core/src/ConversationEngine" directory of the "core" repository is licensed under the licence defined in "/core/src/ConversationEngine/LICENCE".
+* All content related to the OpenDialog that resides within the "core/src/ConversationEngine" directory of the "core" repository is licensed under the licence defined in "/core/src/ConversationEngine/LICENCE".
 * All content that resides under the "opendialog-design-system" repository is licensed under the licence defined in "opendialog-design-system/LICENCE".
 
 All third party components incorporated into the OpenDialog Software are licensed under the original licence provided by the owner or licensee of the applicable component.
