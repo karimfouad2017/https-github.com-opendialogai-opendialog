@@ -54,14 +54,14 @@ We strongly encourage everyone who wants to help the OpenDialog development take
 
 All or parts of this software are licensed as described below.  
 
-The following are licensed under the Apache 2.0 Licence:-
+The following are licensed under the Apache 2.0 Licence:
 
 * All content related to the “OpenDialog Conversation Description Language” are publicly available here: https://docs.opendialog.ai/reference/conversation-description-language.
 * All content that resides within the "opendialog" repository is licensed under the licence defined in "opendialog/LICENSE".
 
 Please note that this application makes use of the following components also developed and managed by GreenShoot Labs Ltd: webchat, core, opendialog-design-system. The licenses for these components are as follows:
 
-The following are licensed under the Apache 2.0 Licence:-
+The following are licensed under the Apache 2.0 Licence:
 * All content that resides within the "webchat" repository is licensed under the licence defined in "webchat/LICENCE".
 
 The following are licensed under the OpenDialog Enterprise Licence:-
