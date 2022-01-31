@@ -1,0 +1,22 @@
+Copyright (c) 2021 GreenShoot Labs Ltd. All rights reserved.
+
+All or parts of this software are licensed as described below.  
+
+The following are licensed under the Apache 2.0 Licence:
+
+* All content related to the “OpenDialog Conversation Description Language” are publicly available here: https://docs.opendialog.ai/reference/conversation-description-language.
+* All content that resides within the "opendialog" repository is licensed under the licence defined in "opendialog/LICENSE".
+
+Please note that this application makes use of the following components also developed and managed by GreenShoot Labs Ltd: webchat, core, opendialog-design-system. The licenses for these components are as follows:
+
+The following are licensed under the Apache 2.0 Licence:
+* All content that resides within the "webchat" repository is licensed under the licence defined in "webchat/LICENCE".
+
+The following are licensed under the OpenDialog Enterprise Licence:-
+* All content related to the OpenDialog that resides within the "core/src/ConversationEngine" directory of the "core" repository is licensed under the licence defined in "/core/src/ConversationEngine/LICENCE".
+* All content that resides under the "opendialog-design-system" repository is licensed under the licence defined in "opendialog-design-system/LICENCE".
+
+All third party components incorporated into the OpenDialog Software are licensed under the original licence provided by the owner or licensee of the applicable component.
+
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. THE AUTHORS OR COPYRIGHT HOLDERS DO NOT WARRANT THAT USE OF THE SOFTWARE WILL BE UNINTERRUPTED OR ERROR-FREE, OR THAT INFORMATION OBTAINED THROUGH THE SOFTWARE WILL MEET YOUR REQUIREMENTS. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

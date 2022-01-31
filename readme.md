@@ -4,9 +4,9 @@
 
 OpenDialog enables you to quickly design, develop and deploy conversational applications. 
 
-You write conversational applications using OpenDialog's flexible no-code conversation designer and define the messages that your bot will send the user through OpenDialog's message editor.  
+https://user-images.githubusercontent.com/78927881/148096488-4fdf4b6f-19e8-4a3a-a365-4e9b6bc37ce0.mp4
 
-<img src="https://www.opendialog.ai/wp-content/uploads/2021/04/od_intro2-1.gif" width="585px" alt="OpenDialog Designer Intro">
+You write conversational applications using OpenDialog's flexible no-code conversation designer and define the messages that your bot will send the user through OpenDialog's message editor.  
 
 The OpenDialog webchat widget allows you to interact with the application - it supports both an in-page popup experience as well as a full-page experience and mobile. 
 
@@ -51,7 +51,24 @@ We strongly encourage everyone who wants to help the OpenDialog development take
 - Take a look at our issues
 
 # License
-Licensed under the [Apache License, Version 2.0](https://github.com/opendialogai/opendialog/blob/1.x/LICENSE.txt). Copyright 2021 OpenDialog.
 
-A list of the Licenses of the dependencies of the project can be found at the bottom of the Libraries Summary.
+All or parts of this software are licensed as described below.  
+
+The following are licensed under the Apache 2.0 Licence:
+
+* All content related to the “OpenDialog Conversation Description Language” are publicly available here: https://docs.opendialog.ai/reference/conversation-description-language.
+* All content that resides within the "opendialog" repository is licensed under the licence defined in "opendialog/LICENSE".
+
+Please note that this application makes use of the following components also developed and managed by GreenShoot Labs Ltd: webchat, core, opendialog-design-system. The licenses for these components are as follows:
+
+The following are licensed under the Apache 2.0 Licence:
+* All content that resides within the "webchat" repository is licensed under the licence defined in "webchat/LICENCE".
+
+The following are licensed under the OpenDialog Enterprise Licence:-
+* All content related to the OpenDialog that resides within the "core/src/ConversationEngine" directory of the "core" repository is licensed under the licence defined in "/core/src/ConversationEngine/LICENCE".
+* All content that resides under the "opendialog-design-system" repository is licensed under the licence defined in "opendialog-design-system/LICENCE".
+
+All third party components incorporated into the OpenDialog Software are licensed under the original licence provided by the owner or licensee of the applicable component.
+
+Copyright (c) 2021 GreenShoot Labs Ltd. All rights reserved.
 
