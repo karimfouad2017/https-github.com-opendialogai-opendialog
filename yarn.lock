@@ -841,10 +841,10 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
-"@opendialogai/opendialog-design-system-pkg@1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@opendialogai/opendialog-design-system-pkg/-/opendialog-design-system-pkg-1.8.0.tgz#8379d6651194060f8180df589a323adb1f793de0"
-  integrity sha512-PZHwMFmHKYb31gVookARh0wCx9kvOX9hFA9YTb1cmuye++5cIAnLySo5v92tH8uMNcGVfid/nd+DHyhGImDAyg==
+"@opendialogai/opendialog-design-system-pkg@1.9.0-0":
+  version "1.9.0-0"
+  resolved "https://registry.yarnpkg.com/@opendialogai/opendialog-design-system-pkg/-/opendialog-design-system-pkg-1.9.0-0.tgz#bab95c182277ce941d167bf3cd42fb6e5ea28a7d"
+  integrity sha512-hn/fVLpqK3XU1tp963DkAKpUKelAHYqOknFBWdR0siEjTLsia8LsLSm8jqq7K+4ySHcClRD3JHsS6KgbJMfHig==
   dependencies:
     "@coreui/coreui" "^2.1.12"
     "@coreui/coreui-plugin-chartjs-custom-tooltips" "^1.3.1"
@@ -883,6 +883,7 @@
     vue-smooth-reflow "^0.1.12"
     vue2-daterange-picker "^0.4.4"
     vue2-perfect-scrollbar "^1.5.0"
+    vuedraggable "^2.24.3"
     vuex "^3.6.2"
     xmldoc "^1.1.2"
 
@@ -8180,6 +8181,11 @@ sockjs@0.3.19:
     faye-websocket "^0.10.0"
     uuid "^3.0.1"
 
+sortablejs@1.10.2:
+  version "1.10.2"
+  resolved "https://registry.yarnpkg.com/sortablejs/-/sortablejs-1.10.2.tgz#6e40364d913f98b85a14f6678f92b5c1221f5290"
+  integrity sha512-YkPGufevysvfwn5rfdlGyrGjt7/CRHwvRPogD/lC+TnvcN29jDpCifKP+rBqf+LRldfXSTh+0CGLcSg0VIxq3A==
+
 source-list-map@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/source-list-map/-/source-list-map-2.0.1.tgz"
@@ -9219,6 +9225,13 @@ vue@^2.6.11:
   version "2.6.14"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.14.tgz#e51aa5250250d569a3fbad3a8a5a687d6036e235"
   integrity sha512-x2284lgYvjOMj3Za7kqzRcUSxBboHqtgRE2zlos1qWaOye5yUmHn42LB1250NJBLRwEcdrB0JRwyPTEPhfQjiQ==
+
+vuedraggable@^2.24.3:
+  version "2.24.3"
+  resolved "https://registry.yarnpkg.com/vuedraggable/-/vuedraggable-2.24.3.tgz#43c93849b746a24ce503e123d5b259c701ba0d19"
+  integrity sha512-6/HDXi92GzB+Hcs9fC6PAAozK1RLt1ewPTLjK0anTYguXLAeySDmcnqE8IC0xa7shvSzRjQXq3/+dsZ7ETGF3g==
+  dependencies:
+    sortablejs "1.10.2"
 
 vuex@^3.6.2:
   version "3.6.2"
