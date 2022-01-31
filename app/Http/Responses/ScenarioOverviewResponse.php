@@ -181,7 +181,7 @@ class ScenarioOverviewResponse
         });
 
         $this->connections->each(function (Edge $connection) {
-            $this->frameData[] = ['data' => $connection->toArray()];
+            $this->frameData[] = $connection->toArray();
         });
 
         return $this->frameData;
