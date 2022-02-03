@@ -52,19 +52,12 @@ return [
         ],
     'help' => [
         [
-            'title' => 'Watch Tutorials',
-            'url' => 'https://docs.opendialog.ai/getting-started-1/getting-started-with-opendialog',
-            'icon' => 'tutorials'
-        ],
-        [
-            'title' => 'Documentation',
-            'url' => 'https://docs.opendialog.ai',
-            'icon' => 'document'
-        ],
-        [
-            'title' => 'Contact Us',
-            'url' => 'https://opendialog.ai/support',
-            'icon' => 'email'
+            'title' => 'Help and Support',
+            'url' => 'https://opendialog.ai/support/',
+            'icon' => 'info'
         ]
+    ],
+    'workspace' => [
+        'enabled' => env('WORKSPACE_NAVIGATION', false)
     ]
 ];
