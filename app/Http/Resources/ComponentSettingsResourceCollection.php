@@ -74,7 +74,7 @@ class ComponentSettingsResourceCollection extends ResourceCollection
             unset($item->value);
 
             if ($item->parent()->first()) {
-                $item->ref = $item->parent()->first()->name . '.' . $item->name;
+                $item->ref = $item->ref ?? $item->parent()->first()->name . '.' . $item->name;
             }
 
             if (in_array($item->id, $processed)) {
