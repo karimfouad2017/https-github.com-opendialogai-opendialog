@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use App\Policies\WebchatSettingsPolicy;
+use App\Policies\ComponentSettingsPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use OpenDialogAi\Webchat\WebchatSetting;
+use OpenDialogAi\Core\ComponentSetting;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -14,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        WebchatSetting::class => WebchatSettingsPolicy::class
+        ComponentSetting::class => ComponentSettingsPolicy::class
     ];
 
     /**

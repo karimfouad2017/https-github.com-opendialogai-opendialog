@@ -18,14 +18,14 @@ use OpenDialogAi\Core\Conversation\ScenarioCollection;
 use OpenDialogAi\Core\InterpreterEngine\OpenDialog\OpenDialogInterpreterConfiguration;
 use OpenDialogAi\Core\InterpreterEngine\Service\ConfiguredInterpreterServiceInterface;
 use OpenDialogAi\InterpreterEngine\Interpreters\OpenDialogInterpreter;
-use OpenDialogAi\Webchat\WebchatSetting;
+use OpenDialogAi\Core\ComponentSetting;
 use Tests\TestCase;
 
 class CreateCoreConfigurationsTest extends TestCase
 {
     public function testSuccessCreatingWebchatPlatformsWithPreviousSettings()
     {
-        $expectedSettings = $this->mockWebchatSettings();
+        $expectedSettings = $this->mockComponentSettings();
 
         $this->artisan('configurations:create up -u 3 --non-interactive')
             ->assertExitCode(0)
@@ -263,7 +263,7 @@ class CreateCoreConfigurationsTest extends TestCase
 
     public function testNothingToRun()
     {
-        $this->mockWebchatSettings();
+        $this->mockComponentSettings();
 
         $this->artisan('configurations:create up --non-interactive')
             ->assertExitCode(0)
@@ -367,27 +367,30 @@ class CreateCoreConfigurationsTest extends TestCase
     /**
      * @return array[]
      */
-    public function mockWebchatSettings(): array
+    public function mockComponentSettings(): array
     {
-        // Create old style webchat settings to be converted
-        $generalSetting = new WebchatSetting();
+        // Create old component settings to be converted
+        $generalSetting = new ComponentSetting();
         $generalSetting->name = 'general';
         $generalSetting->value = 'general';
         $generalSetting->type = 'object';
+        $generalSetting->component_id = 'platform.core.webchat';
         $generalSetting->save();
 
-        $setting = new WebchatSetting();
+        $setting = new ComponentSetting();
         $setting->name = 'teamName';
         $setting->value = 'OpenDialog Webchat';
         $setting->type = 'string';
         $setting->parent_id = $generalSetting->id;
+        $setting->component_id = 'platform.core.webchat';
         $setting->save();
 
-        $setting2 = new WebchatSetting();
+        $setting2 = new ComponentSetting();
         $setting2->name = 'open';
         $setting2->value = true;
         $setting2->type = 'boolean';
         $setting2->parent_id = $generalSetting->id;
+        $setting2->component_id = 'platform.core.webchat';
         $setting2->save();
 
         $expectedSettings = [

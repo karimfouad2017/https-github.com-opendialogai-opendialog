@@ -20,7 +20,7 @@ class MultiWebchatSettingsRequest extends FormRequest
     public function rules()
     {
         return [
-            '*.name' => ['required', 'exists:webchat_settings,name'],
+            '*.name' => ['required', 'exists:component_settings,name'],
             '*.value' => ['present', new WebchatSettingValueRule(true)]
         ];
     }

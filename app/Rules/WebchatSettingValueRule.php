@@ -4,6 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use OpenDialogAi\Webchat\WebchatSetting;
+use OpenDialogAi\Core\ComponentSetting;
 
 class WebchatSettingValueRule implements Rule
 {
@@ -100,7 +101,7 @@ class WebchatSettingValueRule implements Rule
         if ($this->arrayRequest) {
             $index = explode('.', $attribute)[0];
             $settingName = request()->input("{$index}.name");
-            return WebchatSetting::where('name', $settingName)->first();
+            return ComponentSetting::where('name', $settingName)->first();
         } else {
             // This is bound to the route
             return request()->route()->webchat_setting;
