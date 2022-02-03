@@ -8,9 +8,12 @@ use App\Rules\PublicUrlRule;
 use App\Rules\ScenarioExists;
 use App\Rules\UrlSchemeRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use OpenDialogAi\ActionEngine\Service\ActionComponentServiceInterface;
+use OpenDialogAi\InterpreterEngine\Service\InterpreterComponentServiceInterface;
+use OpenDialogAi\PlatformEngine\Services\PlatformComponentServiceInterface;
 use OpenDialogAi\Core\Components\Configuration\ComponentConfiguration;
-
 /**
  * @property $name string
  * @property $scenario_id string
@@ -76,20 +79,7 @@ class ComponentConfigurationRequest extends FormRequest
             ]
         ];
 
-        // Only set the URL validation rules if we are not in debug mode to allow local URLs during local development
-        if (config('app.env') !== 'local') {
-            $rules['configuration.app_url'] = [
-                'active_url',
-                new PublicUrlRule,
-                new UrlSchemeRule
-            ];
-
-            $rules['configuration.webhook_url'] = [
-                'active_url',
-                new PublicUrlRule,
-                new UrlSchemeRule
-            ];
-        }
+        $rules = array_merge($rules, $this->addConfigurationRules());
 
         return $rules;
     }
@@ -104,5 +94,21 @@ class ComponentConfigurationRequest extends FormRequest
                 'scenario_id' => $configuration->scenario_id,
             ]);
         }
+    }
+
+    protected function addConfigurationRules(): array
+    {
+        $componentService = null;
+        if (Str::startsWith($this->component_id, 'platform')) {
+            $componentService = resolve(PlatformComponentServiceInterface::class);
+        } elseif (Str::startsWith($this->component_id, 'action')) {
+            $componentService = resolve(ActionComponentServiceInterface::class);
+        } elseif (Str::startsWith($this->component_id, 'interpreter')) {
+            $componentService = resolve(InterpreterComponentServiceInterface::class);
+        }
+        if ($componentService) {
+            return $componentService::getConfigurationRules();
+        }
+        return [];
     }
 }
