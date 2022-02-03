@@ -41,13 +41,7 @@ return [
                     'url' => '/admin/demo',
                     'icon' => 'speech',
                     'section' => 'demo'
-                ],
-                [
-                    'title' => 'Overview',
-                    'url' => '/admin/overview',
-                    'icon' => 'atoms',
-                    'section' => 'demo'
-                ],
+                ]
             ]
         ],
     'help' => [
