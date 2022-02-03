@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2adb28bdce4e10afa3ce0fbf1b7fa11a",
+    "content-hash": "8e145699ae538cf46c3b476de4a3b0f7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3339,12 +3339,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "f177d652924a8f32fa9a4f9c06bb7e11f13cf2d4"
+                "reference": "706ee922e36b5839c7308df424f2313e5611d0f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/f177d652924a8f32fa9a4f9c06bb7e11f13cf2d4",
-                "reference": "f177d652924a8f32fa9a4f9c06bb7e11f13cf2d4",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/706ee922e36b5839c7308df424f2313e5611d0f3",
+                "reference": "706ee922e36b5839c7308df424f2313e5611d0f3",
                 "shasum": ""
             },
             "require": {
@@ -3402,21 +3402,21 @@
             "autoload": {
                 "psr-4": {
                     "OpenDialogAi\\Core\\": "src/",
-                    "OpenDialogAi\\GraphQLClient\\": "src/GraphQLClient",
-                    "OpenDialogAi\\ActionEngine\\": "src/ActionEngine",
-                    "OpenDialogAi\\AttributeEngine\\": "src/AttributeEngine",
-                    "OpenDialogAi\\ContextEngine\\": "src/ContextEngine",
-                    "OpenDialogAi\\MessageBuilder\\": "src/MessageBuilder",
-                    "OpenDialogAi\\ConversationEngine\\": "src/ConversationEngine",
-                    "OpenDialogAi\\ConversationLog\\": "src/ConversationLog",
-                    "OpenDialogAi\\ResponseEngine\\": "src/ResponseEngine",
-                    "OpenDialogAi\\InterpreterEngine\\": "src/InterpreterEngine",
-                    "OpenDialogAi\\OperationEngine\\": "src/OperationEngine",
-                    "OpenDialogAi\\PlatformEngine\\": "src/PlatformEngine",
-                    "OpenDialogAi\\SensorEngine\\": "src/SensorEngine",
                     "OpenDialogAi\\NlpEngine\\": "src/NlpEngine",
+                    "OpenDialogAi\\Core\\Tests\\": "Tests/",
+                    "OpenDialogAi\\ActionEngine\\": "src/ActionEngine",
+                    "OpenDialogAi\\SensorEngine\\": "src/SensorEngine",
+                    "OpenDialogAi\\ContextEngine\\": "src/ContextEngine",
                     "OpenDialogAi\\Core\\Database\\": "database/",
-                    "OpenDialogAi\\Core\\Tests\\": "Tests/"
+                    "OpenDialogAi\\GraphQLClient\\": "src/GraphQLClient",
+                    "OpenDialogAi\\MessageBuilder\\": "src/MessageBuilder",
+                    "OpenDialogAi\\PlatformEngine\\": "src/PlatformEngine",
+                    "OpenDialogAi\\ResponseEngine\\": "src/ResponseEngine",
+                    "OpenDialogAi\\AttributeEngine\\": "src/AttributeEngine",
+                    "OpenDialogAi\\ConversationLog\\": "src/ConversationLog",
+                    "OpenDialogAi\\OperationEngine\\": "src/OperationEngine",
+                    "OpenDialogAi\\InterpreterEngine\\": "src/InterpreterEngine",
+                    "OpenDialogAi\\ConversationEngine\\": "src/ConversationEngine"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3428,7 +3428,7 @@
                 "issues": "https://github.com/opendialogai/core/issues",
                 "source": "https://github.com/opendialogai/core/tree/feature/scenario-overview"
             },
-            "time": "2022-01-26T15:50:16+00:00"
+            "time": "2022-02-03T11:57:52+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -3472,16 +3472,16 @@
         },
         {
             "name": "opendialogai/webchat",
-            "version": "1.6.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/webchat.git",
-                "reference": "135e79a6c3fdcb17cd73d1e83ae21c89eb742796"
+                "reference": "85a56014b2481b8a7feb448d97dd8f5a4b7b0880"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/135e79a6c3fdcb17cd73d1e83ae21c89eb742796",
-                "reference": "135e79a6c3fdcb17cd73d1e83ae21c89eb742796",
+                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/85a56014b2481b8a7feb448d97dd8f5a4b7b0880",
+                "reference": "85a56014b2481b8a7feb448d97dd8f5a4b7b0880",
                 "shasum": ""
             },
             "require": {
@@ -3489,7 +3489,7 @@
                 "php": "^7.4 || ^8.0"
             },
             "require-dev": {
-                "opendialogai/core": "1.6.2",
+                "opendialogai/core": "1.x-dev",
                 "orchestra/testbench": "^6.0",
                 "phpunit/phpunit": "^9.0",
                 "squizlabs/php_codesniffer": "^3.4"
@@ -3523,9 +3523,9 @@
             "description": "Webchat front end component for the Open Dialog project",
             "support": {
                 "issues": "https://github.com/opendialogai/webchat/issues",
-                "source": "https://github.com/opendialogai/webchat/tree/1.6.0"
+                "source": "https://github.com/opendialogai/webchat/tree/1.7.0"
             },
-            "time": "2022-01-19T15:38:08+00:00"
+            "time": "2022-01-26T15:56:01+00:00"
         },
         {
             "name": "opis/closure",
