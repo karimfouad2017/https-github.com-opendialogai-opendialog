@@ -5,6 +5,9 @@ namespace Tests\Feature;
 use App\User;
 use DateTime;
 use Mockery\MockInterface;
+use OpenDialogAi\ActionEngine\Configuration\ActionConfiguration;
+use OpenDialogAi\ActionEngine\Actions\WebhookAction;
+use OpenDialogAi\ActionEngine\Service\ActionComponentServiceInterface;
 use OpenDialogAi\AttributeEngine\CoreAttributes\UtteranceAttribute;
 use OpenDialogAi\Core\Components\Configuration\ComponentConfiguration;
 use OpenDialogAi\Core\Components\Configuration\ConfigurationDataHelper;
@@ -17,6 +20,7 @@ use OpenDialogAi\Core\InterpreterEngine\OpenDialog\OpenDialogInterpreterConfigur
 use OpenDialogAi\InterpreterEngine\Interpreters\CallbackInterpreter;
 use OpenDialogAi\InterpreterEngine\Interpreters\OpenDialogInterpreter;
 use OpenDialogAi\InterpreterEngine\Service\InterpreterComponentServiceInterface;
+use Tests\Feature\Components\TestAction;
 use Tests\TestCase;
 
 class ComponentConfigurationTest extends TestCase
@@ -100,6 +104,12 @@ class ComponentConfigurationTest extends TestCase
         factory(ComponentConfiguration::class)->create([
             'component_id' => 'action.test.two',
         ]);
+
+        $this->mock(ActionComponentServiceInterface::class, function (MockInterface $mock) {
+            $mock->shouldReceive('get')
+                ->twice()
+                ->andReturn(WebhookAction::class);
+        });
 
         $configurations = ComponentConfiguration::all();
 
@@ -581,5 +591,62 @@ class ComponentConfigurationTest extends TestCase
         $this->actingAs($this->user, 'api')
             ->json('POST', '/admin/api/component-configurations/' . $configuration->id . '/query')
             ->assertStatus(404);
+    }
+
+    public function testSingleConfigurationPropertyHiding()
+    {
+        $configuration = factory(ComponentConfiguration::class)->create([
+            'component_id' => 'action.test.one',
+            'configuration' => [
+                'access_token' => 'abcd',
+                'public' => true
+            ]
+        ]);
+
+        $this->mock(ActionComponentServiceInterface::class, function (MockInterface $mock) {
+            $mock->shouldReceive('get')
+                ->andReturn(TestAction::class);
+        });
+
+        $this->actingAs($this->user, 'api')
+            ->json('GET', '/admin/api/component-configuration/' . $configuration->id)
+            ->assertStatus(200)
+            ->assertJsonMissing([
+                'access_token' => 'abcd',
+            ]);
+    }
+
+    public function testCollectionConfigurationPropertyHiding()
+    {
+        factory(ComponentConfiguration::class)->create([
+            'component_id' => 'action.test.one',
+            'configuration' => [
+                'public' => true,
+                'private_key' => '123456'
+            ]
+        ]);
+
+        factory(ComponentConfiguration::class)->create([
+            'component_id' => 'action.test.one',
+            'configuration' => [
+                'access_token' => 'abcd',
+                'public' => true,
+            ]
+        ]);
+
+        $this->mock(ActionComponentServiceInterface::class, function (MockInterface $mock) {
+            $mock->shouldReceive('get')
+                ->andReturn(TestAction::class);
+        });
+
+        $this->actingAs($this->user, 'api')
+            ->json('GET', '/admin/api/component-configuration?type=action')
+            ->assertStatus(200)
+            ->assertJsonMissing([
+                'access_token' => 'abcd',
+            ])
+            ->assertJsonMissing([
+                'private_key' => '123456'
+            ]);
     }
 }

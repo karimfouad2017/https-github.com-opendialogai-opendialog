@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use OpenDialogAi\ActionEngine\Service\ActionComponentServiceInterface;
+use OpenDialogAi\Core\Components\Helper\ComponentHelper;
 use OpenDialogAi\InterpreterEngine\Service\InterpreterComponentServiceInterface;
 use OpenDialogAi\PlatformEngine\Services\PlatformComponentServiceInterface;
 
@@ -19,7 +20,7 @@ class ComponentConfigurationResource extends JsonResource
     {
         $componentId = $this->component_id;
         $type = ComponentHelper::parseComponentId($componentId);
-        
+
         $component = null;
 
         switch ($type) {
@@ -35,8 +36,8 @@ class ComponentConfigurationResource extends JsonResource
         }
 
         /** @var array $hiddenFields */
-        $hiddenFields = $component::$configurationClass::getHiddenFields();
-        
+        $hiddenFields = $component::getConfigurationClass()::getHiddenFields();
+
         $originalArray = parent::toArray($request);
 
         $finalArray = $this->filterHiddenFields($originalArray, $hiddenFields);

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f5c7cb6b928677cc2ee5bdc7b2f59469",
+    "content-hash": "7ec19d9cdb9642d4b3606ab0c5c8e723",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3335,16 +3335,16 @@
         },
         {
             "name": "opendialogai/core",
-            "version": "1.9.1",
+            "version": "dev-OPNDLG-1381--config-proerty-hiding",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "4f5affde49781a5e04bf18014e26483ce5ff868c"
+                "reference": "7071042d35ea806fbff7f7c8b2d75601c6ee36e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/4f5affde49781a5e04bf18014e26483ce5ff868c",
-                "reference": "4f5affde49781a5e04bf18014e26483ce5ff868c",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/7071042d35ea806fbff7f7c8b2d75601c6ee36e3",
+                "reference": "7071042d35ea806fbff7f7c8b2d75601c6ee36e3",
                 "shasum": ""
             },
             "require": {
@@ -3426,9 +3426,9 @@
             "description": "The OpenDialog Core package",
             "support": {
                 "issues": "https://github.com/opendialogai/core/issues",
-                "source": "https://github.com/opendialogai/core/tree/1.9.1"
+                "source": "https://github.com/opendialogai/core/tree/OPNDLG-1381--config-proerty-hiding"
             },
-            "time": "2022-02-02T13:44:03+00:00"
+            "time": "2022-02-08T12:05:23+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -12056,7 +12056,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "opendialogai/core": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
@@ -12065,5 +12067,5 @@
         "ext-simplexml": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
