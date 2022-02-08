@@ -5,8 +5,7 @@ import DefaultContainer from '@/containers/DefaultContainer'
 
 import store from '@opendialogai/opendialog-design-system-pkg/src/store'
 
-import Home from '@opendialogai/opendialog-design-system-pkg/src/components/Views/Home'
-import WebchatSettingView from '@opendialogai/opendialog-design-system-pkg/src/components/Views/WebchatSettingView'
+import InterfaceSettings from '@opendialogai/opendialog-design-system-pkg/src/components/InterfaceSettings/InterfaceSettings'
 import MessageEditor from '@opendialogai/opendialog-design-system-pkg/src/components/Views/MessageEditor'
 import ChatbotUsersView from '@opendialogai/opendialog-design-system-pkg/src/components/Views/ChatbotUsersView'
 import UserView from '@opendialogai/opendialog-design-system-pkg/src/components/Views/UserView'
@@ -152,14 +151,14 @@ const router = new VueRouter({
           },
         },
         {
-          path: 'webchat-setting',
-          name: 'webchat-setting',
-          component: WebchatSettingView,
+          path: 'interface-settings',
+          name: 'interface-settings',
+          component: InterfaceSettings,
           meta: {
-            title: 'Interface Settings',
-            requiresScenario: true
+              title: 'Interface Settings',
+              requiresScenario: true
           },
-        },
+      },
         {
           path: 'chatbot-users',
           name: 'chatbot-users',
