@@ -431,7 +431,6 @@ class ComponentConfigurationTest extends TestCase
 
         $this->mock(InterpreterComponentServiceInterface::class, function (MockInterface $mock) {
             $mock->shouldReceive('get')
-                ->twice()
                 ->andReturn(CallbackInterpreter::class);
 
             // For request validation
@@ -514,7 +513,6 @@ class ComponentConfigurationTest extends TestCase
 
         $this->mock(InterpreterComponentServiceInterface::class, function (MockInterface $mock) use ($mockInterpreter) {
             $mock->shouldReceive('get')
-                ->twice()
                 ->andReturn(get_class($mockInterpreter));
 
             $mock->shouldReceive('has')

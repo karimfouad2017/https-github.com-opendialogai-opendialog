@@ -4,16 +4,17 @@ namespace App\Http\Requests;
 
 use App\Rules\ComponentConfigurationRule;
 use App\Rules\ComponentRegistrationRule;
-use App\Rules\PublicUrlRule;
 use App\Rules\ScenarioExists;
-use App\Rules\UrlSchemeRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use OpenDialogAi\ActionEngine\Service\ActionComponentServiceInterface;
 use OpenDialogAi\InterpreterEngine\Service\InterpreterComponentServiceInterface;
-use OpenDialogAi\PlatformEngine\Services\PlatformComponentServiceInterface;
 use OpenDialogAi\Core\Components\Configuration\ComponentConfiguration;
+use OpenDialogAi\Core\Components\Exceptions\UnknownComponentTypeException;
+use OpenDialogAi\Core\Components\Helper\ComponentHelper;
+use OpenDialogAi\PlatformEngine\Services\PlatformComponentServiceInterface;
+
 /**
  * @property $name string
  * @property $scenario_id string
@@ -98,17 +99,31 @@ class ComponentConfigurationRequest extends FormRequest
 
     protected function addConfigurationRules(): array
     {
-        $componentService = null;
-        if (Str::startsWith($this->component_id, 'platform')) {
-            $componentService = resolve(PlatformComponentServiceInterface::class);
-        } elseif (Str::startsWith($this->component_id, 'action')) {
-            $componentService = resolve(ActionComponentServiceInterface::class);
-        } elseif (Str::startsWith($this->component_id, 'interpreter')) {
-            $componentService = resolve(InterpreterComponentServiceInterface::class);
+        $componentId = $this->component_id ?? '';
+        try {
+            $type = ComponentHelper::parseComponentId($componentId);
+        } catch (UnknownComponentTypeException $e) {
+            return [];
         }
-        if ($componentService) {
-            return $componentService::getConfigurationRules();
+
+        $component = null;
+
+        switch ($type) {
+            case 'platform':
+                $component = resolve(PlatformComponentServiceInterface::class)->get($componentId);
+                break;
+            case 'interpreter':
+                $component = resolve(InterpreterComponentServiceInterface::class)->get($componentId);
+                break;
+            case 'action':
+                $component = resolve(ActionComponentServiceInterface::class)->get($componentId);
+                break;
         }
+
+        if ($component) {
+            return $component::getConfigurationRules();
+        }
+
         return [];
     }
 }

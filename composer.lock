@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9abcb1eb362e706d421eb7813dd0cc72",
+    "content-hash": "c6876889a58e59861b33b65966c55a04",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3335,16 +3335,16 @@
         },
         {
             "name": "opendialogai/core",
-            "version": "1.9.0",
+            "version": "dev-OPNDLG-1337--configuration-validation",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "e94b811c984c6a438db8392b028ea541a12dad41"
+                "reference": "cb223ce328dcc3337c4734d0dda22cd53953d16d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/e94b811c984c6a438db8392b028ea541a12dad41",
-                "reference": "e94b811c984c6a438db8392b028ea541a12dad41",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/cb223ce328dcc3337c4734d0dda22cd53953d16d",
+                "reference": "cb223ce328dcc3337c4734d0dda22cd53953d16d",
                 "shasum": ""
             },
             "require": {
@@ -3402,21 +3402,21 @@
             "autoload": {
                 "psr-4": {
                     "OpenDialogAi\\Core\\": "src/",
-                    "OpenDialogAi\\GraphQLClient\\": "src/GraphQLClient",
-                    "OpenDialogAi\\ActionEngine\\": "src/ActionEngine",
-                    "OpenDialogAi\\AttributeEngine\\": "src/AttributeEngine",
-                    "OpenDialogAi\\ContextEngine\\": "src/ContextEngine",
-                    "OpenDialogAi\\MessageBuilder\\": "src/MessageBuilder",
-                    "OpenDialogAi\\ConversationEngine\\": "src/ConversationEngine",
-                    "OpenDialogAi\\ConversationLog\\": "src/ConversationLog",
-                    "OpenDialogAi\\ResponseEngine\\": "src/ResponseEngine",
-                    "OpenDialogAi\\InterpreterEngine\\": "src/InterpreterEngine",
-                    "OpenDialogAi\\OperationEngine\\": "src/OperationEngine",
-                    "OpenDialogAi\\PlatformEngine\\": "src/PlatformEngine",
-                    "OpenDialogAi\\SensorEngine\\": "src/SensorEngine",
                     "OpenDialogAi\\NlpEngine\\": "src/NlpEngine",
+                    "OpenDialogAi\\Core\\Tests\\": "Tests/",
+                    "OpenDialogAi\\ActionEngine\\": "src/ActionEngine",
+                    "OpenDialogAi\\SensorEngine\\": "src/SensorEngine",
+                    "OpenDialogAi\\ContextEngine\\": "src/ContextEngine",
                     "OpenDialogAi\\Core\\Database\\": "database/",
-                    "OpenDialogAi\\Core\\Tests\\": "Tests/"
+                    "OpenDialogAi\\GraphQLClient\\": "src/GraphQLClient",
+                    "OpenDialogAi\\MessageBuilder\\": "src/MessageBuilder",
+                    "OpenDialogAi\\PlatformEngine\\": "src/PlatformEngine",
+                    "OpenDialogAi\\ResponseEngine\\": "src/ResponseEngine",
+                    "OpenDialogAi\\AttributeEngine\\": "src/AttributeEngine",
+                    "OpenDialogAi\\ConversationLog\\": "src/ConversationLog",
+                    "OpenDialogAi\\OperationEngine\\": "src/OperationEngine",
+                    "OpenDialogAi\\InterpreterEngine\\": "src/InterpreterEngine",
+                    "OpenDialogAi\\ConversationEngine\\": "src/ConversationEngine"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3426,9 +3426,9 @@
             "description": "The OpenDialog Core package",
             "support": {
                 "issues": "https://github.com/opendialogai/core/issues",
-                "source": "https://github.com/opendialogai/core/tree/1.9.0"
+                "source": "https://github.com/opendialogai/core/tree/OPNDLG-1337--configuration-validation"
             },
-            "time": "2022-01-26T15:42:11+00:00"
+            "time": "2022-02-08T09:21:29+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -12056,7 +12056,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "opendialogai/core": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
@@ -12065,5 +12067,5 @@
         "ext-simplexml": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
