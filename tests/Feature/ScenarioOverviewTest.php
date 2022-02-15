@@ -116,7 +116,7 @@ class ScenarioOverviewTest extends TestCase
             ->json('GET', "/admin/api/scenario-overview?scenario=$scenarioId&level=1")
             ->assertStatus(200)
             ->assertJsonCount(3)
-            ->assertJson(
+            ->assertJsonFragment(
                 ['status' => 'starting', 'source' => $scenarioId, 'target' => $conversation->getUid()]
             );
     }
