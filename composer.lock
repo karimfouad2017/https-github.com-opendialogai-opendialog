@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e1213c1d6a8fec7869b749fa8a91a364",
+    "content-hash": "5e9f787e41ec043dac4546fa5420d0d7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3339,12 +3339,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "48caf1cc598672c10d6415ac47b3dc6f4c48f021"
+                "reference": "7071042d35ea806fbff7f7c8b2d75601c6ee36e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/48caf1cc598672c10d6415ac47b3dc6f4c48f021",
-                "reference": "48caf1cc598672c10d6415ac47b3dc6f4c48f021",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/7071042d35ea806fbff7f7c8b2d75601c6ee36e3",
+                "reference": "7071042d35ea806fbff7f7c8b2d75601c6ee36e3",
                 "shasum": ""
             },
             "require": {
@@ -3374,7 +3374,6 @@
                 "phpunit/phpunit": "^9.0",
                 "squizlabs/php_codesniffer": "^3.4"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -3429,7 +3428,7 @@
                 "issues": "https://github.com/opendialogai/core/issues",
                 "source": "https://github.com/opendialogai/core/tree/OPNDLG-1381--config-proerty-hiding"
             },
-            "time": "2022-02-11T08:00:35+00:00"
+            "time": "2022-02-08T12:05:23+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -12070,5 +12069,5 @@
         "ext-simplexml": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.1.0"
 }
