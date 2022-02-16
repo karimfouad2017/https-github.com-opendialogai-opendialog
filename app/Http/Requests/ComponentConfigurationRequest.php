@@ -80,7 +80,7 @@ class ComponentConfigurationRequest extends FormRequest
             ]
         ];
 
-        $rules = array_merge($rules, $this->addConfigurationRules());
+        $rules = $this->mergeCustomRules($rules);
 
         return $rules;
     }
@@ -125,5 +125,23 @@ class ComponentConfigurationRequest extends FormRequest
         }
 
         return [];
+    }
+
+    protected function mergeCustomRules($rules): array
+    {
+        $configRules = $this->addConfigurationRules();
+
+        $rules = array_merge($rules, $configRules);
+
+        foreach ($configRules as $key => $configRule) {
+            if (array_key_exists($key, $rules)) {
+                if (is_array($configRule)) {
+                    $rules[$key] = array_merge($rules[$key], $configRule);
+                }
+                continue;
+            }
+        }
+
+        return $rules;
     }
 }
