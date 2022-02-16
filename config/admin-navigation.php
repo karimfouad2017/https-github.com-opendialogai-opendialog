@@ -41,12 +41,6 @@ return [
                     'url' => '/admin/demo',
                     'icon' => 'speech',
                     'section' => 'demo'
-                ],
-                [
-                    'title' => 'Publish',
-                    'url' => '/admin/publish',
-                    'icon' => 'forward',
-                    'section' => 'publish'
                 ]
             ]
         ],
