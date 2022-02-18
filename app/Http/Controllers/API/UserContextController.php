@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use OpenDialogAi\AttributeEngine\Contracts\AttributeValue;
+use OpenDialogAi\AttributeEngine\Contracts\CollectionAttribute;
 use OpenDialogAi\AttributeEngine\Facades\AttributeResolver;
 use OpenDialogAi\ContextEngine\Facades\ContextService;
 
@@ -52,7 +54,11 @@ class UserContextController extends Controller
         $formatted = [];
         foreach ($attributes as $key => $values) {
             if (!in_array($key, self::$ignoreList)) {
-                $formatted[$key] = $values->getAttributeValue()->getRawValue();
+                if ($values instanceof CollectionAttribute) {
+                    $formatted[$key] = array_map(fn (AttributeValue $v) => $v->getRawValue(), $values->getValue());
+                } else {
+                    $formatted[$key] = $values->getAttributeValue()->getRawValue();
+                }
             }
         }
 
