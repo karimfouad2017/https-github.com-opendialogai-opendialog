@@ -30,9 +30,9 @@ return [
                 ],
                 [
                     'title' => 'Interface settings',
-                    'url' => '/admin/webchat-setting',
+                    'url' => '/admin/interface-settings',
                     'icon' => 'settings-sliders',
-                    'section' => 'webchat-setting'
+                    'section' => 'interface-settings'
                 ],
             ],
             [

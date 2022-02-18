@@ -45,7 +45,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     /**
      * Webchat Settings
      */
-    Route::prefix('webchat-setting')->group(function () {
+    Route::prefix('interface-settings')->group(function () {
         Route::get('/', 'AdminController@handle');
         Route::get('/{id}', 'AdminController@handle');
     });
