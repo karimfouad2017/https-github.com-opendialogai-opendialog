@@ -3339,17 +3339,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "48caf1cc598672c10d6415ac47b3dc6f4c48f021"
+                "reference": "6c6d2951e4c7e4388db4ff3d4dd368dfb7ac972d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/48caf1cc598672c10d6415ac47b3dc6f4c48f021",
-                "reference": "48caf1cc598672c10d6415ac47b3dc6f4c48f021",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/6c6d2951e4c7e4388db4ff3d4dd368dfb7ac972d",
+                "reference": "6c6d2951e4c7e4388db4ff3d4dd368dfb7ac972d",
                 "shasum": ""
             },
             "require": {
                 "aws/aws-sdk-php": "^3.198",
                 "doctrine/dbal": "^2.11",
+                "ext-intl": "*",
                 "ext-json": "*",
                 "google/cloud-dialogflow": "dev-V2Beta1-support",
                 "guzzlehttp/guzzle": "^7.0.1",
@@ -3393,7 +3394,8 @@
                         "OpenDialogAi\\ActionEngine\\ActionEngineServiceProvider",
                         "OpenDialogAi\\SensorEngine\\SensorEngineServiceProvider",
                         "OpenDialogAi\\NlpEngine\\NlpEngineServiceProvider",
-                        "OpenDialogAi\\Core\\FileUploadServiceProvider"
+                        "OpenDialogAi\\Core\\FileUploadServiceProvider",
+                        "OpenDialogAi\\FilterEngine\\FilterEngineServiceProvider"
                     ],
                     "aliases": {
                         "AttributeResolver": "OpenDialogAi\\AttributeEngine\\Facades\\AttributeResolver"
@@ -3406,6 +3408,7 @@
                     "OpenDialogAi\\NlpEngine\\": "src/NlpEngine",
                     "OpenDialogAi\\Core\\Tests\\": "Tests/",
                     "OpenDialogAi\\ActionEngine\\": "src/ActionEngine",
+                    "OpenDialogAi\\FilterEngine\\": "src/FilterEngine",
                     "OpenDialogAi\\SensorEngine\\": "src/SensorEngine",
                     "OpenDialogAi\\ContextEngine\\": "src/ContextEngine",
                     "OpenDialogAi\\Core\\Database\\": "database/",
@@ -3429,7 +3432,7 @@
                 "issues": "https://github.com/opendialogai/core/issues",
                 "source": "https://github.com/opendialogai/core/tree/1.x"
             },
-            "time": "2022-02-11T08:00:35+00:00"
+            "time": "2022-02-18T12:02:42+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -12070,5 +12073,5 @@
         "ext-simplexml": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.0.0"
 }
