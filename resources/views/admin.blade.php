@@ -19,6 +19,8 @@
 
     <script>window.DashboardCards = {!! json_encode(config('admin-stats.cards')) !!};</script>
 
+    <script>window.cognito = {!! json_encode(config('services.cognito')) !!};</script>
+
     <script>window.NavigationItems = {!! json_encode(config('admin-navigation')) !!};</script>
 
     <script>window.user = {!! json_encode(auth()->user()) !!};</script>
