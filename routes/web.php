@@ -45,7 +45,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     /**
      * Webchat Settings
      */
-    Route::prefix('webchat-setting')->group(function () {
+    Route::prefix('interface-settings')->group(function () {
         Route::get('/', 'AdminController@handle');
         Route::get('/{id}', 'AdminController@handle');
     });
@@ -114,6 +114,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('publish', 'AdminController@handle');
     Route::get('create-new-scenario', 'AdminController@handle');
     Route::get('template/{id}', 'AdminController@handle');
+    Route::get('overview', 'AdminController@handle');
 });
 
 /**
