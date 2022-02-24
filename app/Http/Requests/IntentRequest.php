@@ -57,8 +57,7 @@ class IntentRequest extends FormRequest
                 'string',
             ],
             "${prefix}actions" => 'array',
-            "${prefix}training_phrases" => 'array',
-            "${prefix}order" => 'int',
+            "${prefix}training_phrases" => 'array'
         ];
     }
 

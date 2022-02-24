@@ -58,7 +58,9 @@ class FocusedIntentResource extends JsonResource
                     Condition::OPERATION_ATTRIBUTES,
                     Condition::PARAMETERS
                 ],
+                MessageTemplate::ORDER,
             ],
+            Intent::ORDER,
             Intent::TURN => [
                 Turn::UID,
                 Turn::OD_ID,
@@ -95,7 +97,9 @@ class FocusedIntentResource extends JsonResource
                             Condition::OPERATION_ATTRIBUTES,
                             Condition::PARAMETERS
                         ],
+                        MessageTemplate::ORDER,
                     ],
+                    Intent::ORDER,
                     Intent::ACTIONS => Action::FIELDS
                 ],
                 Turn::RESPONSE_INTENTS =>[
@@ -128,9 +132,12 @@ class FocusedIntentResource extends JsonResource
                             Condition::OPERATION_ATTRIBUTES,
                             Condition::PARAMETERS
                         ],
+                        MessageTemplate::ORDER,
                     ],
+                    Intent::ORDER,
                     Intent::ACTIONS => Action::FIELDS
                 ],
+                Intent::ORDER,
                 Turn::SCENE => [
                     Scene::UID,
                     Scene::OD_ID,
