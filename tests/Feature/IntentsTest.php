@@ -146,6 +146,9 @@ class IntentsTest extends TestCase
         $fakeTurn->setName('New Example turn 1');
         $fakeTurn->setOdId('new_example_turn_1');
         $fakeTurn->setDescription("An new example turn 1");
+        $fakeTurn->setRequestIntents(new IntentCollection([
+            $this->createIntent($fakeTurn, '0x006', 'pre-existing', Intent::USER)]
+        ));
 
         $fakeRequestIntent = $this->createIntent($fakeTurn, '0x0005', 'welcome_intent_1', Intent::USER);
 
@@ -157,7 +160,9 @@ class IntentsTest extends TestCase
         ConversationDataClient::shouldReceive();
         ConversationDataClient::shouldReceive('addRequestIntent')
             ->once()
-            ->withAnyArgs()
+            ->with(\Mockery::on(function ($argument) {
+                return $argument->getOrder() === 1; //  Check that the order is set to 1 on the intent being persisted
+            }))
             ->andReturn($fakeRequestIntent);
 
         $this->actingAs($this->user, 'api')
@@ -193,7 +198,7 @@ class IntentsTest extends TestCase
                     "listens_for" => ["intent_a", "intent_b"],
                     "speaker" => "USER",
                     "confidence" => 1,
-                    "sample_utterance" => "Hello!"
+                    "sample_utterance" => "Hello!",
                 ]
             ]);
     }
@@ -205,6 +210,12 @@ class IntentsTest extends TestCase
         $fakeTurn->setName('New Example turn 1');
         $fakeTurn->setOdId('new_example_turn_1');
         $fakeTurn->setDescription("An new example turn 1");
+        $fakeTurn->setRequestIntents(new IntentCollection(
+            [
+                $this->createIntent($fakeTurn, '0x006', 'pre-existing1', Intent::USER),
+                $this->createIntent($fakeTurn, '0x007', 'pre-existing2', Intent::USER)
+            ]
+        ));
 
         $fakeResponseIntent = new Intent($fakeTurn);
         $fakeResponseIntent->setUid('0x0005');
@@ -231,12 +242,16 @@ class IntentsTest extends TestCase
         ConversationDataClient::shouldReceive();
         ConversationDataClient::shouldReceive('addResponseIntent')
             ->once()
-            ->withAnyArgs()
+            ->with(\Mockery::on(function ($argument) {
+                return $argument->getOrder() === 2; //  Check that the order is set to 2 on the intent being persisted
+            }))
             ->andReturn($fakeResponseIntent);
 
         MessageTemplateDataClient::shouldReceive('addMessageTemplateToIntent')
             ->once()
-            ->withAnyArgs();
+            ->with(\Mockery::on(function ($message) {
+                return $message->getOrder() === 0; //  Check that the order is set to 0 on the persisted message
+            }));
 
         $this->actingAs($this->user, 'api')
             ->json('POST', '/admin/api/conversation-builder/turns/' . $fakeTurn->getUid() . '/intents', [
@@ -640,6 +655,14 @@ class IntentsTest extends TestCase
 
         IntentDataClient::shouldReceive('addFullIntentGraph')
             ->once()
+            ->with(
+                \Mockery::on(function ($intent) {
+                    return $intent->getOrder() === 2; // order = 2 as this is the 3rd intent to the turn
+                }),
+                \Mockery::on(function ($isRequest) {
+                    return $isRequest;
+                }),
+            )
             ->andReturnUsing(function ($intent) {
                 $intent->setUid('0x9999');
                 return $intent;
@@ -701,6 +724,14 @@ class IntentsTest extends TestCase
 
         IntentDataClient::shouldReceive('addFullIntentGraph')
             ->once()
+            ->with(
+                \Mockery::on(function ($intent) {
+                    return $intent->getOrder() === 2; // order = 2 as this is the 3rd intent to the turn
+                }),
+                \Mockery::on(function ($isRequest) {
+                    return !$isRequest;
+                }),
+            )
             ->andReturnUsing(function ($intent) {
                 $intent->setUid('0x9999');
                 return $intent;

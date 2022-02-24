@@ -711,6 +711,11 @@ class ScenariosTest extends TestCase
 
         $duplicated = null;
         ScenarioDataClient::shouldReceive('addFullScenarioGraph')
+            ->with(
+                \Mockery::on(function ($scenario) {
+
+                })
+            )
             ->once()
             ->andReturnUsing(function ($scenario) use (&$duplicated) {
                 $scenario = $scenario->copy();
