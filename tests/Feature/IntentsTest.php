@@ -210,7 +210,7 @@ class IntentsTest extends TestCase
         $fakeTurn->setName('New Example turn 1');
         $fakeTurn->setOdId('new_example_turn_1');
         $fakeTurn->setDescription("An new example turn 1");
-        $fakeTurn->setRequestIntents(new IntentCollection(
+        $fakeTurn->setResponseIntents(new IntentCollection(
             [
                 $this->createIntent($fakeTurn, '0x006', 'pre-existing1', Intent::USER),
                 $this->createIntent($fakeTurn, '0x007', 'pre-existing2', Intent::USER)
