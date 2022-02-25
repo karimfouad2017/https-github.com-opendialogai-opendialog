@@ -73,12 +73,15 @@ class TurnsController extends Controller
      */
     public function storeTurnIntentAgainstTurn(Turn $turn, TurnIntentRequest $request): TurnIntentResource
     {
+        /** @var Intent $newIntent */
         $newIntent = Serializer::denormalize($request->get('intent'), Intent::class, 'json');
         $newIntent->setTurn($turn);
 
         if ($request->get('order') === 'REQUEST') {
+            $newIntent->setOrder(count($turn->getRequestIntents()));
             $savedIntent = ConversationDataClient::addRequestIntent($newIntent);
         } else {
+            $newIntent->setOrder(count($turn->getResponseIntents()));
             $savedIntent = ConversationDataClient::addResponseIntent($newIntent);
         }
 
@@ -204,6 +207,7 @@ class TurnsController extends Controller
             $messageTemplate->setMessageMarkup(
                 (new MessageMarkUpGenerator())->addTextMessage($intent->getSampleUtterance())->getMarkUp()
             );
+            $messageTemplate->setOrder(0);
 
             MessageTemplateDataClient::addMessageTemplateToIntent($messageTemplate);
         } else {
