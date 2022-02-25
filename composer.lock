@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "056ffc38ff1d01a109425323dfbe83e1",
+    "content-hash": "8a14ea486be1640828c042775c200b8a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3335,16 +3335,16 @@
         },
         {
             "name": "opendialogai/core",
-            "version": "dev-feature/OPNDLG-1362_fix_intents_order",
+            "version": "1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "25e771d5eac8f296797ed4bec8dea023f2c01f29"
+                "reference": "106384b9f894f2f6fbcddeaf42131a5c1786437e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/25e771d5eac8f296797ed4bec8dea023f2c01f29",
-                "reference": "25e771d5eac8f296797ed4bec8dea023f2c01f29",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/106384b9f894f2f6fbcddeaf42131a5c1786437e",
+                "reference": "106384b9f894f2f6fbcddeaf42131a5c1786437e",
                 "shasum": ""
             },
             "require": {
@@ -3429,9 +3429,9 @@
             "description": "The OpenDialog Core package",
             "support": {
                 "issues": "https://github.com/opendialogai/core/issues",
-                "source": "https://github.com/opendialogai/core/tree/feature/OPNDLG-1362_fix_intents_order"
+                "source": "https://github.com/opendialogai/core/tree/1.12.0"
             },
-            "time": "2022-02-24T14:06:45+00:00"
+            "time": "2022-02-25T10:42:54+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -12061,7 +12061,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "opendialogai/core": 20,
         "opendialogai/webchat": 20
     },
     "prefer-stable": true,
