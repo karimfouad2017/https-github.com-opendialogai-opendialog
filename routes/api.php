@@ -167,6 +167,8 @@ Route::namespace('API')
 
         Route::post('/refresh-token', 'APITokenController@refreshToken');
         Route::post('/upload', 'FileUploadController@upload');
+
+        Route::get('/scenario-overview', [\App\Http\Controllers\API\ScenarioOverviewController::class, 'index']);
     });
 
 Route::namespace('API')

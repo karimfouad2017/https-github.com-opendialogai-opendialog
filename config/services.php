@@ -44,4 +44,9 @@ return [
         ],
     ],
 
+    'cognito' => [
+        'identity_pool' => env('AWS_IDENTITY_POOL_ID'),
+        'region' => env('AWS_DEFAULT_REGION', 'eu-west-1')
+    ]
+
 ];

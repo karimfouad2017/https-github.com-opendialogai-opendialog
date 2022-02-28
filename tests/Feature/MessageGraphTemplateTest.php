@@ -147,7 +147,11 @@ class MessageGraphTemplateTest extends TestCase
 
         MessageTemplateDataClient::shouldReceive('addMessageTemplateToIntent')
             ->once()
-            ->withAnyArgs()
+            ->with(
+                \Mockery::on(function ($message) {
+                    return $message->getOrder() === 0; // the first message against the intent
+                }),
+            )
             ->andReturn($createdMessageTemplate);
 
         $this->actingAs($this->user, 'api')
