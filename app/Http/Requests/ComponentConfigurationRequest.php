@@ -6,13 +6,12 @@ use App\Rules\ComponentConfigurationRule;
 use App\Rules\ComponentRegistrationRule;
 use App\Rules\ScenarioExists;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use OpenDialogAi\ActionEngine\Service\ActionComponentServiceInterface;
-use OpenDialogAi\InterpreterEngine\Service\InterpreterComponentServiceInterface;
 use OpenDialogAi\Core\Components\Configuration\ComponentConfiguration;
 use OpenDialogAi\Core\Components\Exceptions\UnknownComponentTypeException;
 use OpenDialogAi\Core\Components\Helper\ComponentHelper;
+use OpenDialogAi\InterpreterEngine\Service\InterpreterComponentServiceInterface;
 use OpenDialogAi\PlatformEngine\Services\PlatformComponentServiceInterface;
 
 /**
@@ -100,6 +99,7 @@ class ComponentConfigurationRequest extends FormRequest
     protected function addConfigurationRules(): array
     {
         $componentId = $this->component_id ?? '';
+
         try {
             $type = ComponentHelper::parseComponentId($componentId);
         } catch (UnknownComponentTypeException $e) {
@@ -109,13 +109,13 @@ class ComponentConfigurationRequest extends FormRequest
         $component = null;
 
         switch ($type) {
-            case 'platform':
+            case ComponentHelper::PLATFORM:
                 $component = resolve(PlatformComponentServiceInterface::class)->get($componentId);
                 break;
-            case 'interpreter':
+            case ComponentHelper::INTERPRETER:
                 $component = resolve(InterpreterComponentServiceInterface::class)->get($componentId);
                 break;
-            case 'action':
+            case ComponentHelper::ACTION:
                 $component = resolve(ActionComponentServiceInterface::class)->get($componentId);
                 break;
         }
