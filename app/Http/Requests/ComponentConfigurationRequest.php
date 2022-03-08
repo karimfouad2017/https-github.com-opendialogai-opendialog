@@ -131,16 +131,16 @@ class ComponentConfigurationRequest extends FormRequest
     {
         $configRules = $this->addConfigurationRules();
 
-        $rules = array_merge($rules, $configRules);
+        $finalConfigRules = [];
 
+        // As the default rules form the basis for the request rules,
+        // all additional rules are skipped
         foreach ($configRules as $key => $configRule) {
-            if (array_key_exists($key, $rules)) {
-                if (is_array($configRule)) {
-                    $rules[$key] = array_merge($rules[$key], $configRule);
-                }
-                continue;
+            if (! array_key_exists($key, $rules)) {
+                $finalConfigRules[$key] = $configRule;
             }
         }
+        $rules = array_merge($rules, $finalConfigRules);
 
         return $rules;
     }
