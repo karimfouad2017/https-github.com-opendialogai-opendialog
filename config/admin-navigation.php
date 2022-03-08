@@ -30,9 +30,9 @@ return [
                 ],
                 [
                     'title' => 'Interface settings',
-                    'url' => '/admin/webchat-setting',
+                    'url' => '/admin/interface-settings',
                     'icon' => 'settings-sliders',
-                    'section' => 'webchat-setting'
+                    'section' => 'interface-settings'
                 ],
             ],
             [
@@ -41,12 +41,6 @@ return [
                     'url' => '/admin/demo',
                     'icon' => 'speech',
                     'section' => 'demo'
-                ],
-                [
-                    'title' => 'Publish',
-                    'url' => '/admin/publish',
-                    'icon' => 'forward',
-                    'section' => 'publish'
                 ]
             ]
         ],

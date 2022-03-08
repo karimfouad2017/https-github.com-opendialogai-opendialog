@@ -8,6 +8,9 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get update --allow-releaseinfo-change && apt-get install -y \
     nodejs \
     build-essential \
+    zlib1g-dev \
+    libicu-dev  \
+    g++ \
     mariadb-client \
     libpng-dev \
     libjpeg62-turbo-dev \
@@ -26,7 +29,7 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     /etc/init.d/nginx start
 
 # Install extensions
-RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
+RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl intl
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install gd
 

@@ -5,8 +5,7 @@ import DefaultContainer from '@/containers/DefaultContainer'
 
 import store from '@opendialogai/opendialog-design-system-pkg/src/store'
 
-import Home from '@opendialogai/opendialog-design-system-pkg/src/components/Views/Home'
-import WebchatSettingView from '@opendialogai/opendialog-design-system-pkg/src/components/Views/WebchatSettingView'
+import InterfaceSettings from '@opendialogai/opendialog-design-system-pkg/src/components/InterfaceSettings/InterfaceSettings'
 import MessageEditor from '@opendialogai/opendialog-design-system-pkg/src/components/Views/MessageEditor'
 import ChatbotUsersView from '@opendialogai/opendialog-design-system-pkg/src/components/Views/ChatbotUsersView'
 import UserView from '@opendialogai/opendialog-design-system-pkg/src/components/Views/UserView'
@@ -38,7 +37,8 @@ import Template
   from '@opendialogai/opendialog-design-system-pkg/src/components/Scenarios/Template'
 import AlexaPublish
   from '@opendialogai/opendialog-design-system-pkg/src/components/Publish/AlexaPublish'
-
+import ScenarioOverview
+  from '@opendialogai/opendialog-design-system-pkg/src/components/Views/ScenarioOverview'
 
 Vue.use(VueRouter);
 
@@ -152,14 +152,14 @@ const router = new VueRouter({
           },
         },
         {
-          path: 'webchat-setting',
-          name: 'webchat-setting',
-          component: WebchatSettingView,
+          path: 'interface-settings',
+          name: 'interface-settings',
+          component: InterfaceSettings,
           meta: {
-            title: 'Interface Settings',
-            requiresScenario: true
+              title: 'Interface Settings',
+              requiresScenario: true
           },
-        },
+      },
         {
           path: 'chatbot-users',
           name: 'chatbot-users',
@@ -336,10 +336,19 @@ const router = new VueRouter({
           name: 'publish',
           component: AlexaPublish,
           meta: {
-              title: 'Publish',
-              requiresScenario: true
+            title: 'Publish',
+            requiresScenario: true
           }
-      }
+        },
+        {
+          path: 'overview',
+          name: 'overview',
+          component: ScenarioOverview,
+          meta: {
+            title: 'Overview',
+            requiresScenario: true
+          }
+        },
       ],
     },
   ],
