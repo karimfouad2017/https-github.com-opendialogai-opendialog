@@ -3339,12 +3339,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "6c6d2951e4c7e4388db4ff3d4dd368dfb7ac972d"
+                "reference": "7feda62b521eb3628361d67362eb10e28fd26328"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/6c6d2951e4c7e4388db4ff3d4dd368dfb7ac972d",
-                "reference": "6c6d2951e4c7e4388db4ff3d4dd368dfb7ac972d",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/7feda62b521eb3628361d67362eb10e28fd26328",
+                "reference": "7feda62b521eb3628361d67362eb10e28fd26328",
                 "shasum": ""
             },
             "require": {
@@ -3431,7 +3431,7 @@
                 "issues": "https://github.com/opendialogai/core/issues",
                 "source": "https://github.com/opendialogai/core/tree/OPNDLG-1381--config-proerty-hiding"
             },
-            "time": "2022-02-18T12:02:42+00:00"
+            "time": "2022-03-08T21:25:08+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -12072,5 +12072,5 @@
         "ext-simplexml": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
