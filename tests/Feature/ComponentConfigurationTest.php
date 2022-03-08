@@ -627,7 +627,7 @@ class ComponentConfigurationTest extends TestCase
         ]);
 
         factory(ComponentConfiguration::class)->create([
-            'component_id' => 'action.test.one',
+            'component_id' => 'action.test.two',
             'configuration' => [
                 'access_token' => 'abcd',
                 'public' => true,
@@ -647,6 +647,48 @@ class ComponentConfigurationTest extends TestCase
             ])
             ->assertJsonMissing([
                 'private_key' => '123456'
+            ]);
+    }
+
+    public function testConfigurationPropertyHidingWithDotNotation()
+    {
+        $configuration = factory(ComponentConfiguration::class)->create([
+            'component_id' => 'action.test.one',
+            'configuration' => [
+                'public' => true,
+                'private_key' => '123456',
+                'general' => [
+                    'user' => [
+                        'access_token' => '12345',
+                    ],
+                    'private' => [
+                        'key' => 'key-12345'
+                    ]
+                ]
+            ]
+        ]);
+
+        $this->mock(ActionComponentServiceInterface::class, function (MockInterface $mock) {
+            $mock->shouldReceive('get')
+                ->andReturn(TestAction::class);
+        });
+
+        $this->actingAs($this->user, 'api')
+            ->json('GET', '/admin/api/component-configuration/' . $configuration->id)
+            ->assertStatus(200)
+            ->assertJsonMissing([
+                'general' => [
+                    'user' => [
+                        'token' => '12345',
+                    ],
+                ]
+            ])
+            ->assertJsonMissing([
+                'general' => [
+                    'private' => [
+                        'key' => 'key-12345'
+                    ]
+                ]
             ]);
     }
 }
