@@ -1,0 +1,2170 @@
+{
+  "od_id": "diagnosis_bot",
+  "name": "Diagnosis Bot",
+  "description": "Chatbot analyse user's cyber security issues and offer a diagnosis",
+  "interpreter": "OpenDialog",
+  "conditions": [
+    {
+      "operation": "eq",
+      "operationAttributes": [
+        {
+          "id": "attribute",
+          "value": "user.selected_scenario"
+        }
+      ],
+      "parameters": [
+        {
+          "id": "value",
+          "value": "$path:diagnosis_bot"
+        }
+      ]
+    }
+  ],
+  "behaviors": [],
+  "conversations": [
+    {
+      "od_id": "trigger_conversation",
+      "name": "Trigger Conversation",
+      "description": "Automatically generated",
+      "interpreter": "",
+      "conditions": [],
+      "behaviors": [
+        "STARTING"
+      ],
+      "scenes": [
+        {
+          "od_id": "trigger_scene",
+          "name": "Trigger Scene",
+          "description": "Automatically generated",
+          "interpreter": "",
+          "conditions": [],
+          "behaviors": [
+            "STARTING"
+          ],
+          "turns": [
+            {
+              "od_id": "trigger_turn",
+              "name": "Trigger Turn",
+              "description": "Automatically generated",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [
+                "OPEN",
+                "STARTING"
+              ],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "intent.core.welcome",
+                  "name": "intent.core.welcome",
+                  "description": "Automatically generated",
+                  "interpreter": "OpenDialog",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "- User triggers conversational application -",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/welcome_conversation",
+                    "scene": "$path:diagnosis_bot/welcome_conversation/welcome_scene",
+                    "turn": "$path:diagnosis_bot/welcome_conversation/welcome_scene/welcome_turn"
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                },
+                {
+                  "od_id": "intent.core.restart",
+                  "name": "intent.core.restart",
+                  "description": "Automatically generated",
+                  "interpreter": "OpenDialog",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "- User restarts conversational application -",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/welcome_conversation",
+                    "scene": "$path:diagnosis_bot/welcome_conversation/welcome_scene",
+                    "turn": "$path:diagnosis_bot/welcome_conversation/welcome_scene/welcome_turn"
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "od_id": "welcome_conversation",
+      "name": "Welcome Conversation",
+      "description": "Automatically generated",
+      "interpreter": "",
+      "conditions": [],
+      "behaviors": [],
+      "scenes": [
+        {
+          "od_id": "welcome_scene",
+          "name": "Welcome Scene",
+          "description": "Automatically generated",
+          "interpreter": "",
+          "conditions": [],
+          "behaviors": [
+            "STARTING"
+          ],
+          "turns": [
+            {
+              "od_id": "welcome_turn",
+              "name": "Welcome Turn",
+              "description": "Automatically generated",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [
+                "OPEN",
+                "STARTING"
+              ],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "intent.app.welcomeResponseForWebchat",
+                  "name": "intent.app.welcomeResponseForWebchat",
+                  "description": "Automatically generated",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "Welcome and do you agree to terms and conditions?",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "Welcome Message",
+                      "description": "",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"true\" hide_avatar=\"false\"><text-message>Hi</text-message><text-message>Welcome to The Cyber Helpline Chatbot - I&#x27;m a robot.</text-message><text-message>Sorry to hear you have been a victim of cyber crime. I will do all I can to help.</text-message><text-message>My job is to identify what has happened to you and point you in the right direction to get help.</text-message><text-message>Once you have told me your issue I will either send you to a web page with a guide that will help &#x2013; or I will take your details and get one of our experts to get in touch to help.</text-message><text-message>If I send you to a guide &#x2013; and you have a specific question that isn&#x27;t answered there - you still have the chance to speak to an expert.</text-message><text-message>When my chat window opens up on the guide page just click &#x27;I need more help&#x27;.</text-message><text-message>If you feel you are in danger contact the police and continue our chat when you are safe.</text-message><text-message>Please review our terms and conditions of use &#x3C;a target=&#x22;_blank&#x22; href=&#x22;https://www.thecyberhelpline.com/chatbot-terms-conditions-of-use&#x22;&#x3E;here&#x3C;/a&#x3E;</text-message><button-message clear_after_interaction=\"1\">\n        <text>Do you accept the terms and conditions of use?</text>\n        <external>true</external>\n        <button>\n          <text>Yes</text>\n          <callback>AgreeTerms</callback>\n          <value>agree_terms.1</value>\n        </button>\n        <button>\n          <text>No</text>\n          <callback>NotAgreeTerms</callback>\n          <value>agree_terms.0</value>\n        </button>\n        \n      </button-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": [
+                {
+                  "od_id": "AgreeTerms",
+                  "name": "AgreeTerms",
+                  "description": "Automatically generated",
+                  "interpreter": "OpenDialog",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "Yes",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/welcome_conversation",
+                    "scene": "$path:diagnosis_bot/welcome_conversation/welcome_scene",
+                    "turn": "$path:diagnosis_bot/welcome_conversation/welcome_scene/reported_to_police"
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                },
+                {
+                  "od_id": "NotAgreeTerms",
+                  "name": "NotAgreeTerms",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "No",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/chat_end",
+                    "scene": "$path:diagnosis_bot/chat_end/not_accept_terms",
+                    "turn": "$path:diagnosis_bot/chat_end/not_accept_terms/not_accept_terms"
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ]
+            },
+            {
+              "od_id": "reported_to_police",
+              "name": "Reported To Police",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "ReportedToPolice",
+                  "name": "ReportedToPolice",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "Have you reported the incident to the police?",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "reported to police",
+                      "description": "",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"false\" hide_avatar=\"false\"><button-message clear_after_interaction=\"0\">\n        <text>Have you already reported your issue to the police? This might have been through a police website like ActionFraud or at your local police station.</text>\n        <external>true</external>\n        <button>\n          <text>Yes</text>\n          <callback>ReportedToPolice</callback>\n          <value>reported_to_police.1</value>\n        </button>\n        <button>\n          <text>No</text>\n          <callback>ReportedToPolice</callback>\n          <value>reported_to_police.0</value>\n        </button>\n        \n      </button-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": [
+                {
+                  "od_id": "ReportedToPolice",
+                  "name": "ReportedToPolice",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "Yes / No",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/welcome_conversation",
+                    "scene": "$path:diagnosis_bot/welcome_conversation/welcome_scene",
+                    "turn": "$path:diagnosis_bot/welcome_conversation/welcome_scene/ready_to_start"
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ]
+            },
+            {
+              "od_id": "ready_to_start",
+              "name": "Ready To Start",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "GetStarted",
+                  "name": "GetStarted",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "Let's get started",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "Get Started Message",
+                      "description": "",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"false\" hide_avatar=\"false\"><button-message clear_after_interaction=\"0\">\n        <text>Ok, lets get started. Ready?</text>\n        <external>true</external>\n        <button>\n          <text>Ready.</text>\n          <callback>ReadyToStart</callback>\n          <value>diagnosis_started.yes</value>\n        </button>\n        \n      </button-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": [
+                {
+                  "od_id": "ReadyToStart",
+                  "name": "ReadyToStart",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "Ready",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/diagnosis_conversation",
+                    "scene": "$path:diagnosis_bot/diagnosis_conversation/start_diagnosis",
+                    "turn": "$path:diagnosis_bot/diagnosis_conversation/start_diagnosis/diagnosisrequest"
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "od_id": "no_match_conversation",
+      "name": "No Match Conversation",
+      "description": "Automatically generated",
+      "interpreter": "",
+      "conditions": [],
+      "behaviors": [
+        "STARTING"
+      ],
+      "scenes": [
+        {
+          "od_id": "no_match_scene",
+          "name": "No Match Scene",
+          "description": "Automatically generated",
+          "interpreter": "",
+          "conditions": [],
+          "behaviors": [
+            "STARTING"
+          ],
+          "turns": [
+            {
+              "od_id": "no_match_turn",
+              "name": "No Match Turn",
+              "description": "Automatically generated",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [
+                "OPEN",
+                "STARTING"
+              ],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "intent.core.NoMatch",
+                  "name": "intent.core.NoMatch",
+                  "description": "Automatically generated",
+                  "interpreter": "OpenDialog",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "[no match]",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": [
+                {
+                  "od_id": "intent.app.noMatchResponseWebchat",
+                  "name": "intent.app.noMatchResponseWebchat",
+                  "description": "Automatically generated",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [
+                    "COMPLETING"
+                  ],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "Sorry, I didn't understand that",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "auto generated",
+                      "description": "",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"false\" hide_avatar=\"false\"><text-message>Sorry, I didn't understand that</text-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "od_id": "diagnosis_conversation",
+      "name": "Diagnosis Conversation",
+      "description": "An new example conversation description",
+      "interpreter": "",
+      "conditions": [],
+      "behaviors": [
+        "STARTING"
+      ],
+      "scenes": [
+        {
+          "od_id": "start_diagnosis",
+          "name": "Start Diagnosis",
+          "description": "An new scene example description",
+          "interpreter": "",
+          "conditions": [],
+          "behaviors": [
+            "STARTING"
+          ],
+          "turns": [
+            {
+              "od_id": "diagnosisrequest",
+              "name": "Diagnosis Request",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [
+                "OPEN"
+              ],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "DiagnosisRequest",
+                  "name": "DiagnosisRequest",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "Please tell me what happened",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "Diagnosis Request Message",
+                      "description": "",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"true\" hide_avatar=\"false\"><long-text-message>\n  <submit_text>Send</submit_text>\n  <callback>Diagnose</callback>\n  <placeholder>Tell me what happened in your own words</placeholder>\n  <confirmation_text>Do you want to submit?</confirmation_text>\n  <character_limit>100</character_limit>\n  <initial_text>{user.diagnosis_text}</initial_text>\n  <text>Please tell me what has happened? Try and provide as much information as possible without sharing any private information like passwords or account numbers.\n    \n    \n   Remember, if you have a specific question that isn't answered in the guide you can use the chat window on the guide page to ask for help from one of our human experts.</text>\n  <attribute_name>diagnosis_text</attribute_name>\n</long-text-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": [
+                {
+                  "od_id": "Diagnose",
+                  "name": "Diagnose",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "Submit for diagnosis",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/diagnosis_conversation",
+                    "scene": "$path:diagnosis_bot/diagnosis_conversation/diagnosis_results",
+                    "turn": null
+                  },
+                  "actions": [
+                    {
+                      "action_name": "Get Diagnosis",
+                      "input_attributes": [
+                        "user.user_id",
+                        "user.diagnosis_text"
+                      ],
+                      "output_attributes": []
+                    }
+                  ],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ]
+            },
+            {
+              "od_id": "start_diagnosis",
+              "name": "Start Diagnosis",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [
+                "OPEN",
+                "STARTING"
+              ],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "StartDiagnosis",
+                  "name": "StartDiagnosis",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "Start Diagnosis",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                },
+                {
+                  "od_id": "EditDiagnosis",
+                  "name": "EditDiagnosis",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "Edit Diagnosis",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/diagnosis_conversation",
+                    "scene": "$path:diagnosis_bot/diagnosis_conversation/start_diagnosis",
+                    "turn": "$path:diagnosis_bot/diagnosis_conversation/start_diagnosis/diagnosisrequest"
+                  },
+                  "actions": [
+                    {
+                      "action_name": "Clear diagnosis_text",
+                      "input_attributes": [
+                        "user.diagnosis_text"
+                      ],
+                      "output_attributes": []
+                    }
+                  ],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": []
+            }
+          ]
+        },
+        {
+          "od_id": "diagnosis_results",
+          "name": "Attacks",
+          "description": "An new scene example description",
+          "interpreter": "",
+          "conditions": [],
+          "behaviors": [],
+          "turns": [
+            {
+              "od_id": "no_diagnosis_found",
+              "name": "No Attacks To Display",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [
+                {
+                  "operation": "is_false",
+                  "operationAttributes": [
+                    {
+                      "id": "attribute",
+                      "value": "user.attack_found"
+                    }
+                  ]
+                }
+              ],
+              "behaviors": [
+                "OPEN",
+                "STARTING"
+              ],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "NoDiagnosis",
+                  "name": "NoDiagnosis",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [
+                    "COMPLETING"
+                  ],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "Could not identify the problem",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": null,
+                    "scene": null,
+                    "turn": null
+                  },
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "No Diagnosis found",
+                      "description": "",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"true\" hide_avatar=\"false\"><text-message>Thanks for sharing your problem. Unfortunately, we have been unable to conclusively identify the problem.</text-message><button-message clear_after_interaction=\"1\">\n        <text>You could change your initial description to add more information, start over with a new description or get in touch with one of our volunteer cyber security experts.</text>\n        <external>false</external>\n        <button>\n          <text>I want to start over</text>\n          <callback>StartDiagnosis</callback>\n          \n        </button>\n        <button>\n          <text>Ok, I want to edit my description</text>\n          <callback>EditDiagnosis</callback>\n          \n        </button>\n        <button>\n          <text>No thanks, I would like to talk to a volunteer cyber security expert</text>\n          <callback>speakToExpert</callback>\n          \n        </button>\n        \n      </button-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": []
+            },
+            {
+              "od_id": "diagnosis_found",
+              "name": "Display Attacks",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [
+                {
+                  "operation": "is_true",
+                  "operationAttributes": [
+                    {
+                      "id": "attribute",
+                      "value": "user.attack_found"
+                    }
+                  ]
+                }
+              ],
+              "behaviors": [
+                "OPEN",
+                "STARTING"
+              ],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "DisplayResult",
+                  "name": "DisplayResult",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "Is this part of your issue?",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "First guess attack message (no related attaacks)",
+                      "description": "",
+                      "conditions": [
+                        {
+                          "operation": "is_false",
+                          "operationAttributes": [
+                            {
+                              "id": "attribute",
+                              "value": "user.has_related_attacks"
+                            }
+                          ]
+                        }
+                      ],
+                      "message_markup": "<message disable_text=\"true\" hide_avatar=\"false\"><text-message>Thanks for sharing your problem. Our automated analysis indicated that you most likely have been the victim of {user.attack_name}</text-message><text-message>{user.attack_clarifying_text}</text-message><button-message clear_after_interaction=\"0\">\n        <text>Does that sound like your issue?</text>\n        <external>true</external>\n        <button>\n          <text>Yes</text>\n          <callback>ConfirmAttack</callback>\n          \n        </button>\n        <button>\n          <text>No</text>\n          <callback>DenyAttack</callback>\n          \n        </button>\n        \n      </button-message></message>"
+                    },
+                    {
+                      "od_id": "auto_generated",
+                      "name": "Second guess attack message (no related attacks)",
+                      "conditions": [
+                        {
+                          "operation": "gt",
+                          "operationAttributes": [
+                            {
+                              "id": "attribute",
+                              "value": "user.attack_number"
+                            }
+                          ],
+                          "parameters": [
+                            {
+                              "id": "value",
+                              "value": "1"
+                            }
+                          ]
+                        },
+                        {
+                          "operation": "is_false",
+                          "operationAttributes": [
+                            {
+                              "id": "attribute",
+                              "value": "user.has_related_attacks"
+                            }
+                          ]
+                        }
+                      ],
+                      "message_markup": "<message disable_text=\"true\" hide_avatar=\"false\"><text-message>Looks like our previous analysis was not a good fit. The next most likely things to have happened for our system is {user.attack_name}</text-message><text-message>{user.attack_clarifying_text}</text-message><button-message clear_after_interaction=\"0\">\n        <text>Does that sound like your issue?</text>\n        <external>false</external>\n        <button>\n          <text>Yes</text>\n          <callback>ConfirmAttack</callback>\n          \n        </button>\n        <button>\n          <text>No</text>\n          <callback>DenyAttack</callback>\n          \n        </button>\n        \n      </button-message></message>"
+                    },
+                    {
+                      "od_id": "auto_generated",
+                      "name": "First guess attack message",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"true\" hide_avatar=\"false\"><text-message>Thanks for sharing your problem. Our automated analysis indicated that you most likely have been the victim of {user.attack_name}</text-message><text-message>{user.attack_clarifying_text}</text-message><button-message clear_after_interaction=\"0\">\n        <text>Does this sound like part of your issue?</text>\n        <external>false</external>\n        <button>\n          <text>Yes</text>\n          <callback>ConfirmAttack</callback>\n          \n        </button>\n        <button>\n          <text>No</text>\n          <callback>DenyAttack</callback>\n          \n        </button>\n        \n      </button-message></message>"
+                    },
+                    {
+                      "od_id": "auto_generated",
+                      "name": "Second guess attack message",
+                      "conditions": [
+                        {
+                          "operation": "gt",
+                          "operationAttributes": [
+                            {
+                              "id": "attribute",
+                              "value": "user.attack_number"
+                            }
+                          ],
+                          "parameters": [
+                            {
+                              "id": "value",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      ],
+                      "message_markup": "<message disable_text=\"true\" hide_avatar=\"false\"><text-message>Looks like our previous analysis was not a good fit. The next most likely things to have happened for our system is {user.attack_name}</text-message><text-message>{user.attack_clarifying_text}</text-message><button-message clear_after_interaction=\"0\">\n        <text>Does this sound like part of your issue?</text>\n        <external>false</external>\n        <button>\n          <text>Yes</text>\n          <callback>ConfirmAttack</callback>\n          \n        </button>\n        <button>\n          <text>No</text>\n          <callback>DenyAttack</callback>\n          \n        </button>\n        \n      </button-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": [
+                {
+                  "od_id": "ConfirmAttack",
+                  "name": "ConfirmAttack",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "Yes, this is part of my issue",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/diagnosis_conversation",
+                    "scene": "$path:diagnosis_bot/diagnosis_conversation/next_attack",
+                    "turn": null
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                },
+                {
+                  "od_id": "DenyAttack",
+                  "name": "DenyAttack",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "No, this is not part of my issue",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/diagnosis_conversation",
+                    "scene": "$path:diagnosis_bot/diagnosis_conversation/diagnosis_results",
+                    "turn": null
+                  },
+                  "actions": [
+                    {
+                      "action_name": "Reject Attack",
+                      "input_attributes": [
+                        "user.attack_number",
+                        "user.diagnosis_id"
+                      ],
+                      "output_attributes": [
+                        "user.attack_number",
+                        "user.has_related_attack",
+                        "user.attack_name",
+                        "user.has_next_attack",
+                        "user.attack_clarifying_text",
+                        "user.attack_found",
+                        "user.diagnosis_id"
+                      ]
+                    }
+                  ],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "od_id": "next_attack",
+          "name": "Related Attacks",
+          "description": "An new scene example description",
+          "interpreter": "",
+          "conditions": [],
+          "behaviors": [],
+          "turns": [
+            {
+              "od_id": "display_next_attack",
+              "name": "Display Related Attack",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [
+                "OPEN"
+              ],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "ShowRelatedAttack",
+                  "name": "ShowRelatedAttack",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "Show next related attack. Is this part of your issue?",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "show related attacks message",
+                      "description": "",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"false\" hide_avatar=\"false\"><text-message>There are {user.related_attack_count} other attacks are potentially involved</text-message><text-message>The {user.related_attack_number} is {user.related_attack_name}</text-message><text-message>{user.related_attack_clarifying_text}</text-message><button-message clear_after_interaction=\"0\">\n        <text>Does this sound like part of your issue?</text>\n        <external>true</external>\n        <button>\n          <text>Yes</text>\n          <callback>ConfirmRelatedAttack</callback>\n          \n        </button>\n        <button>\n          <text>No</text>\n          <callback>RejectRelatedAttack</callback>\n          \n        </button>\n        \n      </button-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": [
+                {
+                  "od_id": "ConfirmRelatedAttack",
+                  "name": "ConfirmRelatedAttack",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "Yes, this is part of my issue",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/diagnosis_conversation",
+                    "scene": "$path:diagnosis_bot/diagnosis_conversation/next_attack",
+                    "turn": null
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                },
+                {
+                  "od_id": "RejectRelatedAttack",
+                  "name": "RejectRelatedAttack",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "No, this is not part of my issue",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/diagnosis_conversation",
+                    "scene": "$path:diagnosis_bot/diagnosis_conversation/next_attack",
+                    "turn": null
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ]
+            },
+            {
+              "od_id": "no_related_attacks",
+              "name": "No Related Attacks",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [
+                {
+                  "operation": "is_false",
+                  "operationAttributes": [
+                    {
+                      "id": "attribute",
+                      "value": "user.related_attack_found"
+                    }
+                  ]
+                }
+              ],
+              "behaviors": [
+                "OPEN",
+                "STARTING"
+              ],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "NoRelatedAttacks",
+                  "name": "NoRelatedAttacks",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "No related attacks",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "virtual_intent": {
+                    "speaker": "USER",
+                    "intent_id": "MoveOn"
+                  },
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "No related attacks",
+                      "description": "",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"false\" hide_avatar=\"false\"><empty-message/></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": [
+                {
+                  "od_id": "MoveOn",
+                  "name": "MoveOn",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "Move on",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/diagnosis_conversation",
+                    "scene": "$path:diagnosis_bot/diagnosis_conversation/gather_user_details",
+                    "turn": null
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ]
+            },
+            {
+              "od_id": "see_related_attacks",
+              "name": "See Related Attacks",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [
+                {
+                  "operation": "is_true",
+                  "operationAttributes": [
+                    {
+                      "id": "attribute",
+                      "value": "user.related_attack_found"
+                    }
+                  ]
+                }
+              ],
+              "behaviors": [
+                "OPEN",
+                "STARTING"
+              ],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "SeeRelatedAttacks",
+                  "name": "SeeRelatedAttacks",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "Would you like to see related attacks?",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "Would you like to see related (first message)",
+                      "description": "",
+                      "conditions": [
+                        {
+                          "operation": "eq",
+                          "operationAttributes": [
+                            {
+                              "id": "attribute",
+                              "value": "user.related_attack_number"
+                            }
+                          ],
+                          "parameters": [
+                            {
+                              "id": "value",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      ],
+                      "message_markup": "<message disable_text=\"false\" hide_avatar=\"false\"><text-message>Thanks for your clear description. I am glad I was able to identify the problem.</text-message><button-message clear_after_interaction=\"0\">\n        <text>During our analysis, some other attacks also scored highly. Would you like to review these other attacks now to see if they are part of your issue?</text>\n        <external>false</external>\n        <button>\n          <text>Yes, let me take a look now</text>\n          <callback>ShowRelatedAttacks</callback>\n          \n        </button>\n        <button>\n          <text>No, let&#x27;s fix the issue you&#x27;ve highlighted</text>\n          <callback>DoNotShowRelated</callback>\n          \n        </button>\n        \n      </button-message></message>"
+                    },
+                    {
+                      "od_id": "auto_generated",
+                      "name": "Would you like to see related (after first message)",
+                      "conditions": [
+                        {
+                          "operation": "gt",
+                          "operationAttributes": [
+                            {
+                              "id": "attribute",
+                              "value": "user.related_attack_number"
+                            }
+                          ],
+                          "parameters": [
+                            {
+                              "id": "value",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      ],
+                      "message_markup": "<message disable_text=\"false\" hide_avatar=\"false\"><button-message clear_after_interaction=\"0\">\n        <text>Do you want to see the remaining related attacks?</text>\n        <external>true</external>\n        <button>\n          <text>Yes</text>\n          <callback>ShowRelatedAttacks</callback>\n          \n        </button>\n        <button>\n          <text>No</text>\n          <callback>DoNotShowRelated</callback>\n          \n        </button>\n        \n      </button-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": [
+                {
+                  "od_id": "ShowRelatedAttacks",
+                  "name": "ShowRelatedAttacks",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "Yes, see related",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/diagnosis_conversation",
+                    "scene": "$path:diagnosis_bot/diagnosis_conversation/next_attack",
+                    "turn": "$path:diagnosis_bot/diagnosis_conversation/next_attack/display_next_attack"
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                },
+                {
+                  "od_id": "DoNotShowRelated",
+                  "name": "DoNotShowRelated",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "No, do not show related attacks",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/diagnosis_conversation",
+                    "scene": "$path:diagnosis_bot/diagnosis_conversation/gather_user_details",
+                    "turn": null
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "od_id": "gather_user_details",
+          "name": "Gather User Details",
+          "description": "An new scene example description",
+          "interpreter": "",
+          "conditions": [],
+          "behaviors": [],
+          "turns": [
+            {
+              "od_id": "get_user_email",
+              "name": "Get User Email",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [
+                "OPEN"
+              ],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "ProvideEmail",
+                  "name": "ProvideEmail",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "Please enter a valid email",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "auto generated",
+                      "description": "",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"true\" hide_avatar=\"false\"><form-message>\n  <text>Please enter a valid email address</text>\n  <submit_text>Send</submit_text>\n  <callback>ProvideEmailAddress</callback>\n\n  <element>\n    <element_type>email</element_type>\n    <name>email_address</name>\n  </element>\n</form-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": [
+                {
+                  "od_id": "ProvideEmailAddress",
+                  "name": "ProvideEmailAddress",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "gives email address",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/bot_feedback_conversation",
+                    "scene": null,
+                    "turn": null
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ]
+            },
+            {
+              "od_id": "would_you_like_to_provide_email?",
+              "name": "Would you like to provide email?",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [
+                "OPEN",
+                "STARTING"
+              ],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "ProvideEmail",
+                  "name": "ProvideEmail",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "Would you like to provide your email address?",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "Provide Email",
+                      "description": "",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"false\" hide_avatar=\"false\"><text-message>One of our volunteers reviews a sample of our chatbot&#x27;s recommendations on a regular basis.</text-message><text-message>If we review yours and think we can give more tailored - or different - advice we would like to be able to get in touch.</text-message><button-message clear_after_interaction=\"0\">\n        <text>Would you like to provide an email address for us to get in touch if need be?</text>\n        <external>true</external>\n        <button>\n          <text>Yes</text>\n          <callback>ProvideEmail</callback>\n          \n        </button>\n        <button>\n          <text>No</text>\n          <callback>DoNotProvideEmail</callback>\n          \n        </button>\n        \n      </button-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": [
+                {
+                  "od_id": "ProvideEmail",
+                  "name": "ProvideEmail",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "Yes I would",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/diagnosis_conversation",
+                    "scene": "$path:diagnosis_bot/diagnosis_conversation/gather_user_details",
+                    "turn": "$path:diagnosis_bot/diagnosis_conversation/gather_user_details/get_user_email"
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                },
+                {
+                  "od_id": "DoNotProvideEmail",
+                  "name": "DoNotProvideEmail",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "No I would not",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/bot_feedback_conversation",
+                    "scene": null,
+                    "turn": null
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "od_id": "chat_end",
+      "name": "Chat End",
+      "description": "An new example conversation description",
+      "interpreter": "",
+      "conditions": [],
+      "behaviors": [],
+      "scenes": [
+        {
+          "od_id": "not_accept_terms",
+          "name": "Not Accept Terms",
+          "description": "An new scene example description",
+          "interpreter": "",
+          "conditions": [],
+          "behaviors": [],
+          "turns": [
+            {
+              "od_id": "not_accept_terms",
+              "name": "Not Accept Terms",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [
+                "OPEN"
+              ],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "NotAcceptTerms",
+                  "name": "NotAcceptTerms",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [
+                    "COMPLETING"
+                  ],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "Sorry, please get in touch again if you have other issues",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": null,
+                    "scene": null,
+                    "turn": null
+                  },
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "auto generated",
+                      "description": "",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"true\" hide_avatar=\"false\"><text-message>\nSorry you are unhappy with our terms. You may be able to find a solution to your issue on our   <link new_tab=\"true\">\n    <url>https://www.thecyberhelpline.com</url>\n    <text>guides page</text>\n  </link>\n</text-message><button-message clear_after_interaction=\"0\">\n        <text>Please get in touch again if you have any other issues.</text>\n        <external>true</external>\n        <button>\n          <text>Describe a new issue</text>\n          <callback>intent.core.restart</callback>\n          \n        </button>\n        \n      </button-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "od_id": "bot_feedback_conversation",
+      "name": "Bot Feedback Conversation",
+      "description": "An new example conversation description",
+      "interpreter": "",
+      "conditions": [],
+      "behaviors": [],
+      "scenes": [
+        {
+          "od_id": "gather_bot_feedback",
+          "name": "Gather Bot Feedback",
+          "description": "An new scene example description",
+          "interpreter": "",
+          "conditions": [],
+          "behaviors": [
+            "STARTING"
+          ],
+          "turns": [
+            {
+              "od_id": "feedback",
+              "name": "Feedback",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [
+                "OPEN",
+                "STARTING"
+              ],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "end",
+                  "name": "end",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [
+                    "COMPLETING"
+                  ],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "This is the end of the bot so faer",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": null,
+                    "scene": null,
+                    "turn": null
+                  },
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "auto generated",
+                      "description": "",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"false\" hide_avatar=\"false\"><text-message>This is the end of the bot so faer</text-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "od_id": "guide_feedback_conversation",
+      "name": "Guide Feedback Conversation",
+      "description": "An new example conversation description",
+      "interpreter": "",
+      "conditions": [],
+      "behaviors": [
+        "STARTING"
+      ],
+      "scenes": []
+    },
+    {
+      "od_id": "hand_to_human_conversation",
+      "name": "Hand To Human Conversation",
+      "description": "An new example conversation description",
+      "interpreter": "",
+      "conditions": [],
+      "behaviors": [
+        "STARTING"
+      ],
+      "scenes": [
+        {
+          "od_id": "speak_to_an_expert",
+          "name": "Speak to an Expert",
+          "description": "An new scene example description",
+          "interpreter": "",
+          "conditions": [],
+          "behaviors": [
+            "STARTING"
+          ],
+          "turns": [
+            {
+              "od_id": "gather_details",
+              "name": "Start Hand to Human",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [
+                "OPEN",
+                "STARTING"
+              ],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "speakToExpert",
+                  "name": "speakToExpert",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "I want to speak to an expert",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/hand_to_human_conversation",
+                    "scene": "$path:diagnosis_bot/hand_to_human_conversation/gather_details",
+                    "turn": "$path:diagnosis_bot/hand_to_human_conversation/gather_details/name"
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": []
+            }
+          ]
+        },
+        {
+          "od_id": "gather_details",
+          "name": "Gather Details",
+          "description": "An new scene example description",
+          "interpreter": "",
+          "conditions": [],
+          "behaviors": [],
+          "turns": [
+            {
+              "od_id": "name",
+              "name": "Name",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [
+                "OPEN"
+              ],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "askName",
+                  "name": "askName",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "Ask for name",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "ask first name",
+                      "description": "",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"true\" hide_avatar=\"false\"><text-message>Ok, I am going to contact our human helpline service and have them get in touch.</text-message><text-message>By using the human helpline service you agree to these &#x3C;a target=&#x22;blank&#x22; href=&#x22;https://www.thecyberhelpline.com/helpline-terms-conditions-of-use&#x22;&#x3E;terms &#x26; conditions&#x3C;/a&#x3E;</text-message><text-message>I need a few details first.</text-message><form-message>\n        <text>Can you tell me your first name?</text>\n        <submit_text>Submit</submit_text>\n        <callback>provideName</callback>\n        \n        \n        <element>\n          <element_type>text</element_type>\n          <name>firsrt_name</name>\n          <display></display>\n          \n          <default_value>{user.first_name}</default_value>\n          <required>true</required>\n        </element>\n      </form-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": [
+                {
+                  "od_id": "provideName",
+                  "name": "provideName",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "- provides name -",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/hand_to_human_conversation",
+                    "scene": "$path:diagnosis_bot/hand_to_human_conversation/gather_details",
+                    "turn": "$path:diagnosis_bot/hand_to_human_conversation/gather_details/email"
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ]
+            },
+            {
+              "od_id": "email",
+              "name": "Email",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "askEmail",
+                  "name": "askEmail",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "Asks for email",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "ask email",
+                      "description": "",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"true\" hide_avatar=\"false\"><text-message>Can you give me an email address?</text-message><form-message>\n        <text>Please provide one that is secure.</text>\n        <submit_text>Submit</submit_text>\n        <callback>provideEmail</callback>\n        \n        \n        <element>\n          <element_type>email</element_type>\n          <name>email</name>\n          <display></display>\n          \n          <default_value>{user.email}</default_value>\n          <required>true</required>\n        </element>\n      </form-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": [
+                {
+                  "od_id": "provideEmail",
+                  "name": "provideEmail",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "- provides email -",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/hand_to_human_conversation",
+                    "scene": "$path:diagnosis_bot/hand_to_human_conversation/gather_details",
+                    "turn": "$path:diagnosis_bot/hand_to_human_conversation/gather_details/phone_number"
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ]
+            },
+            {
+              "od_id": "phone_number",
+              "name": "Phone Number",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "askPhoneNumber",
+                  "name": "askPhoneNumber",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "Provide phone number",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "Ask Phone Number",
+                      "description": "",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"true\" hide_avatar=\"false\"><text-message>What is the best phone number to reach you on?</text-message><form-message>\n        <text>Again provide one you think is secure.</text>\n        <submit_text>Submit</submit_text>\n        <callback>providePhoneNumber</callback>\n        \n        \n        <element>\n          <element_type>text</element_type>\n          <name>phone_number</name>\n          <display></display>\n          \n          \n          <required>true</required>\n        </element>\n      </form-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": [
+                {
+                  "od_id": "providePhoneNumber",
+                  "name": "providePhoneNumber",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "- provides phone number -",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ]
+            },
+            {
+              "od_id": "physical_danger",
+              "name": "Physical Danger",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "inDanger",
+                  "name": "inDanger",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "Do you feel in any immediate physical danger?",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "in danger question",
+                      "description": "",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"false\" hide_avatar=\"false\"><button-message clear_after_interaction=\"0\">\n        <text>Do you feel in any immediate physical danger?</text>\n        <external>true</external>\n        <button>\n          <text>Yes</text>\n          <callback>inDangerResponse</callback>\n          <value>immediate_danger.1</value>\n        </button>\n        <button>\n          <text>No</text>\n          <callback>inDangerResponse</callback>\n          <value>immediate_danger.0</value>\n        </button>\n        \n      </button-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": [
+                {
+                  "od_id": "inDangerResponse",
+                  "name": "inDangerResponse",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "- answers danger questions -",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/hand_to_human_conversation",
+                    "scene": "$path:diagnosis_bot/hand_to_human_conversation/gather_details",
+                    "turn": "$path:diagnosis_bot/hand_to_human_conversation/gather_details/18_or_over"
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ]
+            },
+            {
+              "od_id": "18_or_over",
+              "name": "18 or over",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [
+                "OPEN"
+              ],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "over18",
+                  "name": "over18",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "Are you over 18",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "Over 18 Message",
+                      "description": "",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"false\" hide_avatar=\"false\"><button-message clear_after_interaction=\"1\">\n        <text>Are you over 18</text>\n        <external>true</external>\n        <button>\n          <text>Yes</text>\n          <callback>over18Answer</callback>\n          <value>over_18.1</value>\n        </button>\n        <button>\n          <text>No</text>\n          <callback>over18Answer</callback>\n          <value>over_18.0</value>\n        </button>\n        \n      </button-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": [
+                {
+                  "od_id": "over18Answer",
+                  "name": "over18Answer",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "- answers over 18 -",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/hand_to_human_conversation",
+                    "scene": "$path:diagnosis_bot/hand_to_human_conversation/gather_details",
+                    "turn": "$path:diagnosis_bot/hand_to_human_conversation/gather_details/accounts_used"
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ]
+            },
+            {
+              "od_id": "accounts_used",
+              "name": "Accounts used",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "accountsUsed",
+                  "name": "accountsUsed",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "Any other accounts or devices used?",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "auto generated",
+                      "description": "",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"false\" hide_avatar=\"false\"><button-message clear_after_interaction=\"1\">\n        <text>Are any devices or accounts that you use - like work or university owned accounts or devices - involved in your issue?</text>\n        <external>true</external>\n        <button>\n          <text>Yes</text>\n          <callback>answerAccountsUsed</callback>\n          <value>other_accounts.1</value>\n        </button>\n        <button>\n          <text>No</text>\n          <callback>answerAccountsUsed</callback>\n          <value>other_accounts.1</value>\n        </button>\n        \n      </button-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": [
+                {
+                  "od_id": "answerAccountsUsed",
+                  "name": "answerAccountsUsed",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "- answers accounts used -",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/hand_to_human_conversation",
+                    "scene": "$path:diagnosis_bot/hand_to_human_conversation/gather_details",
+                    "turn": "$path:diagnosis_bot/hand_to_human_conversation/gather_details/in_the_uk"
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ]
+            },
+            {
+              "od_id": "in_the_uk",
+              "name": "In the UK",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "inUk",
+                  "name": "inUk",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "Are you in the UK",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "Are you in the UK",
+                      "description": "",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"false\" hide_avatar=\"false\"><button-message clear_after_interaction=\"1\">\n        <text>Are you currently in the United Kingdom?</text>\n        <external>true</external>\n        <button>\n          <text>Yes</text>\n          <callback>answerInUk</callback>\n          <value>in_uk.1</value>\n        </button>\n        <button>\n          <text>No</text>\n          <callback>answerInUk</callback>\n          <value>in_uk.0</value>\n        </button>\n        \n      </button-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": [
+                {
+                  "od_id": "answerInUk",
+                  "name": "answerInUk",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "- answers in uk -",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/hand_to_human_conversation",
+                    "scene": "$path:diagnosis_bot/hand_to_human_conversation/opt_in",
+                    "turn": null
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "od_id": "opt_in",
+          "name": "Opt In",
+          "description": "An new scene example description",
+          "interpreter": "",
+          "conditions": [],
+          "behaviors": [],
+          "turns": [
+            {
+              "od_id": "collect_opt_in",
+              "name": "Collect Opt In",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [
+                "OPEN",
+                "STARTING"
+              ],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "optIn",
+                  "name": "optIn",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "Would you like to Opt In?",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "auto generated",
+                      "description": "",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"false\" hide_avatar=\"false\"><text-message>Would you like to Opt In?</text-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": [
+                {
+                  "od_id": "answerOptIn",
+                  "name": "answerOptIn",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [],
+                  "speaker": "USER",
+                  "confidence": 1,
+                  "sample_utterance": "- answers opt in -",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": "$path:diagnosis_bot/hand_to_human_conversation",
+                    "scene": "$path:diagnosis_bot/hand_to_human_conversation/opt_in",
+                    "turn": "$path:diagnosis_bot/hand_to_human_conversation/opt_in/end_chat"
+                  },
+                  "actions": [],
+                  "message_templates": [],
+                  "training_phrases": []
+                }
+              ]
+            },
+            {
+              "od_id": "end_chat",
+              "name": "End Chat",
+              "description": "A new example turn description",
+              "interpreter": "",
+              "conditions": [],
+              "behaviors": [],
+              "valid_origins": [],
+              "request_intents": [
+                {
+                  "od_id": "endChat",
+                  "name": "endChat",
+                  "description": "An example intent description",
+                  "interpreter": "",
+                  "conditions": [],
+                  "behaviors": [
+                    "COMPLETING"
+                  ],
+                  "speaker": "APP",
+                  "confidence": 1,
+                  "sample_utterance": "End Chat",
+                  "listens_for": [],
+                  "expected_attributes": [],
+                  "transition": {
+                    "conversation": null,
+                    "scene": null,
+                    "turn": null
+                  },
+                  "actions": [],
+                  "message_templates": [
+                    {
+                      "od_id": "auto_generated",
+                      "name": "chat end",
+                      "description": "",
+                      "conditions": [],
+                      "message_markup": "<message disable_text=\"true\" hide_avatar=\"false\"><text-message>Thanks, I have stored your preference. </text-message><text-message>If you would like to change your preference at a later date please follow the steps in our &#x3C;a href=&#x22;https://www.thecyberhelpline.com/privacy-policy&#x22; target=&#x22;_blank&#x22;&#x3E;Privacy Policy.&#x3C;/a&#x3E;</text-message></message>"
+                    }
+                  ],
+                  "training_phrases": []
+                }
+              ],
+              "response_intents": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "configurations": [
+    {
+      "name": "OpenDialog",
+      "scenario_id": "$path:diagnosis_bot",
+      "component_id": "interpreter.core.opendialog",
+      "configuration": {
+        "callbacks": {
+          "WELCOME": "intent.core.welcome"
+        },
+        "enable_similarity_evaluation": true
+      },
+      "active": true
+    },
+    {
+      "name": "Webchat",
+      "scenario_id": "$path:diagnosis_bot",
+      "component_id": "platform.core.webchat",
+      "configuration": {
+        "colours": {
+          "buttonText": "#1b2956",
+          "headerText": "#ffffff",
+          "userInputText": "#1b212a",
+          "iconBackground": "0000ff",
+          "sentMessageText": "#1b2956",
+          "buttonBackground": "#7fdad1",
+          "headerBackground": "#1b2956",
+          "externalButtonText": "#1b2956",
+          "launcherBackground": "#1b2956",
+          "iconHoverBackground": "ffffff",
+          "receivedMessageText": "#1b2956",
+          "userInputBackground": "#ffffff",
+          "buttonHoverBackground": "#7fdad1",
+          "messageListBackground": "#1b2956",
+          "sentMessageBackground": "#7fdad1",
+          "externalButtonBackground": "#7fdad1",
+          "headerBackgroundGradient": "linear-gradient(180deg, rgba(27,41,86,1) 0%, rgba(27,41,86,0) 100%)",
+          "receivedMessageBackground": "#ffffff",
+          "externalButtonHoverBackground": "#7fdad1"
+        },
+        "general": {
+          "logo": "/images/homepage-logo.svg",
+          "open": true,
+          "teamName": "",
+          "validPath": [
+            "*"
+          ],
+          "useBotName": false,
+          "chatbotName": "OpenDialog",
+          "pageCssPath": "",
+          "messageDelay": "200",
+          "useBotAvatar": true,
+          "useHumanName": false,
+          "collectUserIp": true,
+          "chatbotCssPath": "http://cyberhelpline.test/css/opendialog-bot.css",
+          "useHumanAvatar": false,
+          "hideMessageTime": true,
+          "disableCloseChat": false,
+          "formResponseText": null,
+          "messageAnimation": false,
+          "chatbotAvatarPath": "/vendor/webchat/images/avatar.svg",
+          "showEndChatButton": true,
+          "showRestartButton": true,
+          "showDownloadButton": true,
+          "hideDatetimeMessage": true,
+          "newUserOpenCallback": "WELCOME",
+          "typingIndicatorStyle": "",
+          "newUserStartMinimized": false,
+          "restartButtonCallback": "intent.core.restart",
+          "showHeaderCloseButton": false,
+          "typingIndicatorOnSend": false,
+          "chatbotFullpageCssPath": "",
+          "ongoingUserOpenCallback": "",
+          "scrollToFirstNewMessage": false,
+          "ongoingUserStartMinimized": false,
+          "returningUserOpenCallback": "WELCOME",
+          "returningUserStartMinimized": false,
+          "showTextInputWithExternalButtons": false,
+          "showHeaderButtonsOnFullPageMessages": false,
+          "hideTypingIndicatorOnInternalMessages": false
+        },
+        "comments": {
+          "commentsName": "Comments",
+          "commentsEnabled": false,
+          "commentsEndpoint": "http://example.com/json-api/v1",
+          "commentsAuthToken": "Bearer ApiTokenValue",
+          "commentsEntityName": "comments",
+          "commentsTextFieldName": "comment",
+          "commentsAuthorEntityName": "users",
+          "commentsCreatedFieldName": "created-at",
+          "commentsAuthorIdFieldName": "id",
+          "commentsSectionEntityName": "posts",
+          "commentsEnabledPathPattern": "^\\/home\\/posts",
+          "commentsSectionFilterQuery": "post",
+          "commentsSectionIdFieldName": "id",
+          "commentsSectionPathPattern": "home\\/posts\\/\\d*$",
+          "commentsAuthorNameFieldName": "name",
+          "commentsSectionNameFieldName": "name",
+          "commentsAuthorRelationshipName": "author",
+          "commentsSectionRelationshipName": "post",
+          "commentsSectionFilterPathPattern": "home\\/posts\\/(\\d*)\\/?"
+        },
+        "webchatHistory": {
+          "showHistory": true,
+          "numberOfMessages": 10
+        },
+        "typingIndicatorOnSend": false
+      },
+      "active": true
+    },
+    {
+      "name": "Clear diagnosis_text",
+      "scenario_id": "$path:diagnosis_bot",
+      "component_id": "action.core.webhook",
+      "configuration": {
+        "webhook_url": "http://",
+        "additional_required_input_attributes": [
+          "diagnosis_text"
+        ],
+        "additional_required_output_attributes": [
+          "diagnosis_text"
+        ]
+      },
+      "active": true
+    },
+    {
+      "name": "Confirm Attack",
+      "scenario_id": "$path:diagnosis_bot",
+      "component_id": "action.core.webhook",
+      "configuration": {
+        "webhook_url": "http://",
+        "additional_required_input_attributes": [
+          "diagnosis_id",
+          "attack_number"
+        ],
+        "additional_required_output_attributes": []
+      },
+      "active": true
+    },
+    {
+      "name": "Reject Attack",
+      "scenario_id": "$path:diagnosis_bot",
+      "component_id": "action.core.webhook",
+      "configuration": {
+        "webhook_url": "http://",
+        "additional_required_input_attributes": [
+          "diagnosis_id",
+          "attack_number"
+        ],
+        "additional_required_output_attributes": [
+          "attack_found",
+          "attack_name",
+          "attack_clarifying_text",
+          "attack_number",
+          "has_next_attack",
+          "has_related_attack",
+          "diagnosis_id"
+        ]
+      },
+      "active": true
+    },
+    {
+      "name": "Get Diagnosis",
+      "scenario_id": "$path:diagnosis_bot",
+      "component_id": "action.core.webhook",
+      "configuration": {
+        "webhook_url": "http://",
+        "additional_required_input_attributes": [
+          "diagnosis_text",
+          "user_id"
+        ],
+        "additional_required_output_attributes": [
+          "attack_found",
+          "attack_name",
+          "attack_clarifying_text",
+          "attack_number",
+          "has_next_attack",
+          "has_related_attack",
+          "diagnosis_id"
+        ]
+      },
+      "active": true
+    }
+  ]
+}

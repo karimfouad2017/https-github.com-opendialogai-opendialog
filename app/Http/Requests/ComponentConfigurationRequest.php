@@ -4,12 +4,15 @@ namespace App\Http\Requests;
 
 use App\Rules\ComponentConfigurationRule;
 use App\Rules\ComponentRegistrationRule;
-use App\Rules\PublicUrlRule;
 use App\Rules\ScenarioExists;
-use App\Rules\UrlSchemeRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use OpenDialogAi\ActionEngine\Service\ActionComponentServiceInterface;
 use OpenDialogAi\Core\Components\Configuration\ComponentConfiguration;
+use OpenDialogAi\Core\Components\Exceptions\UnknownComponentTypeException;
+use OpenDialogAi\Core\Components\Helper\ComponentHelper;
+use OpenDialogAi\InterpreterEngine\Service\InterpreterComponentServiceInterface;
+use OpenDialogAi\PlatformEngine\Services\PlatformComponentServiceInterface;
 
 /**
  * @property $name string
@@ -76,20 +79,7 @@ class ComponentConfigurationRequest extends FormRequest
             ]
         ];
 
-        // Only set the URL validation rules if we are not in debug mode to allow local URLs during local development
-        if (config('app.env') !== 'local') {
-            $rules['configuration.app_url'] = [
-                'active_url',
-                new PublicUrlRule,
-                new UrlSchemeRule
-            ];
-
-            $rules['configuration.webhook_url'] = [
-                'active_url',
-                new PublicUrlRule,
-                new UrlSchemeRule
-            ];
-        }
+        $rules = $this->mergeCustomRules($rules);
 
         return $rules;
     }
@@ -104,5 +94,54 @@ class ComponentConfigurationRequest extends FormRequest
                 'scenario_id' => $configuration->scenario_id,
             ]);
         }
+    }
+
+    protected function addConfigurationRules(): array
+    {
+        $componentId = $this->component_id ?? '';
+
+        try {
+            $type = ComponentHelper::parseComponentId($componentId);
+        } catch (UnknownComponentTypeException $e) {
+            return [];
+        }
+
+        $component = null;
+
+        switch ($type) {
+            case ComponentHelper::PLATFORM:
+                $component = resolve(PlatformComponentServiceInterface::class)->get($componentId);
+                break;
+            case ComponentHelper::INTERPRETER:
+                $component = resolve(InterpreterComponentServiceInterface::class)->get($componentId);
+                break;
+            case ComponentHelper::ACTION:
+                $component = resolve(ActionComponentServiceInterface::class)->get($componentId);
+                break;
+        }
+
+        if ($component) {
+            return $component::getConfigurationRules();
+        }
+
+        return [];
+    }
+
+    protected function mergeCustomRules($rules): array
+    {
+        $configRules = $this->addConfigurationRules();
+
+        $finalConfigRules = [];
+
+        // As the default rules form the basis for the request rules,
+        // all additional rules are skipped
+        foreach ($configRules as $key => $configRule) {
+            if (! array_key_exists($key, $rules)) {
+                $finalConfigRules[$key] = $configRule;
+            }
+        }
+        $rules = array_merge($rules, $finalConfigRules);
+
+        return $rules;
     }
 }

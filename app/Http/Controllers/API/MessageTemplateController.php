@@ -28,6 +28,7 @@ class MessageTemplateController extends Controller
         /** @var MessageTemplate $newMessageTemplate */
         $newMessageTemplate = Serializer::deserialize($request->getContent(), MessageTemplate::class, 'json');
         $newMessageTemplate->setIntent($intent);
+        $newMessageTemplate->setOrder(count($intent->getMessageTemplates()));
 
         $messageTemplate = $this->messageTemplateDataClient->addMessageTemplateToIntent($newMessageTemplate);
 

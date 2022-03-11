@@ -19,7 +19,7 @@
         "maennchen/zipstream-php": "^2.0",
         "opendialogai/core": "dev-OPNDLG-1381--config-proerty-hiding",
         "opendialogai/dgraph-docker": "21.03.0.2",
-        "opendialogai/webchat": "1.x-dev",
+        "opendialogai/webchat": "1.7.1",
         "phalcongelist/php-diff": "^2.0",
         "predis/predis": "^1.1",
         "spatie/commonmark-highlighter": "^2.1",
