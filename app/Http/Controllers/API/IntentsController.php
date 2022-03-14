@@ -90,6 +90,12 @@ class IntentsController extends Controller
             $intent = $request->setUniqueOdId($intent, $request, $turn, true);
         }
 
+        if ($isRequest) {
+            $intent->setOrder(count($turn->getRequestIntents()));
+        } else {
+            $intent->setOrder(count($turn->getResponseIntents()));
+        }
+
         $intent->removeUid();
 
         $duplicate = IntentDataClient::addFullIntentGraph($intent, $isRequest);

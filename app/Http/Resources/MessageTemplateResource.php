@@ -30,6 +30,7 @@ class MessageTemplateResource extends JsonResource
             MessageTemplate::UPDATED_AT,
             MessageTemplate::BEHAVIORS => Behavior::FIELDS,
             MessageTemplate::CONDITIONS => Condition::FIELDS,
+            MessageTemplate::ORDER,
             MessageTemplate::INTENT => [
                 Intent::UID,
                 Intent::OD_ID,

@@ -21,6 +21,7 @@ use OpenDialogAi\InterpreterEngine\Interpreters\CallbackInterpreter;
 use OpenDialogAi\InterpreterEngine\Interpreters\OpenDialogInterpreter;
 use OpenDialogAi\InterpreterEngine\Service\InterpreterComponentServiceInterface;
 use Tests\Feature\Components\TestAction;
+use Tests\Feature\Components\TestInterpreter;
 use Tests\TestCase;
 
 class ComponentConfigurationTest extends TestCase
@@ -441,7 +442,6 @@ class ComponentConfigurationTest extends TestCase
 
         $this->mock(InterpreterComponentServiceInterface::class, function (MockInterface $mock) {
             $mock->shouldReceive('get')
-                ->twice()
                 ->andReturn(CallbackInterpreter::class);
 
             // For request validation
@@ -524,7 +524,6 @@ class ComponentConfigurationTest extends TestCase
 
         $this->mock(InterpreterComponentServiceInterface::class, function (MockInterface $mock) use ($mockInterpreter) {
             $mock->shouldReceive('get')
-                ->twice()
                 ->andReturn(get_class($mockInterpreter));
 
             $mock->shouldReceive('has')
@@ -690,5 +689,30 @@ class ComponentConfigurationTest extends TestCase
                     ]
                 ]
             ]);
+    }
+
+    public function testCustomRulesThatCanOverwriteDefaultAreIgnored()
+    {
+        $data = [
+            'name' => 'My New Name',
+            'scenario_id' => '0x000',
+            'component_id' => 'interpreter.core.customInterpreter',
+            'configuration' => '',
+        ];
+
+        $this->mock(InterpreterComponentServiceInterface::class, function (MockInterface $mock) {
+            $mock->shouldReceive('get')
+                ->andReturn(TestInterpreter::class);
+
+            // For request validation
+            $mock->shouldReceive('has')
+                ->once()
+                ->andReturn(true);
+        });
+
+        $this->actingAs($this->user, 'api')
+            ->json('POST', '/admin/api/component-configurations/test', $data)
+            ->assertStatus(422)
+            ->assertJsonValidationErrors(['configuration']);
     }
 }
