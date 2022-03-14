@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4b9bac0bef9420b0c80c143343535e83",
+    "content-hash": "9d1425bee04b6dded05e6c7317672139",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3329,12 +3329,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "430d3b11b55a4bcbc2d01a35ba17b3875d05c014"
+                "reference": "ba1a5fc63ad197885821aab5ebc2b447716b1876"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/430d3b11b55a4bcbc2d01a35ba17b3875d05c014",
-                "reference": "430d3b11b55a4bcbc2d01a35ba17b3875d05c014",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/ba1a5fc63ad197885821aab5ebc2b447716b1876",
+                "reference": "ba1a5fc63ad197885821aab5ebc2b447716b1876",
                 "shasum": ""
             },
             "require": {
@@ -3421,7 +3421,7 @@
                 "issues": "https://github.com/opendialogai/core/issues",
                 "source": "https://github.com/opendialogai/core/tree/OPNDLG-1381--config-proerty-hiding"
             },
-            "time": "2022-03-11T10:47:59+00:00"
+            "time": "2022-03-14T10:28:25+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -12061,7 +12061,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "opendialogai/core": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
@@ -12070,5 +12072,5 @@
         "ext-simplexml": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
