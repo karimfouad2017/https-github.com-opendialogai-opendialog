@@ -5,14 +5,17 @@ namespace App\ImportExportHelpers;
 
 use App\Console\Facades\ImportExportSerializer;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 use OpenDialogAi\Core\Components\Configuration\ComponentConfiguration;
 use OpenDialogAi\Core\Components\Configuration\ConfigurationDataHelper;
 use OpenDialogAi\Core\Conversation\Conversation;
+use OpenDialogAi\Core\Conversation\ConversationCollection;
 use OpenDialogAi\Core\Conversation\DataClients\Serializers\Normalizers\ImportExport\ScenarioNormalizer;
 use OpenDialogAi\Core\Conversation\Exceptions\DuplicateConversationObjectOdIdException;
 use OpenDialogAi\Core\Conversation\Facades\ConversationDataClient;
 use OpenDialogAi\Core\Conversation\Facades\ScenarioDataClient;
 use OpenDialogAi\Core\Conversation\Intent;
+use OpenDialogAi\Core\Conversation\IntentCollection;
 use OpenDialogAi\Core\Conversation\Scenario;
 use OpenDialogAi\Core\Conversation\Scene;
 use OpenDialogAi\Core\Conversation\Turn;
@@ -216,15 +219,40 @@ class ScenarioImportExportHelper extends BaseImportExportHelper
             ConversationDataClient::updateScenario($scenarioPatch);
         }
 
+        $patchCollection = new ConversationCollection();
         foreach ($scenarioWithPathsSubstituted->getConversations() as $conversationWithPathsSubstituted) {
-            /** @var Conversation $conversationWithPathsSubstituted */
+//            /** @var Conversation $conversationWithPathsSubstituted */
+//
+//            /** @var Conversation $persistedConversation */
+//            $persistedConversation = $persistedScenario->getConversations()
+//                ->getObjectsWithId($conversationWithPathsSubstituted->getOdId())->first();
+//
+//            self::patchConversation($persistedConversation, $conversationWithPathsSubstituted);
 
+            $persistedConversation = $persistedScenario->getConversations()
+                ->getObjectsWithId($conversationWithPathsSubstituted->getOdId())->first();
+            if (PathSubstitutionHelper::shouldPatch($conversationWithPathsSubstituted)) {
+                $conversationPatch = PathSubstitutionHelper::createPatch(
+                    $persistedConversation->getUid(),
+                    $conversationWithPathsSubstituted
+                );
+                $patchCollection->addObject($conversationPatch);
+            }
+        }
+        ConversationDataClient::updateConversationBatch($patchCollection);
+        $intentPatches = [];
+        foreach ($scenarioWithPathsSubstituted->getConversations() as $conversationWithPathsSubstituted) {
             /** @var Conversation $persistedConversation */
             $persistedConversation = $persistedScenario->getConversations()
                 ->getObjectsWithId($conversationWithPathsSubstituted->getOdId())->first();
 
-            self::patchConversation($persistedConversation, $conversationWithPathsSubstituted);
+            $patches = self::patchConversation($persistedConversation, $conversationWithPathsSubstituted);
+            foreach ($patches as $patch) {
+                array_push($intentPatches, $patch);
+            }
         }
+        Log::debug('Patches: ' . json_encode($intentPatches));
+        ConversationDataClient::updateIntentBatch($intentPatches);
 
         return ScenarioDataClient::getFullScenarioGraph($persistedScenario->getUid());
     }
@@ -236,15 +264,16 @@ class ScenarioImportExportHelper extends BaseImportExportHelper
     public static function patchConversation(
         Conversation $persistedConversation,
         Conversation $conversationWithPathsSubstituted
-    ): void {
-        if (PathSubstitutionHelper::shouldPatch($conversationWithPathsSubstituted)) {
-            $conversationPatch = PathSubstitutionHelper::createPatch(
-                $persistedConversation->getUid(),
-                $conversationWithPathsSubstituted
-            );
-            ConversationDataClient::updateConversation($conversationPatch);
-        }
+    ): array {
+//        if (PathSubstitutionHelper::shouldPatch($conversationWithPathsSubstituted)) {
+//            $conversationPatch = PathSubstitutionHelper::createPatch(
+//                $persistedConversation->getUid(),
+//                $conversationWithPathsSubstituted
+//            );
+//            ConversationDataClient::updateConversation($conversationPatch);
+//        }
 
+        $intentPatches = [];
         foreach ($conversationWithPathsSubstituted->getScenes() as $sceneWithPathsSubstituted) {
             /** @var Scene $sceneWithPathsSubstituted */
 
@@ -252,42 +281,56 @@ class ScenarioImportExportHelper extends BaseImportExportHelper
             $persistedScene = $persistedConversation->getScenes()
                 ->getObjectsWithId($sceneWithPathsSubstituted->getOdId())->first();
 
-            self::patchScene($persistedScene, $sceneWithPathsSubstituted);
+            $patches = self::patchScene($persistedScene, $sceneWithPathsSubstituted);
+            foreach ($patches as $patch) {
+                array_push($intentPatches, $patch);
+            }
         }
+        return $intentPatches;
     }
 
     /**
      * @param Scene $persistedScene
      * @param Scene $sceneWithPathsSubstituted
      */
-    public static function patchScene(Scene $persistedScene, Scene $sceneWithPathsSubstituted): void
+    public static function patchScene(Scene $persistedScene, Scene $sceneWithPathsSubstituted): array
     {
         if (PathSubstitutionHelper::shouldPatch($sceneWithPathsSubstituted)) {
             $scenePatch = PathSubstitutionHelper::createPatch($persistedScene->getUid(), $sceneWithPathsSubstituted);
+            Log::debug("PatchScene: " . json_encode($scenePatch));
             ConversationDataClient::updateScene($scenePatch);
         }
 
+        $intentPatches = [];
         foreach ($sceneWithPathsSubstituted->getTurns() as $turnWithPathsSubstituted) {
             /** @var Turn $turnWithPathsSubstituted */
 
             /** @var Turn $persistedTurn */
             $persistedTurn = $persistedScene->getTurns()->getObjectsWithId($turnWithPathsSubstituted->getOdId())->first();
 
-            self::patchTurn($persistedTurn, $turnWithPathsSubstituted);
+            $patches = self::patchTurn($persistedTurn, $turnWithPathsSubstituted);
+            foreach ($patches as $patch) {
+                array_push($intentPatches, $patch);
+            }
         }
+//        Log::debug('Patches: ' . json_encode($intentPatches));
+//        ConversationDataClient::updateIntentBatch($intentPatches);
+        return $intentPatches;
     }
 
     /**
      * @param Turn $persistedTurn
      * @param Turn $turnWithPathsSubstituted
      */
-    public static function patchTurn(Turn $persistedTurn, Turn $turnWithPathsSubstituted): void
+    public static function patchTurn(Turn $persistedTurn, Turn $turnWithPathsSubstituted): array
     {
         if (PathSubstitutionHelper::shouldPatch($turnWithPathsSubstituted)) {
             $turnPatch = PathSubstitutionHelper::createPatch($persistedTurn->getUid(), $turnWithPathsSubstituted);
+            Log::debug("PatchTurn: " . json_encode($turnPatch));
             ConversationDataClient::updateTurn($turnPatch);
         }
 
+        $intentPatches = [];
         foreach ($turnWithPathsSubstituted->getRequestIntents() as $iIdx => $intent) {
             /** @var Intent $intent */
 
@@ -296,7 +339,8 @@ class ScenarioImportExportHelper extends BaseImportExportHelper
 
             if (PathSubstitutionHelper::shouldPatch($intent)) {
                 $intentPatch = PathSubstitutionHelper::createPatch($persistedIntent->getUid(), $intent);
-                ConversationDataClient::updateIntent($intentPatch);
+//                ConversationDataClient::updateIntent($intentPatch);
+                $intentPatches[] = $intentPatch;
             }
         }
 
@@ -308,9 +352,12 @@ class ScenarioImportExportHelper extends BaseImportExportHelper
 
             if (PathSubstitutionHelper::shouldPatch($intent)) {
                 $intentPatch = PathSubstitutionHelper::createPatch($persistedIntent->getUid(), $intent);
-                ConversationDataClient::updateIntent($intentPatch);
+//                ConversationDataClient::updateIntent($intentPatch);
+                $intentPatches[] = $intentPatch;
             }
         }
+//        ConversationDataClient::updateIntentBatch($intentPatches);
+        return $intentPatches;
     }
 
     public static function createDefaultConfigurationsForScenario(string $scenarioId)
