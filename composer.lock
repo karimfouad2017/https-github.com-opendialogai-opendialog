@@ -3329,12 +3329,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "d88767688bdef58024dbdef21cce155f59c1bee2"
+                "reference": "2b6976e84b743800546d7b962b936597851a7e81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/d88767688bdef58024dbdef21cce155f59c1bee2",
-                "reference": "d88767688bdef58024dbdef21cce155f59c1bee2",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/2b6976e84b743800546d7b962b936597851a7e81",
+                "reference": "2b6976e84b743800546d7b962b936597851a7e81",
                 "shasum": ""
             },
             "require": {
@@ -3421,7 +3421,7 @@
                 "issues": "https://github.com/opendialogai/core/issues",
                 "source": "https://github.com/opendialogai/core/tree/feature/performance-test-branch"
             },
-            "time": "2022-03-17T15:02:38+00:00"
+            "time": "2022-03-17T16:48:10+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
