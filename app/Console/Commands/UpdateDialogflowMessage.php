@@ -21,12 +21,24 @@ class UpdateDialogflowMessage extends Command
         $messageTemplates = MessageTemplateDataClient::getAllMessageTemplates();
 
         $messageTemplates->each(function (MessageTemplate $messageTemplate) {
-            $messageMarkup = $messageTemplate->getMessageMarkup();
-            if ($this->containsDialogflowMessage($messageMarkup)) {
-                $messageMarkup = $this->replaceWithAttributeMessage($messageMarkup);
-                $messageTemplate->setMessageMarkup($messageMarkup);
-                MessageTemplateDataClient::updateMessageTemplate($messageTemplate);
-                $this->info(sprintf("Updating message template with Id %s", $messageTemplate->getUid()));
+            try {
+                $messageMarkup = $messageTemplate->getMessageMarkup();
+                if ($this->containsDialogflowMessage($messageMarkup)) {
+                    $messageMarkup = $this->replaceWithAttributeMessage($messageMarkup);
+                    $messageTemplate->setMessageMarkup($messageMarkup);
+                    MessageTemplateDataClient::updateMessageTemplate($messageTemplate);
+                    $this->info(sprintf("Updating message template with Id %s", $messageTemplate->getUid()));
+                }
+            } catch (\Exception $e) {
+                $templateInError = MessageTemplateDataClient::getMessageTemplateById($messageTemplate->getUid());
+                $this->error(
+                    sprintf(
+                        "Error updating message template %s from scenario %s - %s",
+                        $templateInError->getUid(),
+                        $templateInError->getIntent()->getScenario()->getUid(),
+                        $e->getMessage()
+                    )
+                );
             }
         });
     }
