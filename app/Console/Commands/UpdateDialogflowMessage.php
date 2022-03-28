@@ -30,12 +30,10 @@ class UpdateDialogflowMessage extends Command
                     $this->info(sprintf("Updating message template with Id %s", $messageTemplate->getUid()));
                 }
             } catch (\Exception $e) {
-                $templateInError = MessageTemplateDataClient::getMessageTemplateById($messageTemplate->getUid());
                 $this->error(
                     sprintf(
-                        "Error updating message template %s from scenario %s - %s",
-                        $templateInError->getUid(),
-                        $templateInError->getIntent()->getScenario()->getUid(),
+                        "Error updating message template %s - %s",
+                        $messageTemplate->getUid(),
                         $e->getMessage()
                     )
                 );
