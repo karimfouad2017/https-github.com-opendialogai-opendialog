@@ -33,7 +33,8 @@ class MigrateContextDgraphMysql extends Command
                 $attributeBag = $this->getAttributeBag($userAttributes['attributes']);
                 $userId = $this->getUserId($attributeBag);
                 if (!$userId) {
-                    $this->warn('Found attributes without user id. Cannot migrate. Attributes', $userAttributes);
+                    $this->warn('Found attributes without user id. Cannot migrate. Attributes: '
+                        . json_encode($userAttributes));
                     continue;
                 }
                 $contextClient->persistAttributes(UserContext::USER_CONTEXT, $userId, $attributeBag);
