@@ -25,19 +25,17 @@ class MigrateContextDgraphMysql extends Command
     {
         try {
             $this->graphClient = resolve(GraphQLClientInterface::class);
-            $data = $this->queryContexts();
-
             $contextClient = resolve(UserAttributeContextClient::class);
+
+            $userIds = $this->getUserIds();
             $count = 0;
-            foreach ($data['data']['queryContext'] as $userAttributes) {
-                $attributeBag = $this->getAttributeBag($userAttributes['attributes']);
-                $userId = $this->getUserId($attributeBag);
-                if (!$userId) {
-                    $this->warn('Found attributes without user id. Cannot migrate. Attributes: '
-                        . json_encode($userAttributes));
-                    continue;
+
+            foreach ($userIds as $userId) {
+                $data = $this->queryContextsByUser($userId);
+                foreach ($data['data']['getUser']['contexts'] as $userAttributes) {
+                    $attributeBag = $this->getAttributeBag($userAttributes['attributes']);
+                    $contextClient->persistAttributes(UserContext::USER_CONTEXT, $userId, $attributeBag);
                 }
-                $contextClient->persistAttributes(UserContext::USER_CONTEXT, $userId, $attributeBag);
                 $count++;
             }
 
@@ -50,24 +48,68 @@ class MigrateContextDgraphMysql extends Command
     }
 
     /**
-     * Queries all contexts, from all users, from dgraph.
+     * Gets all unique users ids from Dgraph
+     *
+     * @return array
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     */
+    private function getUserIds(): array
+    {
+        $serializer = new Serializer([new AttributeNormalizer()], []);
+        $userIds = [];
+        $data = $this->queryUsers();
+        foreach ($data['data']['queryContext'] as $userAttributes) {
+            $attribute = $serializer->denormalize($userAttributes['attributes'][0], Attribute::class);
+            array_push($userIds, $attribute->getValue());
+        }
+        return $userIds;
+    }
+
+    /**
+     * Queries for all the unique users in Dgraph.
+     *
      * @return array
      */
-    private function queryContexts(): array
+    private function queryUsers(): array
     {
         $query = <<<'GQL'
-            query getContexts {
+            query getUsers($contextId: String!) {
                 queryContext {
-                    attributes {
+                        attributes(filter: {name: {eq: $contextId}}) {
                             name
                             type
                             value
-                    }
+                        }
+                }
             }
-        }
         GQL;
 
-        return $this->graphClient->query($query);
+        return $this->graphClient->query($query, ['contextId' => 'user_id']);
+    }
+
+    /**
+     * Queries all the context for a specific user
+     *
+     * @param $userId
+     * @return array
+     */
+    private function queryContextsByUser($userId): array
+    {
+        $query = <<<'GQL'
+            query getContexts($userId: String!) {
+                getUser(user_id: $userId) {
+                    contexts {
+                        attributes {
+                                name
+                                type
+                                value
+                        }
+                    }
+                }
+            }
+        GQL;
+
+        return $this->graphClient->query($query, ['userId' => $userId]);
     }
 
     /**
@@ -88,21 +130,5 @@ class MigrateContextDgraphMysql extends Command
         }
 
         return $attributes;
-    }
-
-    /**
-     * Finds the attribute with the user_id from the bag
-     *
-     * @param AttributeBag $attributeBag
-     * @return string|null
-     */
-    private function getUserId(AttributeBag $attributeBag): ?string
-    {
-        foreach ($attributeBag->getAttributes() as $singleAttribute) {
-            if ($singleAttribute->getId() == 'user_id') {
-                return $singleAttribute->getValue();
-            }
-        }
-        return null;
     }
 }
