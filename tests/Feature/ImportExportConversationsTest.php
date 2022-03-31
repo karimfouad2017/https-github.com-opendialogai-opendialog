@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\ImportExportHelpers\ConversationImportExportHelper;
 use Illuminate\Support\Facades\Artisan;
 use OpenDialogAi\ConversationBuilder\Conversation;
 use OpenDialogAi\ConversationEngine\ConversationStore\DGraphConversationQueryFactory;
 use OpenDialogAi\Core\Graph\DGraph\DGraphClient;
+use OpenDialogAi\Core\ImportExportHelpers\ConversationImportExportHelper;
 
 /**
  * Class ImportExportConversationsTest

@@ -12,8 +12,6 @@ use App\Http\Requests\SceneRequest;
 use App\Http\Requests\TurnRequest;
 use App\Http\Resources\SceneResource;
 use App\Http\Resources\TurnResource;
-use App\ImportExportHelpers\PathSubstitutionHelper;
-use App\ImportExportHelpers\ScenarioImportExportHelper;
 use App\Rules\SceneInTransition;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
@@ -24,6 +22,8 @@ use OpenDialogAi\Core\Conversation\Intent;
 use OpenDialogAi\Core\Conversation\Scene;
 use OpenDialogAi\Core\Conversation\Transition;
 use OpenDialogAi\Core\Conversation\Turn;
+use OpenDialogAi\Core\ImportExportHelpers\PathSubstitutionHelper;
+use OpenDialogAi\Core\ImportExportHelpers\ScenarioImportExportHelper;
 
 class ScenesController extends Controller
 {

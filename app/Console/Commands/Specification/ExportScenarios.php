@@ -3,11 +3,11 @@
 
 namespace App\Console\Commands\Specification;
 
-use App\ImportExportHelpers\ScenarioImportExportHelper;
 use Illuminate\Console\Command;
 use OpenDialogAi\Core\Conversation\Facades\ConversationDataClient;
 use OpenDialogAi\Core\Conversation\Facades\ScenarioDataClient;
 use OpenDialogAi\Core\Conversation\Scenario;
+use OpenDialogAi\Core\ImportExportHelpers\ScenarioImportExportHelper;
 
 class ExportScenarios extends Command
 {

@@ -4,11 +4,11 @@ namespace App\Console\Commands\Specification;
 
 use App\Http\Controllers\API\DynamicAttributesController;
 use App\Http\Resources\DynamicAttributeCollection;
-use App\ImportExportHelpers\DynamicAttributeImportExportHelper;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Facades\DB;
 use OpenDialogAi\AttributeEngine\DynamicAttribute;
+use OpenDialogAi\Core\ImportExportHelpers\DynamicAttributeImportExportHelper;
 
 
 class ImportDynamicAttributes extends Command

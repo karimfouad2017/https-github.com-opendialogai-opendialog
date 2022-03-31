@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands\Specification;
 
-use App\ImportExportHelpers\ScenarioImportExportHelper;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use OpenDialogAi\Core\Conversation\Exceptions\DuplicateConversationObjectOdIdException;
+use OpenDialogAi\Core\ImportExportHelpers\ScenarioImportExportHelper;
 use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 
 class ImportScenarios extends Command

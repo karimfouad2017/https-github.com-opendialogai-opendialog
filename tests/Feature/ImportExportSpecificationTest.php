@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\ImportExportHelpers\MessageImportExportHelper;
 use Illuminate\Support\Facades\Artisan;
 use OpenDialogAi\ConversationEngine\ConversationStore\DGraphConversationQueryFactory;
 use OpenDialogAi\Core\Graph\DGraph\DGraphClient;
+use OpenDialogAi\Core\ImportExportHelpers\MessageImportExportHelper;
 use OpenDialogAi\ResponseEngine\MessageTemplate;
 
 /**

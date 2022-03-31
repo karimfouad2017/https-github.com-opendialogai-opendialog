@@ -43,7 +43,7 @@ class LocalPackages extends Command
 
 
         $this->info('Deleting the temp composer file');
-        unlink(base_path('composer-dev.json'));
+//        unlink(base_path('composer-dev.json'));
 
         $this->info('OpenDialog package dependencies all set up');
     }

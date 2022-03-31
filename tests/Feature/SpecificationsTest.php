@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\ImportExportHelpers\ConversationImportExportHelper;
 use App\User;
 use Illuminate\Http\UploadedFile;
 use OpenDialogAi\ConversationEngine\ConversationStore\DGraphConversationQueryFactory;
 use OpenDialogAi\Core\Graph\DGraph\DGraphClient;
+use OpenDialogAi\Core\ImportExportHelpers\ConversationImportExportHelper;
 use Tests\TestCase;
 
 class SpecificationsTest extends TestCase

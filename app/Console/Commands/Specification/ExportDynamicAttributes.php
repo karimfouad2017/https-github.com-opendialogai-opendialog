@@ -3,10 +3,10 @@
 namespace App\Console\Commands\Specification;
 
 use App\Http\Resources\DynamicAttributeCollection;
-use App\ImportExportHelpers\DynamicAttributeImportExportHelper;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Collection;
 use OpenDialogAi\AttributeEngine\DynamicAttribute;
+use OpenDialogAi\Core\ImportExportHelpers\DynamicAttributeImportExportHelper;
 
 class ExportDynamicAttributes extends Command
 {

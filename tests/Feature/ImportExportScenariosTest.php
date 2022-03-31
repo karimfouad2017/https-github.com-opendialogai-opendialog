@@ -3,8 +3,6 @@
 namespace Tests\Feature;
 
 use App\Console\Facades\ImportExportSerializer;
-use App\ImportExportHelpers\PathSubstitutionHelper;
-use App\ImportExportHelpers\ScenarioImportExportHelper;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -29,6 +27,8 @@ use OpenDialogAi\Core\Conversation\Transition;
 use OpenDialogAi\Core\Conversation\Turn;
 use OpenDialogAi\Core\Conversation\TurnCollection;
 use OpenDialogAi\Core\Conversation\VirtualIntent;
+use OpenDialogAi\Core\ImportExportHelpers\PathSubstitutionHelper;
+use OpenDialogAi\Core\ImportExportHelpers\ScenarioImportExportHelper;
 use Tests\TestCase;
 
 /**

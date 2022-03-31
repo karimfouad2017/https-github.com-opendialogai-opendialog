@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\ImportExportHelpers\IntentImportExportHelper;
 use Illuminate\Support\Facades\Artisan;
+use OpenDialogAi\Core\ImportExportHelpers\IntentImportExportHelper;
 use OpenDialogAi\ResponseEngine\OutgoingIntent;
 
 /**
