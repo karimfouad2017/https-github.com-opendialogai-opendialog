@@ -48,32 +48,12 @@ class ComponentConfigurationResource extends JsonResource
 
     protected function filterHiddenFields($originalArray, $hiddenFields)
     {
-        $finalArray = [];
-
-        // Convert array to dot notation to account for hidden fields
-        // in the form generl.access_token
-        $dotArray = Arr::dot($originalArray);
-        $dotArrayResult = [];
-
-        foreach ($dotArray as $key => $value) {
-            if (!in_array($key, $hiddenFields)) {
-                $dotArrayResult[$key] = $value;
-            }
+        foreach ($hiddenFields as $field) {
+            // The array is passes by reference into Array::forget,
+            // so originalArray becomes updated
+            Arr::forget($originalArray, $field);
         }
 
-        // Also account for non dot notation
-        $filteredResult = Arr::undot($dotArrayResult);
-        foreach ($filteredResult as $key => $value) {
-            if (!in_array($key, $hiddenFields)) {
-                if (is_array($value)) {
-                    $finalArray[$key] = $this->filterHiddenFields($value, $hiddenFields);
-                    continue;
-                }
-
-                $finalArray[$key] = $value;
-            }
-        }
-
-        return $finalArray;
+        return $originalArray;
     }
 }
