@@ -38,7 +38,7 @@
         "core-js": "^3.1.4",
         "flag-icon-css": "^3.3.0",
         "font-awesome": "^4.7.0",
-        "moment": "^2.24.0",
+        "moment": "^2.29.2",
         "serialize-javascript": "3.1.0",
         "simple-line-icons": "^2.4.1",
         "vue-codemirror": "^4.0.6",
