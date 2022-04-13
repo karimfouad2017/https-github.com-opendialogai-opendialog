@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "87004efd6d2b7d4d2424be5f2476ff3d",
+    "content-hash": "40da7b760b9f9136970a14c835ad8749",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3325,16 +3325,16 @@
         },
         {
             "name": "opendialogai/core",
-            "version": "1.14.0",
+            "version": "1.14.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "3218a0739aca8cfb485f379ac823296aa2b7940e"
+                "reference": "b5702537da29d10f83014d4acc2ec07ac85d67b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/3218a0739aca8cfb485f379ac823296aa2b7940e",
-                "reference": "3218a0739aca8cfb485f379ac823296aa2b7940e",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/b5702537da29d10f83014d4acc2ec07ac85d67b9",
+                "reference": "b5702537da29d10f83014d4acc2ec07ac85d67b9",
                 "shasum": ""
             },
             "require": {
@@ -3419,9 +3419,9 @@
             "description": "The OpenDialog Core package",
             "support": {
                 "issues": "https://github.com/opendialogai/core/issues",
-                "source": "https://github.com/opendialogai/core/tree/1.14.0"
+                "source": "https://github.com/opendialogai/core/tree/1.14.1"
             },
-            "time": "2022-04-04T13:04:04+00:00"
+            "time": "2022-04-12T16:23:49+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -3465,16 +3465,16 @@
         },
         {
             "name": "opendialogai/webchat",
-            "version": "1.7.2",
+            "version": "1.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/webchat.git",
-                "reference": "7f71e1ae7ca56b9a2da6903a9723f6d944cd71c9"
+                "reference": "e8460c3c28a20f54ed42b6755fb00693823d3d56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/7f71e1ae7ca56b9a2da6903a9723f6d944cd71c9",
-                "reference": "7f71e1ae7ca56b9a2da6903a9723f6d944cd71c9",
+                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/e8460c3c28a20f54ed42b6755fb00693823d3d56",
+                "reference": "e8460c3c28a20f54ed42b6755fb00693823d3d56",
                 "shasum": ""
             },
             "require": {
@@ -3516,9 +3516,9 @@
             "description": "Webchat front end component for the Open Dialog project",
             "support": {
                 "issues": "https://github.com/opendialogai/webchat/issues",
-                "source": "https://github.com/opendialogai/webchat/tree/1.7.2"
+                "source": "https://github.com/opendialogai/webchat/tree/1.7.3"
             },
-            "time": "2022-03-28T13:50:57+00:00"
+            "time": "2022-04-12T16:25:25+00:00"
         },
         {
             "name": "opis/closure",
