@@ -186,11 +186,11 @@ workflows:
   build_workflow:
     jobs:
       - tests:
-          - context: "Slack Creds"
+          context: "Slack Creds"
       - node_build:
-          - context: "Slack Creds"
+          context: "Slack Creds"
       - docker_build:
-          - context: "Slack Creds"
+          context: "Slack Creds"
           requires:
             - tests
             - node_build
