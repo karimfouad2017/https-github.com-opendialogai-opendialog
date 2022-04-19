@@ -185,9 +185,12 @@ workflows:
   version: 2
   build_workflow:
     jobs:
-      - tests
-      - node_build
+      - tests:
+          - context: "Slack Creds"
+      - node_build:
+          - context: "Slack Creds"
       - docker_build:
+          - context: "Slack Creds"
           requires:
             - tests
             - node_build
