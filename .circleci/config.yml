@@ -2,7 +2,9 @@
 #
 # Check https://circleci.com/docs/2.0/language-php/ for more details
 #
-version: 2.0
+version: 2.1
+orbs:
+  slack: circleci/slack@4.5.0
 jobs:
   tests:
     docker:
@@ -68,7 +70,7 @@ jobs:
           keys:
             - v1-node-dependencies-{{ checksum "yarn.lock" }}
             - v1-node-dependencies-
-            -
+
       - run: yarn install
 
       - save_cache:
@@ -96,6 +98,14 @@ jobs:
           command: cat ./storage/logs/*
           when: on_fail
 
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+
+      - slack/notify:
+          event: pass
+          template: basic_success_1
+
   node_build:
     docker:
       - image: circleci/php:7.4.10-node-browsers
@@ -110,7 +120,7 @@ jobs:
           keys:
             - v1-node-dependencies-{{ checksum "yarn.lock" }}
             - v1-node-dependencies-
-            -
+
       - run: yarn install
 
       - save_cache:
@@ -133,6 +143,14 @@ jobs:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.lock" }}
 
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+
+      - slack/notify:
+          event: pass
+          template: basic_success_1
+
   docker_build:
     docker:
       - image: circleci/php:7.4.10-node-browsers
@@ -147,6 +165,14 @@ jobs:
               echo "Building Docker Image"
               bash docker/scripts/docker-build.sh
           fi
+
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+
+      - slack/notify:
+          event: pass
+          template: basic_success_1
 
   deploy:
     docker:
