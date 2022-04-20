@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // Containers
-import DefaultContainer from '@/containers/DefaultContainer'
+import DefaultContainer from '@opendialogai/opendialog-design-system-pkg/src/components/Layout/DefaultContainer'
 
 import store from '@opendialogai/opendialog-design-system-pkg/src/store'
 
@@ -14,7 +14,7 @@ import GlobalContextView from '@opendialogai/opendialog-design-system-pkg/src/co
 import WarningView from '@opendialogai/opendialog-design-system-pkg/src/components/Views/WarningView'
 import Preview from '@opendialogai/opendialog-design-system-pkg/src/components/Views/Preview'
 import ConversationLog from '@opendialogai/opendialog-design-system-pkg/src/components/Views/ConversationLog'
-import DynamicAttribute from '@/views/DynamicAttribute'
+import DynamicAttribute from '@opendialogai/opendialog-design-system-pkg/src/components/Views/DynamicAttribute'
 import Scenarios
   from '@opendialogai/opendialog-design-system-pkg/src/components/Scenarios/Scenarios'
 import CreateNewScenario
