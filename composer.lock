@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a18e75c5877b380ef260d10ed5e0a7da",
+    "content-hash": "a5da6de8d1728274a4c729d0669343f7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3325,16 +3325,16 @@
         },
         {
             "name": "opendialogai/core",
-            "version": "1.13.0",
+            "version": "dev-feature/OPNDLG-1473",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "e46c6174cd64b8b4f41b5e0f8c505d01d1b02267"
+                "reference": "55e71df0c0052a960eaeffe6af482d4579b56d1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/e46c6174cd64b8b4f41b5e0f8c505d01d1b02267",
-                "reference": "e46c6174cd64b8b4f41b5e0f8c505d01d1b02267",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/55e71df0c0052a960eaeffe6af482d4579b56d1f",
+                "reference": "55e71df0c0052a960eaeffe6af482d4579b56d1f",
                 "shasum": ""
             },
             "require": {
@@ -3419,9 +3419,9 @@
             "description": "The OpenDialog Core package",
             "support": {
                 "issues": "https://github.com/opendialogai/core/issues",
-                "source": "https://github.com/opendialogai/core/tree/1.13.0"
+                "source": "https://github.com/opendialogai/core/tree/feature/OPNDLG-1473"
             },
-            "time": "2022-03-28T13:44:56+00:00"
+            "time": "2022-04-21T15:54:06+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -12061,7 +12061,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "opendialogai/core": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
