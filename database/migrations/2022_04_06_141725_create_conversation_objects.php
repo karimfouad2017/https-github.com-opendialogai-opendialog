@@ -14,7 +14,8 @@ class CreateConversationObjects extends Migration
     public function up()
     {
         Schema::create('conversation_objects', function (Blueprint $table) {
-            $table->uuid('uid')->index();
+            $table->engine = 'InnoDB';
+            $table->bigIncrements('id');
             $table->string('od_id')->nullable();
             $table->string('name')->nullable();
             $table->string('description')->nullable();
@@ -22,9 +23,11 @@ class CreateConversationObjects extends Migration
             $table->json('conditions')->nullable();
             $table->json('behaviors')->nullable();
             $table->string('type');
-            $table->uuid('parent_id')->nullable();
+            $table->unsignedBigInteger('parent_id')->nullable()->index();
             $table->json('data')->nullable();
             $table->timestamps();
+            $table->uuid('uid');
+            $table->foreign('parent_id')->references('id')->on('conversation_objects')->onDelete('cascade');
         });
     }
 
