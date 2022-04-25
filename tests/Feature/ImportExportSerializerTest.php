@@ -3,7 +3,6 @@
 
 namespace Tests\Feature;
 
-use App\Console\Facades\ImportExportSerializer;
 use Illuminate\Support\Carbon;
 use OpenDialogAi\Core\Conversation\Behavior;
 use OpenDialogAi\Core\Conversation\BehaviorsCollection;
@@ -19,6 +18,7 @@ use OpenDialogAi\Core\Conversation\Transition;
 use OpenDialogAi\Core\Conversation\Turn;
 use OpenDialogAi\Core\Conversation\TurnCollection;
 use OpenDialogAi\Core\Conversation\VirtualIntent;
+use OpenDialogAi\Core\ImportExportHelpers\Facades\ImportExportSerializer;
 use OpenDialogAi\Core\ImportExportHelpers\PathSubstitutionHelper;
 use RuntimeException;
 use Tests\TestCase;

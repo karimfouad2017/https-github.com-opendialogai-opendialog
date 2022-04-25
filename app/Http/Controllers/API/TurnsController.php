@@ -3,7 +3,6 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Console\Facades\ImportExportSerializer;
 use App\Http\Controllers\Controller;
 use App\Http\Facades\Serializer;
 use App\Http\Requests\ConversationObjectDuplicationRequest;
@@ -26,6 +25,7 @@ use OpenDialogAi\Core\Conversation\Intent;
 use OpenDialogAi\Core\Conversation\MessageTemplate;
 use OpenDialogAi\Core\Conversation\Transition;
 use OpenDialogAi\Core\Conversation\Turn;
+use OpenDialogAi\Core\ImportExportHelpers\Facades\ImportExportSerializer;
 use OpenDialogAi\Core\ImportExportHelpers\PathSubstitutionHelper;
 use OpenDialogAi\Core\ImportExportHelpers\ScenarioImportExportHelper;
 use OpenDialogAi\MessageBuilder\MessageMarkUpGenerator;
